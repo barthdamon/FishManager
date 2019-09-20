@@ -45,6 +45,7 @@ public class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     public void OnDrag(PointerEventData event_data)
     {
         Vector3 pos = Camera.main.ScreenToWorldPoint(event_data.position) - this.drag_start_offset;
+        Debug.Log(event_data.position + ", "+ pos);
         pos.z = 100.0f;
         this.transform.position = pos;
         this.transform.rotation = Quaternion.identity;
