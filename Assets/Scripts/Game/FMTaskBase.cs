@@ -17,10 +17,14 @@ public abstract class FMTaskBase : MonoBehaviour
 
 	public void OnDayEnd(FMDay day)
 	{
-		foreach (var item in m_AssignedWorkers)
-		{
-			item.GetSomeGrub();
-		}
+		m_AssignedWorkers.Clear();
+		ShutDown();
+		// might need animations to stop functioning
+	}
+
+	protected virtual void ShutDown()
+	{
+
 	}
 
 	// Returns if true if task is now processing

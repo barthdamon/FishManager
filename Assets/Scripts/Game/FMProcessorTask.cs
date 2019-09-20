@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class FMProcessorTask : FMTaskBase
 {
-
-
 	public float m_ProcessScalar = 1f;
 
 	public override void TickTask(float time)

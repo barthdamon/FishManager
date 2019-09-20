@@ -5,23 +5,13 @@ using UnityEngine;
 
 public class FMResourceSink : FMTaskBase
 {
-	// demand
-	// STANDARD resource consumption rate across all sinks
 	public static float m_ConsumerTickRate = 1f;
-	public static float m_ConsumerTickResourceAmount = 1f;
+	public static float m_ConsumerTriggerResourceAmount = 1f;
 
 	[Tooltip("High value at 0 scaling down to close to zero at infinity")]
 	public AnimationCurve m_DemandValueCurve;
 
 	public float m_CurrentSicknessLevel = 0f;
-
-	// Demand is represented by a crowd, but determined by resource amount
-
-	// resource amount - determines your capital
-	// replenished by the processor
-
-	// outputs capital
-	// outputs sickness (based on food quality) which affects worker productivity
 
 	private void Start()
 	{
@@ -38,20 +28,20 @@ public class FMResourceSink : FMTaskBase
 		base.TriggerTask();
 
 		// determine capital gain
-		float totalAmount = m_Resources.Sum((FMResource res) => res.m_Amount);
+		float totalAmount = m_Resources.Sum((FMResource res) => res.m_ProcessedAmount);
 		float capitalGain = m_DemandValueCurve.Evaluate(totalAmount);
 		FMPlayer.GetOrCreateInstance().m_Capital += capitalGain;
 
 		// deplete resource
-		var resourcesToDeplete = m_ConsumerTickResourceAmount;
+		var resourcesToDeplete = m_ConsumerTriggerResourceAmount;
 		float triggeredSickness = 0f;
 		var depletedAmount = 0f;
-		while (depletedAmount < m_ConsumerTickResourceAmount && m_Resources.Count > 0)
+		while (depletedAmount < m_ConsumerTriggerResourceAmount && m_Resources.Count > 0)
 		{
 			var resource = m_Resources.Peek();
 			var thisDepletion = Mathf.Min(resource.m_ProcessedAmount, resourcesToDeplete);
 
-			float percentageSicknessToUse = thisDepletion / m_ConsumerTickResourceAmount;
+			float percentageSicknessToUse = thisDepletion / m_ConsumerTriggerResourceAmount;
 			resource.m_ProcessedAmount -= thisDepletion;
 			triggeredSickness += percentageSicknessToUse * resource.m_Sickness;
 			depletedAmount += thisDepletion;
@@ -68,5 +58,10 @@ public class FMResourceSink : FMTaskBase
 	public override float GetTimeToTrigger()
 	{
 		return m_ConsumerTickRate;
+	}
+
+	protected override void ShutDown()
+	{
+		// PEOPLE ALWAYS EAT!
 	}
 }

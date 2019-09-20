@@ -7,7 +7,7 @@ public class FMTaskGenerator : FMTaskBase
 	public FMProcessorTask m_Processor;
 
 	public float m_GenerationTimePerPerson;
-	public float m_ResourceCapacityPerWorker;
+	public float m_ResourceCapacityPerWorkerPerTick;
 
 	// multiple generator tasks
 	public int m_NumberOfWorkersRequired;
@@ -36,11 +36,10 @@ public class FMTaskGenerator : FMTaskBase
 		return m_TaskProcessing;
 	}
 
-	private void Start()
+	private void Awake()
 	{
 		m_TaskProcessing = false;
 	}
-
 
 	protected override void TriggerTask()
 	{
@@ -61,7 +60,7 @@ public class FMTaskGenerator : FMTaskBase
 		float tickResourceAmount = 0f;
 		for (int i = 0; i < m_AssignedWorkers.Count; ++i)
 		{
-			float workerProductivity = m_AssignedWorkers[i].GetProductivity() * m_ResourceCapacityPerWorker;
+			float workerProductivity = m_AssignedWorkers[i].GetProductivity() * m_ResourceCapacityPerWorkerPerTick;
 			tickResourceAmount += workerProductivity;
 		}
 		m_Resources.Peek().m_Amount += tickResourceAmount;
