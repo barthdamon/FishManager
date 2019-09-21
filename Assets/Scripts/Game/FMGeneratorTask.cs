@@ -138,10 +138,15 @@ public class FMGeneratorTask : FMTaskBase
 
 		Vector3 fishingPosition = FMBoardReferences.GetOrCreateInstance().m_ResourceBoatDestinations[m_AssignedEquipment.m_ResourceIndex].position;
 		// use the position to the fishing hole as 50%, otherwise come back for the second 50%
-		Vector3 destination = progress > 0.5f ? m_DockPosition : fishingPosition;
+		bool gotFish = progress > 0.5f;
+		Vector3 destination = gotFish ? m_DockPosition : fishingPosition;
+		// on the way there
+		// lerp position will b < 0.5 but we want out of 0.5
+		float lerpPosition = gotFish ? (progress - 0.5f) / 0.5f : progress / 0.5f;
+		Vector3 startPosition = gotFish ? fishingPosition : m_DockPosition;
+		transform.position = Vector3.Lerp(startPosition, destination, lerpPosition);
 
-		transform.position = Vector3.Lerp(transform.position, destination, 0.5f);
-		if (progress > 0.5f)
+		if (gotFish)
 		{
 			m_Resources.Peek().SetResourceVisible(true);
 		}
