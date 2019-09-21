@@ -38,6 +38,7 @@
                 float4 vertex : POSITION;
                 float2 uv : TEXCOORD0;
 				float2 uv1 : TEXCOORD1;
+				float4 color : COLOR;
 			};
 
             struct v2f
@@ -45,6 +46,7 @@
                 float2 uv : TEXCOORD0;
 				float2 uv1 : TEXCOORD1;
                 float4 vertex : SV_POSITION;
+				float4 VC : COLOR;
             };
 
           
@@ -55,7 +57,7 @@
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex) + frac(_Time.y * _UVAnim.xy);;
 				o.uv1 = v.uv1;
-                
+				o.VC = v.color;
                 return o;
             }
 
@@ -65,7 +67,7 @@
 				fixed4 mask = tex2D(_Mask, i.uv1);
                 fixed4 col = tex2D(_MainTex, i.uv);
 				col.a *= mask;
-                
+				col.a *= i.VC.a;
                 return col;
             }
             ENDCG
