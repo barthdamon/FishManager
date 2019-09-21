@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class FMGeneratorTask : FMTaskBase
 {
 	public float m_GenerationTimePerPerson = 5f;
-	public float m_ResourceCapacityPerWorkerPerTick = 1f;
+	public float m_ResourceCapacityPerWorkerOnTrigger = 100f;
 
 	// multiple generator tasks
 	public int m_NumberOfWorkersRequired = 1;
@@ -99,6 +99,16 @@ public class FMGeneratorTask : FMTaskBase
 
 	protected override void TriggerTask()
 	{
+		float tickResourceAmount = 0f;
+		for (int i = 0; i < m_AssignedWorkers.Count; ++i)
+		{
+			float workerProductivity = m_AssignedWorkers[i].GetProductivity() * m_ResourceCapacityPerWorkerOnTrigger;
+			tickResourceAmount += workerProductivity;
+		}
+
+		if (m_TaskProcessing)
+			m_Resources.Peek().m_Amount += tickResourceAmount;
+
 		for (int i = 0; i < m_AssignedWorkers.Count; ++i)
 		{
 			m_AssignedWorkers[i].GoToWorkerPool();
@@ -113,6 +123,7 @@ public class FMGeneratorTask : FMTaskBase
 		m_TaskProcessing = false;
 		m_TimeSinceLastTrigger = 0f;
 
+
 		var processor = FMBoardReferences.GetOrCreateInstance().m_Processor;
 		var generatedResource = m_Resources.Dequeue();
 		SetProgress(0f);
@@ -123,15 +134,7 @@ public class FMGeneratorTask : FMTaskBase
 	public override void TickTask(float time)
 	{
 		base.TickTask(time);
-		float tickResourceAmount = 0f;
-		for (int i = 0; i < m_AssignedWorkers.Count; ++i)
-		{
-			float workerProductivity = m_AssignedWorkers[i].GetProductivity() * m_ResourceCapacityPerWorkerPerTick;
-			tickResourceAmount += workerProductivity;
-		}
 
-		if (m_TaskProcessing)
-			m_Resources.Peek().m_Amount += tickResourceAmount;
 	}
 
 	public override float GetTimeToTrigger()
