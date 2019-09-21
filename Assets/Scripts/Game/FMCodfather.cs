@@ -9,26 +9,45 @@ public class FMCodfather : MonoBehaviourSingleton<FMCodfather>
 
 	public bool m_ShowingMafia = false;
 
+	private Canvas m_SpawnCanvas;
+	private float m_TimeToSpawnMafia = 20f;
+	private float m_LastMafiaSpawnTime = 0f;
+
 	public void Buffer(string text)
 	{
 		buffer.Add(text);
 	}
 
+	public void Start()
+	{
+		m_LastMafiaSpawnTime = Time.time;
+		m_SpawnCanvas = FindObjectOfType<Canvas>();
+	}
+
 	private IEnumerator SpawnMafia()
 	{
 		m_ShowingMafia = true;
-		var canvas = GetComponentInParent<Canvas>();
-		var mafiaInstance = Instantiate(m_MafiaPrefab, canvas.transform);
+		var mafiaInstance = Instantiate(m_MafiaPrefab, m_SpawnCanvas.transform);
 		// get a random sink and put mafia there...
-		var potentialSinks = FMBoardReferences.GetOrCreateInstance().m_ResourceSinks;
-		int randomSink = Random.Range(0, potentialSinks.Length);
-		var sink = potentialSinks[randomSink];
+		//var potentialSinks = FMBoardReferences.GetOrCreateInstance().m_ResourceSinks;
+		//int randomSink = Random.Range(0, potentialSinks.Length);
+		//var sink = potentialSinks[randomSink];
+		var staging = FMBoardReferences.GetOrCreateInstance().m_WorkerPoolStagingArea;
+		staging.AddToStaging(mafiaInstance.transform);
+		FMPlayer.GetOrCreateInstance().m_Capital -= 25f;
+		//TODO: have the mafia say something
 		yield return new WaitForSeconds(5f);
-
+		m_LastMafiaSpawnTime = Time.time;
+		Destroy(mafiaInstance);
 	}
 
 	private void Update()
 	{
+		if (!m_ShowingMafia && (Time.time - m_LastMafiaSpawnTime > m_TimeToSpawnMafia))
+		{
+			StartCoroutine(SpawnMafia());
+		}
+
 		if (buffer.Count > 0)
 		{
 			string message = buffer[0];
@@ -41,7 +60,7 @@ public class FMCodfather : MonoBehaviourSingleton<FMCodfather>
 				message = message.Substring(n + 1);
 			}
 
-			if (!m_ShowingMafia && message.Contains("mafia") || message.Contains("Mafia")
+			if (!m_ShowingMafia && message.Contains("mafia") || message.Contains("Mafia"))
 			{
 				StartCoroutine(SpawnMafia());
 			}
