@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class LookAtCamera : MonoBehaviour
 {
+    public bool useCameraForward = true;
+
     void LateUpdate()
     {
-        transform.rotation = Quaternion.LookRotation(-Camera.main.transform.forward);
+        transform.rotation = useCameraForward ? Quaternion.LookRotation(-Camera.main.transform.forward)
+                                                : Quaternion.LookRotation(Camera.main.transform.position - this.transform.position);
     }
 }
