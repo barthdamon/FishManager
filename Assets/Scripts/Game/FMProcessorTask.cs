@@ -7,6 +7,7 @@ public class FMProcessorTask : FMTaskBase
 {
 	public float m_ProcessScalar = 1f;
 	public float m_SingleWorkerProcessTime = 1f;
+	public float m_StagingAreaRadus = 3f;
 
 	public RectTransform m_ProcessingStagingArea;
 
@@ -33,7 +34,9 @@ public class FMProcessorTask : FMTaskBase
 	{
 		// todo: animate it to the processing plant?
 		m_Resources.Enqueue(resource);
-		resource.gameObject.transform.position = m_ProcessingStagingArea.position;
+		Vector2 centerOffset = new Vector2(Random.Range(0f, m_StagingAreaRadus), Random.Range(0f, m_StagingAreaRadus));
+		resource.gameObject.transform.SetParent(m_ProcessingStagingArea);
+		resource.gameObject.transform.localPosition = centerOffset;
 		resource.gameObject.SetActive(true);
 	}
 
