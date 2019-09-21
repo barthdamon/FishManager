@@ -59,6 +59,7 @@ public class FMProcessorTask : FMTaskBase
 		resource.gameObject.transform.localPosition = new Vector3(centerOffset.x, 0f, centerOffset.y);
 		resource.m_StartProcessingAmount = resource.m_Amount;
 		resource.SetResourceVisible(true);
+		resource.m_SmellyFishParticles.SetActive(true);
 	}
 
 	protected override void TriggerTask()
