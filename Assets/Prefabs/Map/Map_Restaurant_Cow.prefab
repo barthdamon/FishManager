@@ -124,4 +124,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8e7798ad5ec74d47b74e3b555c3a274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useCameraForward: 0
+  useCameraForward: 1
