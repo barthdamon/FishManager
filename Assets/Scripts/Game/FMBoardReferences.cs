@@ -15,4 +15,6 @@ public class FMBoardReferences : MonoBehaviourSingleton<FMBoardReferences>
 
 	[Tooltip("Index corresponds to resource type")]
 	public Transform[] m_ResourceBoatDestinations;
+
+	public FMStagingArea m_WorkerStagingArea;
 }

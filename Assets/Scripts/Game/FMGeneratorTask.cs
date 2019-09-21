@@ -89,6 +89,7 @@ public class FMGeneratorTask : FMTaskBase
 
 	private void Start()
 	{
+		m_WorkerStagingArea = FMBoardReferences.GetOrCreateInstance().m_WorkerStagingArea;
 		m_DockPosition = transform.position;
 	}
 

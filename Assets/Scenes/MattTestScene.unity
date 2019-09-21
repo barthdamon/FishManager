@@ -268,6 +268,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 248521923}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &375230175 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1395699031, guid: c72e8eb09579e664990106c0ec417002,
+    type: 3}
+  m_PrefabInstance: {fileID: 3324932075407900999}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f005707d4e5b77c46a0508eb420e8299, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &395398863 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3839258157819551025, guid: c5e23e5ccdf60bc48bd44c9173f2b2d7,
@@ -1011,6 +1023,11 @@ PrefabInstance:
       propertyPath: m_ResourceBoatDestinations.Array.data[2]
       value: 
       objectReference: {fileID: 1871094340}
+    - target: {fileID: 2767187746156421727, guid: 1aff7edf00a3b1b4a97fefc2bcb661ba,
+        type: 3}
+      propertyPath: m_WorkerStagingArea
+      value: 
+      objectReference: {fileID: 375230175}
     - target: {fileID: 3128699244264169754, guid: 1aff7edf00a3b1b4a97fefc2bcb661ba,
         type: 3}
       propertyPath: m_Name
