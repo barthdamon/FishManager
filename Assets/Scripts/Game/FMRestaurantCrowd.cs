@@ -38,31 +38,50 @@ public class FMRestaurantCrowd : MonoBehaviour
 		while (true)
 		{
 			yield return new WaitForSeconds(1f);
-			var sinks = FMBoardReferences.GetOrCreateInstance().m_ResourceSinks;
+			var potentialSinks = FMBoardReferences.GetOrCreateInstance().m_ResourceSinks;
+			var sinks = new List<FMResourceSink>();
+			// if there is at least 1 amount there then it is valid...
+			for (int i = 0; i < potentialSinks.Length; ++i)
+			{
+				if (potentialSinks[i].GetCurrentResourceSum() > 0)
+					sinks.Add(potentialSinks[i]);
+			}
 
 			// want the ratio of supply between sinks
 			var totalAmounts = 0f;
-			float[] sinkAmounts = new float[sinks.Length];
-			for (int i = 0; i < sinks.Length; ++i)
+			float[] sinkAmounts = new float[sinks.Count];
+			for (int i = 0; i < sinks.Count; ++i)
 			{
 				float sum = sinks[i].GetCurrentResourceSum();
 				sinkAmounts[i] = sum;
 				totalAmounts += sum;
 			}
 
-			float[] sinkPercentages = new float[sinks.Length];
-			for (int i = 0; i < sinks.Length; ++i)
+			float[] inverseSinkPercentages = new float[sinks.Count];
+			float totalInversePercentages = 0f;
+			for (int i = 0; i < sinks.Count; ++i)
 			{
-				sinkPercentages[i] = sinkAmounts[i] / totalAmounts;
+				var inversePercentage = 1 - (sinkAmounts[i] / totalAmounts);
+				inverseSinkPercentages[i] = inversePercentage;
+				totalInversePercentages += inversePercentage;
 			}
 
-			int[] sinkIndexCutoffs = new int[sinks.Length];
-			for (int i = 0; i < sinks.Length; ++i)
+			// then if we get the percentages of this we can run through the index cutoffs...
+			float[] sinkPercentages = new float[sinks.Count];
+			for (int i = 0; i < sinks.Count; ++i)
+			{
+				sinkPercentages[i] = (inverseSinkPercentages[i] / totalInversePercentages);
+			}
+
+			int[] sinkIndexCutoffs = new int[sinks.Count];
+			for (int i = 0; i < sinks.Count; ++i)
 			{
 				int thisSinkIndices = (int)(sinkPercentages[i] * m_CrowdSize);
 				int previousCutoff = i == 0 ? 0 : sinkIndexCutoffs[i - 1];
 				sinkIndexCutoffs[i] = previousCutoff + thisSinkIndices;
 			}
+
+			// flock proportionately to the ones with the least %
 
 			for (int i = 0; i < m_Citizens.Count; ++i)
 			{
