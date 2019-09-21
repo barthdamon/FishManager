@@ -57,12 +57,18 @@ public class FMResourceSink : FMTaskBase
 		m_CurrentSicknessLevel = 0f;
 	}
 
+	public float GetCurrentResourceSum()
+	{
+		float totalAmount = m_Resources.Sum((FMResource res) => res.m_ProcessedAmount);
+		return totalAmount;
+	}
+
 	protected override void TriggerTask()
 	{
 		base.TriggerTask();
 
 		// determine capital gain
-		float totalAmount = m_Resources.Sum((FMResource res) => res.m_ProcessedAmount);
+		float totalAmount = GetCurrentResourceSum();
 		float capitalGain = m_DemandValueCurve.Evaluate(totalAmount);
 		FMPlayer.GetOrCreateInstance().m_Capital += capitalGain;
 
@@ -110,7 +116,7 @@ public class FMResourceSink : FMTaskBase
 	public void AddResourceToSink(FMResource resource)
 	{
 		m_Resources.Enqueue(resource);
-		float totalAmount = m_Resources.Sum((FMResource res) => res.m_ProcessedAmount);
+		float totalAmount = GetCurrentResourceSum();
 		m_SinkLevelDisplay.UpdateLevelDisplay(totalAmount);
 		if (totalAmount > 0)
 			m_TaskProcessing = true;
