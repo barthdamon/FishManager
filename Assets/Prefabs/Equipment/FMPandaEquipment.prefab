@@ -121,7 +121,29 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 1c17becfdb54b004a80fb20e3bacfa75,
+      objectReference: {fileID: 21300000, guid: 50d47fe1aae66df42bec4c933874b182,
+        type: 3}
+    - target: {fileID: 1764070696335852004, guid: fc88ae7c12127604591513ac8bec41a6,
+        type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1764070696335852004, guid: fc88ae7c12127604591513ac8bec41a6,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7243303914865500685, guid: fc88ae7c12127604591513ac8bec41a6,
+        type: 3}
+      propertyPath: m_ConstructedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 50d47fe1aae66df42bec4c933874b182,
+        type: 3}
+    - target: {fileID: 7243303914865500685, guid: fc88ae7c12127604591513ac8bec41a6,
+        type: 3}
+      propertyPath: m_ConstructingSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8d81439bf5775ab45a0c00599086ef36,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc88ae7c12127604591513ac8bec41a6, type: 3}
