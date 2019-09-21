@@ -376,64 +376,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useCameraForward: 0
---- !u!114 &1775801151340943880
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5438695624282066917}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8f238ee514105640b0249d454b68894, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  progress: 0
-  fillerImage: {fileID: 5438695624900530039}
-  baseImage: {fileID: 0}
-  m_TaskProcessing: 1
-  m_TimeSinceLastTrigger: 0
-  m_AssignedWorkers: []
-  m_DemandValueCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0.000831604
-      value: 1.0047302
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.9975586
-      value: 0.002357483
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  m_CurrentSicknessLevel: 0
-  m_ResourceIndex: 0
-  m_WorkerStagingArea: {fileID: 6670992940366388526}
---- !u!114 &7773964697356298760
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5438695624282066917}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f005707d4e5b77c46a0508eb420e8299, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_DropRadius: 1
 --- !u!1 &2700218942903500774
 GameObject:
   m_ObjectHideFlags: 0
@@ -684,6 +626,66 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useCameraForward: 0
+--- !u!114 &1775801151340943880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5438695624282066917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8f238ee514105640b0249d454b68894, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  progress: 0
+  fillerImage: {fileID: 5438695624900530039}
+  baseImage: {fileID: 0}
+  m_TaskProcessing: 1
+  m_TimeSinceLastTrigger: 0
+  m_AssignedWorkers: []
+  m_DemandValueCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.000831604
+      value: 1.0047302
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.9975586
+      value: 0.002357483
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  m_CurrentSicknessLevel: 0
+  m_ResourceIndex: 0
+  m_WorkerStagingArea: {fileID: 6670992940366388526}
+  m_CoinPrefab: {fileID: 4825888323030068015, guid: 4103cc53925fc324bb0c3e632fd87651,
+    type: 3}
+--- !u!114 &7773964697356298760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5438695624282066917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f005707d4e5b77c46a0508eb420e8299, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_DropRadius: 1
 --- !u!1 &5536582910510039496
 GameObject:
   m_ObjectHideFlags: 0
@@ -1157,11 +1159,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2729430378988881021, guid: ff4ff25a5ef417445a9a34c9318f6792,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 6725138285015931667, guid: ff4ff25a5ef417445a9a34c9318f6792,
         type: 3}
       propertyPath: m_Name
@@ -1271,6 +1268,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2729430378988881021, guid: ff4ff25a5ef417445a9a34c9318f6792,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff4ff25a5ef417445a9a34c9318f6792, type: 3}
