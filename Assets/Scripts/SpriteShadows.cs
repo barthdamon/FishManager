@@ -3,8 +3,8 @@ using System.Collections;
 
 public class SpriteShadows : MonoBehaviour
 {
-	public bool receiveShadows;
-	public UnityEngine.Rendering.ShadowCastingMode shadowCastingMode;
+	public bool receiveShadows = true;
+	public UnityEngine.Rendering.ShadowCastingMode shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
 
 	//[InspectorButton("Apply")]
 	//public bool _;
