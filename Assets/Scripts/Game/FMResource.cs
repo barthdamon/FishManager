@@ -13,6 +13,9 @@ public class FMResourceRepresentation
 
 public class FMResource : MonoBehaviour
 {
+	//TODO: Balance everything off of this float...
+	public static float m_StartingResourceAmount = 1000f;
+
 	public Sprite m_ContentRepresentationPrefab;
 
 	public FMResourceRepresentation[] m_ResourceRepresentations;

@@ -12,6 +12,9 @@ public class FMResourceSink : FMTaskBase
 	public AnimationCurve m_DemandValueCurve;
 
 	public float m_CurrentSicknessLevel = 0f;
+	public int m_ResourceIndex = 0;
+
+	private FMSinkLevelDisplay m_SinkLevelDisplay;
 
 	public override bool AcceptsWorkers()
 	{
@@ -24,9 +27,23 @@ public class FMResourceSink : FMTaskBase
 		return false;
 	}
 
+	private void Awake()
+	{
+		m_SinkLevelDisplay = GetComponentInChildren<FMSinkLevelDisplay>();
+	}
+
 	private void Start()
 	{
+		var startingResource = FMBoardReferences.GetOrCreateInstance().m_ResourcePrefabs[m_ResourceIndex];
+		var initialResource = Instantiate(startingResource);
+		var resourceComponent = initialResource.GetComponent<FMResource>();
+		resourceComponent.SetResourceVisible(false);
+		resourceComponent.m_Amount = FMResource.m_StartingResourceAmount;
+		m_Resources.Enqueue(resourceComponent);
+		m_SinkLevelDisplay.UpdateLevelDisplay(FMResource.m_StartingResourceAmount);
+
 		FMGameLoopManager.GetOrCreateInstance().m_OnDayStartEvent += OnDayStart;
+		//TODO: Add a decent level of starting resources for the player to make money off
 	}
 
 	public void OnDayStart(FMDay day)
@@ -61,6 +78,9 @@ public class FMResourceSink : FMTaskBase
 			if (resource.m_ProcessedAmount <= 0)
 				m_Resources.Dequeue();
 		}
+
+		totalAmount -= depletedAmount;
+		m_SinkLevelDisplay.UpdateLevelDisplay(totalAmount);
 
 		// get people sick
 		m_CurrentSicknessLevel += triggeredSickness;

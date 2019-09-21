@@ -717,41 +717,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Docks
       objectReference: {fileID: 0}
-    - target: {fileID: 5409254401517715387, guid: da19785575f3e3942b979e8b4b9f33d0,
-        type: 3}
-      propertyPath: m_NumberOfWorkersRequired
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5409254401517715387, guid: da19785575f3e3942b979e8b4b9f33d0,
-        type: 3}
-      propertyPath: m_GenerationTimePerPerson
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1579983694000890893, guid: da19785575f3e3942b979e8b4b9f33d0,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 1579983694000890893, guid: da19785575f3e3942b979e8b4b9f33d0,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1579983694000890893, guid: da19785575f3e3942b979e8b4b9f33d0,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1579983694000890893, guid: da19785575f3e3942b979e8b4b9f33d0,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.70710677
-      objectReference: {fileID: 0}
-    - target: {fileID: 1579983694000890893, guid: da19785575f3e3942b979e8b4b9f33d0,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 90.00001
-      objectReference: {fileID: 0}
     - target: {fileID: 5523904418936689201, guid: da19785575f3e3942b979e8b4b9f33d0,
         type: 3}
       propertyPath: m_LocalPosition.x
