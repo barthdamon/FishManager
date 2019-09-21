@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FMGeneratorTask : FMTaskBase
 {
@@ -38,10 +39,10 @@ public class FMGeneratorTask : FMTaskBase
 		{
 			// todo: send to a specific resource type depending on where boat is directed
 			var resourcePrefab = FMBoardReferences.GetOrCreateInstance().m_ResourcePrefabs[m_AssignedEquipment.m_ResourceIndex];
-			Instantiate(resourcePrefab);
-			resourcePrefab.SetActive(false);
-			resourcePrefab.transform.position = transform.position;
-			m_Resources.Enqueue(resourcePrefab.GetComponent<FMResource>());
+			var resourceInstance = Instantiate(resourcePrefab);
+			resourceInstance.GetComponent<Image>().enabled = false;
+			resourceInstance.transform.position = transform.position;
+			m_Resources.Enqueue(resourceInstance.GetComponent<FMResource>());
 		}
 		m_TaskProcessing = nowProcessing;
 		return m_TaskProcessing;
