@@ -25,10 +25,13 @@ public class CameraController : MonoBehaviour
         }
 
         if (ms != 0.0f)
-        {
+        {//scrollwheel: zoom
             distance = distance * 1.0f + ms * mouseSensitivity.z;
             distance = Mathf.Clamp(distance, distanceMinMax.x, distanceMinMax.y);
             zoomer.localPosition = zoomer.localRotation * Vector3.forward * -distance;
+            
+            //ToDo:
+            //zoom towards/from mouse cursor screen pos
         }
     }
 }
