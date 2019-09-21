@@ -6,19 +6,25 @@ using UnityEngine;
 public class FMProcessorTask : FMTaskBase
 {
 	public float m_ProcessScalar = 1f;
+	public float m_SingleWorkerProcessTime = 1f;
 
 	public override void TickTask(float time)
 	{
-		base.TickTask(time);
-		foreach (var item in m_Resources.Skip(1))
+		if (m_AssignedWorkers.Count > 0 && m_Resources.Count > 0)
 		{
-			item.TickDecrementQuality(time);
+			base.TickTask(time);
+			foreach (var item in m_Resources.Skip(1))
+			{
+				item.TickDecrementQuality(time);
+			}
 		}
 	}
 
 	public override float GetTimeToTrigger()
 	{
+		// this is dependent on the number of workers you have as well as the tick rate...
 		return 3f;
+		//return m_AssignedWorkers.Count * m_ProcessWorkerScaleTime;
 	}
 
 	protected override void TriggerTask()

@@ -13,6 +13,17 @@ public class FMResourceSink : FMTaskBase
 
 	public float m_CurrentSicknessLevel = 0f;
 
+	public override bool AcceptsWorkers()
+	{
+		return false;
+	}
+
+	// sinks don't take on workers
+	public override bool AssignWorker(FMWorker worker)
+	{
+		return false;
+	}
+
 	private void Start()
 	{
 		FMGameLoopManager.GetOrCreateInstance().m_OnDayStartEvent += OnDayStart;

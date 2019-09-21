@@ -12,9 +12,8 @@ GameObject:
   - component: {fileID: 6725138285015931671}
   - component: {fileID: 6725138285015931670}
   - component: {fileID: 6725138285015931665}
-  - component: {fileID: 6725138285015931668}
   m_Layer: 5
-  m_Name: DropTargetTask
+  m_Name: TaskBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -116,22 +115,6 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 6725138285015931670}
---- !u!114 &6725138285015931668
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6725138285015931667}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd7e889d7d508c84ea8d4d413ee2c568, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  progress: 0
-  fillerImage: {fileID: 6725138285332929409}
-  baseImage: {fileID: 0}
-  workers: []
 --- !u!1 &6725138285332929411
 GameObject:
   m_ObjectHideFlags: 0

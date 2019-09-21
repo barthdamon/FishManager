@@ -11,7 +11,9 @@ public class FMDay
 public class FMGameLoopManager : MonoBehaviourSingleton<FMGameLoopManager>
 {
 	public FMDay m_CurrentDay = new FMDay();
-	public List<FMTaskBase> m_TickableTasks;
+
+	[HideInInspector]
+	public List<FMTaskBase> m_TickableTasks = new List<FMTaskBase>();
 
 	public delegate void OnDayEndEvent(FMDay day);
 	public OnDayEndEvent m_OnDayEndEvent;
