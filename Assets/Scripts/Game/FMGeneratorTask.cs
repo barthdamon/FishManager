@@ -49,9 +49,12 @@ public class FMGeneratorTask : FMTaskBase
 	public override bool AssignWorker(FMWorker worker)
 	{
 		base.AssignWorker(worker);
-
 		m_BoatSlots.AssignWorker(worker);
+		return CheckProcessing();
+	}
 
+	public bool CheckProcessing()
+	{
 		bool nowProcessing = m_AssignedWorkers.Count >= m_NumberOfWorkersRequired;
 		nowProcessing &= m_AssignedEquipment != null && m_AssignedEquipment.m_AssignmentCompleted;
 		if (!m_TaskProcessing && nowProcessing)

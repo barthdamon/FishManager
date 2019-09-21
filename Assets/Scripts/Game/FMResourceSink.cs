@@ -81,6 +81,11 @@ public class FMResourceSink : FMTaskBase
 
 		totalAmount -= depletedAmount;
 		m_SinkLevelDisplay.UpdateLevelDisplay(totalAmount);
+		if (totalAmount <= 0)
+		{
+			m_TaskProcessing = false;
+			SetProgress(0f);
+		}
 
 		// get people sick
 		m_CurrentSicknessLevel += triggeredSickness;
@@ -94,5 +99,13 @@ public class FMResourceSink : FMTaskBase
 	protected override void ShutDown()
 	{
 		// PEOPLE ALWAYS EAT!
+	}
+
+	public void AddResourceToSink(FMResource resource)
+	{
+		m_Resources.Enqueue(resource);
+		float totalAmount = m_Resources.Sum((FMResource res) => res.m_ProcessedAmount);
+		if (totalAmount > 0)
+			m_TaskProcessing = true;
 	}
 }

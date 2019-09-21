@@ -71,6 +71,9 @@ public class FMEquipment : MonoBehaviour
 		{
 			m_SpriteRenderer.sprite = m_ConstructingSprite;
 		}
+
+		if (m_AssignedTask != null)
+			m_AssignedTask.CheckProcessing();
 	}
 
 }
