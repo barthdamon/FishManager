@@ -229,7 +229,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3353990181466718606}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -2.1179988}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -257,12 +257,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fish: {fileID: 3353990181546193335}
   dialog: {fileID: 5289455147526215485}
+  nameTag: {fileID: 3353990180953614045}
   time_in: 1
   time_in_wait: 1
   time_dialog_min: 1
   time_out_wait: 1
   time_out: 1
   offset: {x: 0, y: -100}
+  playing: 0
 --- !u!1 &3353990181546193328
 GameObject:
   m_ObjectHideFlags: 0

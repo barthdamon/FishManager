@@ -7,6 +7,7 @@ public class DialogFish : MonoBehaviour
 {
     public RectTransform fish;
     public GameObject dialog;
+    public Text nameTag;
 
     public float time_in = 1.0f;
     public float time_in_wait = 1.0f;
@@ -16,6 +17,8 @@ public class DialogFish : MonoBehaviour
 
     public Vector2 offset = new Vector2(0, -100.0f);
 
+    public bool playing;
+
     void OnEnable()
     {
         StartCoroutine(Play());
@@ -23,6 +26,8 @@ public class DialogFish : MonoBehaviour
 
     public IEnumerator Play()
     {
+        playing = true;
+
         if (dialog != null)
             dialog.SetActive(false);
 
@@ -66,5 +71,20 @@ public class DialogFish : MonoBehaviour
         //destroy or disable?
         //Destroy(this.gameObject);
         this.gameObject.SetActive(false);
+
+        playing = false;
     }
+
+    public void Say(string text, string byName)
+    {
+        Debug.Log(byName + ": " + text);
+
+        if (nameTag != null)
+            nameTag.text = byName;
+        //find it even if disabled
+        DialogReader[] drs = dialog.GetComponentsInChildren<DialogReader>(true);
+        drs[0].lines.AddRange(text.Split(new char[] { '\n' }));
+        this.gameObject.SetActive(true);
+    }
+
 }

@@ -71,6 +71,8 @@ public class DialogReader : MonoBehaviour, IPointerDownHandler
     {
         if (++currentLine >= lines.Count)
         {
+            lines.Clear();
+
             if (destroy)
                 Destroy(this.gameObject);
             else
