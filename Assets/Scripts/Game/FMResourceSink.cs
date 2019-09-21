@@ -32,8 +32,9 @@ public class FMResourceSink : FMTaskBase
 		m_SinkLevelDisplay = GetComponentInChildren<FMSinkLevelDisplay>();
 	}
 
-	private void Start()
+	protected override void OnStart()
 	{
+		base.OnStart();
 		var startingResource = FMBoardReferences.GetOrCreateInstance().m_ResourcePrefabs[m_ResourceIndex];
 		var initialResource = Instantiate(startingResource);
 		var resourceComponent = initialResource.GetComponent<FMResource>();

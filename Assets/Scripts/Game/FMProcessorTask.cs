@@ -71,6 +71,7 @@ public class FMProcessorTask : FMTaskBase
 			FMResource processedResource = m_Resources.Dequeue();
 			processedResource.SetResourceVisible(false);
 			FMBoardReferences.GetOrCreateInstance().m_ResourceSinks[resource.m_ResourceIndex].AddResourceToSink(processedResource);
+			SetProgress(0f);
 		}
 	}
 }

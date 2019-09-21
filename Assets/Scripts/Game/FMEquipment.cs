@@ -27,6 +27,7 @@ public class FMEquipment : MonoBehaviour
 	{
 		var draggable = GetComponent<FMDraggable>();
 		draggable.m_OnAssignedTask += AssignToTask;
+		m_SpriteRenderer.sprite = m_ConstructedSprite;
 	}
 
 	public void AssignToTask(FMTaskBase task)

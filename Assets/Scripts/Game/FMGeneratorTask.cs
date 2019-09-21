@@ -91,8 +91,9 @@ public class FMGeneratorTask : FMTaskBase
 		m_BoatSlots = GetComponentInChildren<FMWorkerSlotHelper>();
 	}
 
-	private void Start()
+	protected override void OnStart()
 	{
+		base.OnStart();
 		m_WorkerStagingArea = FMBoardReferences.GetOrCreateInstance().m_WorkerStagingArea;
 		m_DockPosition = transform.position;
 	}

@@ -58,7 +58,13 @@ public abstract class FMTaskBase : MonoBehaviour
 
 	private void Start()
 	{
+		OnStart();
+	}
+
+	protected virtual void OnStart()
+	{
 		FMGameLoopManager.GetOrCreateInstance().m_OnDayEndEvent += OnDayEnd;
+		fillerImage.fillAmount = 0f;
 	}
 
 	public void OnDayEnd(FMDay day)
