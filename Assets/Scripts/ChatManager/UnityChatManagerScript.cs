@@ -76,7 +76,8 @@ public class UnityChatManagerScript : MonoBehaviour
             Debug.Log(e.Data);
 
             DialogManager.Get().Buffer(e.Data);
-            /*
+			FMCodfather.GetOrCreateInstance().Buffer(e.Data);
+			/*
             if (e.Data.Contains("shoot"))
             {
                 counter++;
@@ -84,7 +85,7 @@ public class UnityChatManagerScript : MonoBehaviour
                 // Now we can actually spawn a bob object
                 //Instantiate(box, new Vector3(0,10,0), Quaternion.identity);
             }*/
-        };
+		};
 
         ws.Connect();
 
