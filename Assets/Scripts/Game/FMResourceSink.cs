@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class FMResourceSink : FMTaskBase
 {
-	public static float m_ConsumerTickRate = 10f;
-	public static float m_ConsumerTriggerResourceAmount = 1f;
+	public static float m_ConsumerTickRate = 5f;
+	public static float m_ConsumerTriggerResourceAmount = 100f;
 
 	[Tooltip("High value at 0 scaling down to close to zero at infinity")]
 	public AnimationCurve m_DemandValueCurve;
@@ -38,7 +38,7 @@ public class FMResourceSink : FMTaskBase
 		var initialResource = Instantiate(startingResource);
 		var resourceComponent = initialResource.GetComponent<FMResource>();
 		resourceComponent.SetResourceVisible(false);
-		resourceComponent.m_Amount = FMResource.m_StartingResourceAmount;
+		resourceComponent.m_ProcessedAmount = FMResource.m_StartingResourceAmount;
 		m_Resources.Enqueue(resourceComponent);
 		m_SinkLevelDisplay.UpdateLevelDisplay(FMResource.m_StartingResourceAmount);
 
