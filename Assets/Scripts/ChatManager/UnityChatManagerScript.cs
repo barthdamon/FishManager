@@ -73,13 +73,16 @@ public class UnityChatManagerScript : MonoBehaviour
         ws.OnMessage += (sender, e) =>
         {
             Debug.Log(e.Data);
+
+            DialogManager.Get().Buffer(e.Data);
+            /*
             if (e.Data.Contains("shoot"))
             {
                 counter++;
                 Debug.Log(counter);
                 // Now we can actually spawn a bob object
                 //Instantiate(box, new Vector3(0,10,0), Quaternion.identity);
-            }
+            }*/
         };
 
         ws.Connect();
