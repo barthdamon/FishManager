@@ -111,6 +111,7 @@ public class FMResourceSink : FMTaskBase
 	{
 		m_Resources.Enqueue(resource);
 		float totalAmount = m_Resources.Sum((FMResource res) => res.m_ProcessedAmount);
+		m_SinkLevelDisplay.UpdateLevelDisplay(totalAmount);
 		if (totalAmount > 0)
 			m_TaskProcessing = true;
 	}
