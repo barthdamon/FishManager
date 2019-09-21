@@ -420,6 +420,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   m_CurrentSicknessLevel: 0
   m_ResourceIndex: 0
+  m_WorkerStagingArea: {fileID: 6670992940366388526}
 --- !u!114 &7773964697356298760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1156,6 +1157,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2729430378988881021, guid: ff4ff25a5ef417445a9a34c9318f6792,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6725138285015931667, guid: ff4ff25a5ef417445a9a34c9318f6792,
         type: 3}
       propertyPath: m_Name
@@ -1292,3 +1298,15 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1598317693529543926}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6670992940366388526 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5384754590688315864, guid: ff4ff25a5ef417445a9a34c9318f6792,
+    type: 3}
+  m_PrefabInstance: {fileID: 1598317693529543926}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f005707d4e5b77c46a0508eb420e8299, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

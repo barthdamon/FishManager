@@ -16,6 +16,9 @@ public class FMResourceSink : FMTaskBase
 
 	private FMSinkLevelDisplay m_SinkLevelDisplay;
 
+	[Tooltip("The Staging area for hungry workers.")]
+	public FMStagingArea m_WorkerStagingArea;
+
 	public override bool AcceptsWorkers()
 	{
 		return false;
@@ -35,6 +38,7 @@ public class FMResourceSink : FMTaskBase
 	protected override void OnStart()
 	{
 		base.OnStart();
+
 		var startingResource = FMBoardReferences.GetOrCreateInstance().m_ResourcePrefabs[m_ResourceIndex];
 		var initialResource = Instantiate(startingResource);
 		var resourceComponent = initialResource.GetComponent<FMResource>();
@@ -43,7 +47,8 @@ public class FMResourceSink : FMTaskBase
 		m_Resources.Enqueue(resourceComponent);
 		m_SinkLevelDisplay.UpdateLevelDisplay(FMResource.m_StartingResourceAmount);
 
-		FMGameLoopManager.GetOrCreateInstance().m_OnDayStartEvent += OnDayStart;
+		FMGameLoopManager.GetOrCreateInstance().m_CurrentDay.m_OnDayStartEvent += OnDayStart;
+		
 		//TODO: Add a decent level of starting resources for the player to make money off
 	}
 
