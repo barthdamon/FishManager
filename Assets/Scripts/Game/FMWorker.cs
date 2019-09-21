@@ -29,6 +29,12 @@ public class FMWorker : MonoBehaviour
 			currentTask.AssignWorker(this);
 	}
 
+	private void Awake()
+	{
+		var draggable = GetComponent<FMDraggable>();
+		draggable.m_DragReaction += ReactToSelected;
+	}
+
 	private void Start()
 	{
 		FMGameLoopManager.GetOrCreateInstance().m_OnDayEndEvent += OnDayEnd;
@@ -39,9 +45,10 @@ public class FMWorker : MonoBehaviour
 		GetSomeGrub();
 	}
 
-	public void ReactToSelected()
+	public bool ReactToSelected()
 	{
-
+		// TODO: Be pissed if sleeping
+		return !m_IsSleepingIn;
 	}
 
 	private void Update()

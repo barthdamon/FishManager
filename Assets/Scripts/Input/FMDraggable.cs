@@ -13,8 +13,17 @@ public class FMDraggable : Selectable, IBeginDragHandler, IDragHandler, IEndDrag
     private GameObject m_DraggingIcon;
     private RectTransform m_DraggingPlane;
 
+	public delegate bool GetReactToDrag();
+	public GetReactToDrag m_DragReaction;
+
     public void OnBeginDrag(PointerEventData eventData)
     {
+		if (m_DragReaction != null)
+		{
+			if (!m_DragReaction())
+				return;
+		}
+
         //Debug.Log("BeginDrag " + this.name, this);
         var canvas = FindInParents<Canvas>(gameObject);
         if (canvas == null)
