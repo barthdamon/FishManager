@@ -224,8 +224,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f6ee4f8a079fad4db29ee1acbc3378f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SpriteRepresentation: {fileID: 0}
   m_ResourceIndex: 0
+  m_SpriteRenderer: {fileID: 1764070696335852004}
+  m_ConstructingSprite: {fileID: 21300000, guid: edfa38a1b571b7849a824ecd147147bb,
+    type: 3}
+  m_ConstructedSprite: {fileID: 21300000, guid: bc5cc56b0ad2dc04ab018fcf03ac00ad,
+    type: 3}
   m_AssignedTask: {fileID: 0}
   m_AssignmentCompleted: 0
   m_TimeToCompleteAssignment: 5

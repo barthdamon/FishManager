@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class FMResourceSink : FMTaskBase
 {
-	public static float m_ConsumerTickRate = 10f;
-	public static float m_ConsumerTriggerResourceAmount = 1f;
+	public static float m_ConsumerTickRate = 5f;
+	public static float m_ConsumerTriggerResourceAmount = 100f;
 
 	[Tooltip("High value at 0 scaling down to close to zero at infinity")]
 	public AnimationCurve m_DemandValueCurve;
@@ -32,13 +32,14 @@ public class FMResourceSink : FMTaskBase
 		m_SinkLevelDisplay = GetComponentInChildren<FMSinkLevelDisplay>();
 	}
 
-	private void Start()
+	protected override void OnStart()
 	{
+		base.OnStart();
 		var startingResource = FMBoardReferences.GetOrCreateInstance().m_ResourcePrefabs[m_ResourceIndex];
 		var initialResource = Instantiate(startingResource);
 		var resourceComponent = initialResource.GetComponent<FMResource>();
 		resourceComponent.SetResourceVisible(false);
-		resourceComponent.m_Amount = FMResource.m_StartingResourceAmount;
+		resourceComponent.m_ProcessedAmount = FMResource.m_StartingResourceAmount;
 		m_Resources.Enqueue(resourceComponent);
 		m_SinkLevelDisplay.UpdateLevelDisplay(FMResource.m_StartingResourceAmount);
 
@@ -81,6 +82,11 @@ public class FMResourceSink : FMTaskBase
 
 		totalAmount -= depletedAmount;
 		m_SinkLevelDisplay.UpdateLevelDisplay(totalAmount);
+		if (totalAmount <= 0)
+		{
+			m_TaskProcessing = false;
+			SetProgress(0f);
+		}
 
 		// get people sick
 		m_CurrentSicknessLevel += triggeredSickness;
@@ -94,5 +100,13 @@ public class FMResourceSink : FMTaskBase
 	protected override void ShutDown()
 	{
 		// PEOPLE ALWAYS EAT!
+	}
+
+	public void AddResourceToSink(FMResource resource)
+	{
+		m_Resources.Enqueue(resource);
+		float totalAmount = m_Resources.Sum((FMResource res) => res.m_ProcessedAmount);
+		if (totalAmount > 0)
+			m_TaskProcessing = true;
 	}
 }
