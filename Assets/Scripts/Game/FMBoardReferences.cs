@@ -22,6 +22,5 @@ public class FMBoardReferences : MonoBehaviourSingleton<FMBoardReferences>
 	[Tooltip("The Staging area to which workers will be go at the end of the day.")]
 	public FMStagingArea m_WorkerHomeStagingArea;
 
-	public FMStagingArea m_WorkerStagingArea;
 	public FMStagingArea m_EquipmentStagingArea;
 }

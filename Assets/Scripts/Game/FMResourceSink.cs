@@ -21,6 +21,8 @@ public class FMResourceSink : FMTaskBase
 	[Tooltip("The Staging area for hungry workers.")]
 	public FMStagingArea m_WorkerStagingArea;
 
+	public GameObject m_CoinPrefab;
+
 	public override bool AcceptsWorkers()
 	{
 		return false;
@@ -99,6 +101,15 @@ public class FMResourceSink : FMTaskBase
 		{
 			m_TaskProcessing = false;
 			SetProgress(0f);
+		}
+
+		// Spawn coins...
+		if (this.m_CoinPrefab)
+		{
+			for (int i = 0; i < 3; i++)
+			{
+				Instantiate(this.m_CoinPrefab, this.transform.position, Quaternion.identity, this.transform);
+			}
 		}
 
 		// get people sick
