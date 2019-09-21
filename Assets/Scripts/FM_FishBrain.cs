@@ -70,7 +70,7 @@ public class FM_FishBrain : MonoBehaviour
         Vector3 scale = bone.transform.localScale;
         while (true)
         {
-            bone.transform.localScale = Vector3.Scale(scale, new Vector3(1.0f, 1.0f + 0.1f * Mathf.Sin(t / period), 1.0f));
+            bone.transform.localScale = Vector3.Scale(scale, new Vector3(1.0f, 1.0f + 0.1f * Mathf.Sin(Mathf.PI * t / period), 1.0f));
             yield return new WaitForSeconds(dT);
             t += dT;
             bone.transform.localScale = scale;
