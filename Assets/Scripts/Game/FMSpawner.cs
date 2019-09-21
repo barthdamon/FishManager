@@ -10,7 +10,7 @@ public class FMSpawner : MonoBehaviour
 
     public Vector3 randomPosRange = new Vector3(5, 0, 5);
 
-    void Start()
+    void Awake()
     {
         for(int i=0; i<numberToSpawn; i++)
         {

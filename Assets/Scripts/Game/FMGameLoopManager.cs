@@ -105,34 +105,14 @@ public class FMGameLoopManager : MonoBehaviourSingleton<FMGameLoopManager>
 	[HideInInspector]
 	public List<FMTaskBase> m_TickableTasks = new List<FMTaskBase>();
 
-	//public delegate void OnDayEndEvent(FMDay day);
-	//public OnDayEndEvent m_OnDayEndEvent;
-	//public delegate void OnDayStartEvent(FMDay day);
-	//public OnDayStartEvent m_OnDayStartEvent;
-	//public delegate void OnEveningStartEvent(FMDay day);
-	//public OnDayStartEvent m_OnEveningStartEvent;
-
-	//public float m_MorningTime = 5f;
-	//public float m_DaylightTime = 60f;
-	//public float m_EveningTime = 5f;
-	//public float m_NightTime = 10f;
-
-	//private Coroutine m_DayStateMachine;
-
 	private void Start()
 	{
-		//m_DayStateMachine = StartCoroutine(DayStateMachine());
 	}
 
 	// Update is called once per frame
 	void Update()
     {
 		m_CurrentDay.IncrementTime(Time.deltaTime);
-		//if (m_CurrentDay.GetTimeOfDay() >= FMDay.TimeOfDay.Evening)
-		//{
-		//	m_DayStateMachine = StartCoroutine(DayStateMachine());
-		//}
-
 		if (m_CurrentDay.GetTimeOfDay() != FMDay.TimeOfDay.Day &&
 			m_CurrentDay.GetTimeOfDay() != FMDay.TimeOfDay.Evening)
 		{
@@ -146,34 +126,4 @@ public class FMGameLoopManager : MonoBehaviourSingleton<FMGameLoopManager>
 				m_TickableTasks[i].TickTask(Time.deltaTime);
 		}
 	}
-
-	//private IEnumerator DayStateMachine()
-	//{
-	//	while (true)
-	//	{
-	//		if (m_CurrentDay.GetTimeOfDay() == FMDay.TimeOfDay.Morning)
-	//		{
-	//		}
-	//		else if (m_CurrentDay.GetTimeOfDay() == FMDay.TimeOfDay.Day)
-	//		{
-	//			yield return new WaitForSeconds(m_MorningTime);
-	//			m_CurrentDay.m_HourOfDay = 0f;
-	//			m_OnDayStartEvent?.Invoke(m_CurrentDay);
-	//			StopCoroutine(m_DayStateMachine);
-	//			break;
-	//		}
-	//		else if (m_CurrentDay.m_TimeOfDay == FMDay.TimeOfDay.Evening)
-	//		{
-	//			m_OnEveningStartEvent?.Invoke(m_CurrentDay);
-	//			yield return new WaitForSeconds(m_EveningTime);
-	//			m_CurrentDay.m_TimeOfDay = FMDay.TimeOfDay.Night;
-	//			m_OnDayEndEvent?.Invoke(m_CurrentDay);
-	//		}
-	//		else if (m_CurrentDay.m_TimeOfDay == FMDay.TimeOfDay.Night)
-	//		{
-	//			yield return new WaitForSeconds(m_NightTime);
-	//			m_CurrentDay.m_TimeOfDay = FMDay.TimeOfDay.Morning;
-	//		}
-	//	}
-	//}
 }
