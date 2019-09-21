@@ -20,6 +20,7 @@ public class FMGeneratorTask : FMTaskBase
 
 
 	private Vector3 m_DockPosition;
+	private FMStagingArea m_WorkerStagingArea;
 
 
 	// Equipment is on the dock, decides what type of fish the boat can get
