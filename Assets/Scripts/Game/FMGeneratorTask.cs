@@ -93,7 +93,7 @@ public class FMGeneratorTask : FMTaskBase
 	protected override void OnStart()
 	{
 		base.OnStart();
-		m_WorkerStagingArea = FMBoardReferences.GetOrCreateInstance().m_WorkerStagingArea;
+		m_WorkerStagingArea = FMBoardReferences.GetOrCreateInstance().m_WorkerPoolStagingArea;
 		m_DockPosition = transform.position;
 	}
 
