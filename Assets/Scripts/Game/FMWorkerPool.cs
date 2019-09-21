@@ -22,8 +22,8 @@ public class FMWorkerPool : MonoBehaviour
 
 	private void Start()
 	{
-		FMGameLoopManager.GetOrCreateInstance().m_OnDayStartEvent += OnDayStart;
-		FMGameLoopManager.GetOrCreateInstance().m_OnDayEndEvent += OnDayEnd;
+		FMGameLoopManager.GetOrCreateInstance().m_CurrentDay.m_OnDayStartEvent += OnDayStart;
+		FMGameLoopManager.GetOrCreateInstance().m_CurrentDay.m_OnDayEndEvent += OnDayEnd;
 	}
 
 	public void OnDayStart(FMDay currentDay)

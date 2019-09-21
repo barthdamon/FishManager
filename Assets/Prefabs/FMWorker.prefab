@@ -247,6 +247,8 @@ MonoBehaviour:
   m_SicknessSleepInScalar: 1
   m_IsSleepingIn: 0
   currentTask: {fileID: 0}
+  m_WorkerStagingArea: {fileID: 0}
+  m_HomeStagingArea: {fileID: 0}
 --- !u!114 &798949874
 MonoBehaviour:
   m_ObjectHideFlags: 0

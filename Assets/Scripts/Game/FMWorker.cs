@@ -13,7 +13,7 @@ public class FMWorker : MonoBehaviour
 	public bool m_IsSleepingIn = false;
 
 	public FMTaskBase currentTask;    //a worker can only have one job at a time, or none
-
+	
 	public void Assign(FMTaskBase task)
 	{
 		Debug.Log("Assign Job " + this.name, this);
@@ -38,12 +38,18 @@ public class FMWorker : MonoBehaviour
 
 	private void Start()
 	{
-		FMGameLoopManager.GetOrCreateInstance().m_OnDayEndEvent += OnDayEnd;
+		FMGameLoopManager.GetOrCreateInstance().m_CurrentDay.m_OnEveningStartEvent += OnEveningStart;
+		FMGameLoopManager.GetOrCreateInstance().m_CurrentDay.m_OnDayEndEvent += OnDayEnd;
+	}
+
+	public void OnEveningStart(FMDay currentDay)
+	{
+		GetSomeGrub();
 	}
 
 	public void OnDayEnd(FMDay currentDay)
 	{
-		GetSomeGrub();
+		GoHome();
 	}
 
 	public bool ReactToSelected()
@@ -54,7 +60,8 @@ public class FMWorker : MonoBehaviour
 
 	private void Update()
 	{
-		if (m_IsSleepingIn && !FMGameLoopManager.GetOrCreateInstance().m_CurrentDay.m_IsNightTime)
+		var time_of_day = FMGameLoopManager.GetOrCreateInstance().m_CurrentDay.GetTimeOfDay();
+		if (m_IsSleepingIn && time_of_day != FMDay.TimeOfDay.Evening && time_of_day != FMDay.TimeOfDay.Night)
 		{
 			TickReturnToWork(Time.deltaTime);
 		}
@@ -65,6 +72,8 @@ public class FMWorker : MonoBehaviour
 		// animate go home
 		m_TimeSleptIn = 0f;
 		m_IsSleepingIn = true;
+
+		FMBoardReferences.GetOrCreateInstance().m_WorkerHomeStagingArea.AddToStaging(this.transform);
 	}
 
 	public void GetSomeGrub()
@@ -74,13 +83,16 @@ public class FMWorker : MonoBehaviour
 		var sink = FMBoardReferences.GetOrCreateInstance().m_ResourceSinks[randomSink];
 		m_SicknessLevel = sink.m_CurrentSicknessLevel;
 		m_TimeToReturnToWork = m_SicknessSleepInScalar *= m_SicknessLevel;
-		GoHome();
+
+		sink.m_WorkerStagingArea.AddToStaging(this.transform);
+		//GoHome();
 	}
 
 	public void GoToWorkerPool()
 	{
 		m_IsSleepingIn = false;
 		// move the sprite to pool for selection...
+		FMBoardReferences.GetOrCreateInstance().m_WorkerPoolStagingArea.AddToStaging(this.transform);
 	}
 
 	public void TickReturnToWork(float time)
