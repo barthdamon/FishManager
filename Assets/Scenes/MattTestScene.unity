@@ -742,6 +742,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1430202998510168564, guid: da19785575f3e3942b979e8b4b9f33d0,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 3772034571098895065, guid: da19785575f3e3942b979e8b4b9f33d0,
+        type: 3}
+      propertyPath: m_Name
+      value: SP_Habitat02_Bush02
+      objectReference: {fileID: 0}
+    - target: {fileID: 3772034571098895062, guid: da19785575f3e3942b979e8b4b9f33d0,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 43.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2722189931275749114, guid: da19785575f3e3942b979e8b4b9f33d0,
+        type: 3}
+      propertyPath: m_Name
+      value: SP_Habitat02_Bush03
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da19785575f3e3942b979e8b4b9f33d0, type: 3}
 --- !u!1001 &994491868008179901

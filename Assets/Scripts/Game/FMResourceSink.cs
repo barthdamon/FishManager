@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class FMResourceSink : FMTaskBase
 {
-	public static float m_ConsumerTickRate = 1f;
+	public static float m_ConsumerTickRate = 10f;
 	public static float m_ConsumerTriggerResourceAmount = 1f;
 
 	[Tooltip("High value at 0 scaling down to close to zero at infinity")]
