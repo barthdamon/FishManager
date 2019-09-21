@@ -39,10 +39,13 @@ public class FMGeneratorTask : FMTaskBase
 		{
 			// todo: send to a specific resource type depending on where boat is directed
 			var resourcePrefab = FMBoardReferences.GetOrCreateInstance().m_ResourcePrefabs[m_AssignedEquipment.m_ResourceIndex];
-			var resourceInstance = Instantiate(resourcePrefab);
+			var canvas = GetComponentInParent<Canvas>();
+			var resourceInstance = Instantiate(resourcePrefab, canvas.transform);
+			resourceInstance.transform.localScale = Vector3.one;
 			resourceInstance.transform.position = transform.position;
 			var resourceComponent = resourceInstance.GetComponent<FMResource>();
 			resourceComponent.m_Size = m_NumberOfWorkersRequired;
+			resourceComponent.SetRepresentation();
 			resourceComponent.SetResourceVisible(false);
 			m_Resources.Enqueue(resourceComponent);
 		}

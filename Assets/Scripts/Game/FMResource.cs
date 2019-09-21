@@ -2,13 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class FMResourceRepresentation
+{
+	public GameObject m_RepresentationRoot;
+	public SpriteRenderer m_ContainerRepresentation;
+	public SpriteRenderer[] m_ContentsRepresentations;
+}
+
 public class FMResource : MonoBehaviour
 {
-	public Sprite[] m_ContainerRepresentationPrefabs;
 	public Sprite m_ContentRepresentationPrefab;
 
-	public SpriteRenderer m_ContainerRepresentation;
-	public SpriteRenderer m_ContentsRepresentation;
+	public FMResourceRepresentation[] m_ResourceRepresentations;
+	[HideInInspector]
+	private FMResourceRepresentation m_RelevantRepresentation;
 
 	public int m_Size = 1;
 
@@ -28,14 +36,35 @@ public class FMResource : MonoBehaviour
 
 	public void SetResourceVisible(bool visible)
 	{
-		m_ContainerRepresentation.enabled = visible;
-		m_ContentsRepresentation.enabled = visible;
+		if (m_RelevantRepresentation != null)
+		{
+			m_RelevantRepresentation.m_ContainerRepresentation.enabled = visible;
+			for (int i = 0; i < m_RelevantRepresentation.m_ContentsRepresentations.Length; ++i)
+			{
+				m_RelevantRepresentation.m_ContentsRepresentations[i].enabled = visible;
+			}
+		}
 	}
 
-	private void Start()
+	public void SetRepresentation()
 	{
-		m_ContainerRepresentation.sprite = m_ContainerRepresentationPrefabs[m_Size];
-		m_ContentsRepresentation.sprite = m_ContentRepresentationPrefab;
+		m_RelevantRepresentation = m_ResourceRepresentations[m_Size];
+		for (int i = 0; i < m_RelevantRepresentation.m_ContentsRepresentations.Length; ++i)
+		{
+			m_RelevantRepresentation.m_ContentsRepresentations[i].sprite = m_ContentRepresentationPrefab;
+		}
+
+		for (int i = 0; i < m_ResourceRepresentations.Length; ++i)
+		{
+			if (i != m_Size)
+			{
+				m_ResourceRepresentations[i].m_RepresentationRoot.SetActive(false);
+			}
+			else
+			{
+				m_ResourceRepresentations[i].m_RepresentationRoot.SetActive(true);
+			}
+		}
 	}
 
 }
