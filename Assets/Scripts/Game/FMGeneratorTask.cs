@@ -1,4 +1,3 @@
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +5,7 @@ using UnityEngine.UI;
 
 public class FMGeneratorTask : FMTaskBase
 {
-	public float m_GenerationTimePerPerson = 1f;
+	public float m_GenerationTimePerPerson = 5f;
 	public float m_ResourceCapacityPerWorkerPerTick = 1f;
 
 	// multiple generator tasks
@@ -21,6 +20,8 @@ public class FMGeneratorTask : FMTaskBase
 
 	[Tooltip("The Staging area to which workers will be returned.")]
 	public FMStagingArea m_WorkerStagingArea;
+
+	private Vector3 m_DockPosition;
 
 
 	// Equipment is on the dock, decides what type of fish the boat can get
@@ -60,10 +61,11 @@ public class FMGeneratorTask : FMTaskBase
 			resourceInstance.transform.localScale = Vector3.one;
 			resourceInstance.transform.position = transform.position;
 			var resourceComponent = resourceInstance.GetComponent<FMResource>();
-			resourceComponent.m_Size = m_NumberOfWorkersRequired;
+			// size is an index
+			resourceComponent.m_Size = m_NumberOfWorkersRequired - 1;
 			resourceComponent.SetRepresentation();
 			m_BoatSlots.AssignResource(resourceComponent);
-			//resourceComponent.SetResourceVisible(false);
+			resourceComponent.SetResourceVisible(false);
 			m_Resources.Enqueue(resourceComponent);
 		}
 		m_TaskProcessing = nowProcessing;
@@ -83,6 +85,11 @@ public class FMGeneratorTask : FMTaskBase
 	{
 		m_TaskProcessing = false;
 		m_BoatSlots = GetComponentInChildren<FMWorkerSlotHelper>();
+	}
+
+	private void Start()
+	{
+		m_DockPosition = transform.position;
 	}
 
 	protected override void TriggerTask()
@@ -119,5 +126,23 @@ public class FMGeneratorTask : FMTaskBase
 	public override float GetTimeToTrigger()
 	{
 		return m_GenerationTimePerPerson * m_NumberOfWorkersRequired;
+	}
+
+	public override void SetProgress(float f)
+	{
+		base.SetProgress(f);
+
+		if (!m_TaskProcessing || m_AssignedEquipment == null)
+			return;
+
+		Vector3 fishingPosition = FMBoardReferences.GetOrCreateInstance().m_ResourceBoatDestinations[m_AssignedEquipment.m_ResourceIndex].position;
+		// use the position to the fishing hole as 50%, otherwise come back for the second 50%
+		Vector3 destination = progress > 0.5f ? m_DockPosition : fishingPosition;
+
+		transform.position = Vector3.Lerp(transform.position, destination, 0.5f);
+		if (progress > 0.5f)
+		{
+			m_Resources.Peek().SetResourceVisible(true);
+		}
 	}
 }

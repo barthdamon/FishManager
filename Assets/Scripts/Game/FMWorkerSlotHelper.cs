@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class FMObjectSlot
 {
 	public Transform m_Transform;
+	[HideInInspector]
 	public GameObject m_AssignedObject;
 }
 
 public class FMWorkerSlotHelper : MonoBehaviour
 {
 	public List<FMObjectSlot> m_WorkerSlots = new List<FMObjectSlot>();
+
 	public FMObjectSlot m_EquipmentSlot;
 	public FMObjectSlot m_ResourceSlot;
 
@@ -23,6 +26,7 @@ public class FMWorkerSlotHelper : MonoBehaviour
 			{
 				slot.m_AssignedObject = worker.gameObject;
 				worker.transform.SetParent(slot.m_Transform);
+				worker.transform.localPosition = Vector3.zero;
 			}
 		}
 	}
@@ -30,11 +34,13 @@ public class FMWorkerSlotHelper : MonoBehaviour
 	public void AssignEquipment(FMEquipment equipment)
 	{
 		equipment.transform.SetParent(m_EquipmentSlot.m_Transform);
+		equipment.transform.localPosition = Vector3.zero;
 	}
 
 	public void AssignResource(FMResource resource)
 	{
 		resource.transform.SetParent(m_ResourceSlot.m_Transform);
+		resource.transform.localPosition = Vector3.zero;
 	}
 
 	public void UnassignWorker(FMWorker worker)
