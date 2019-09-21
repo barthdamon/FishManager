@@ -61,8 +61,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f8fe2ba1c432424e8ba268debce4e27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_CurrentDay:
+    m_MorningTime: 5
+    m_DaylightTime: 60
+    m_EveningTime: 5
+    m_NightTime: 10
   m_TickableTasks: []
-  m_DaylightTime: 60
 --- !u!114 &1341728345383809275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -99,6 +103,8 @@ MonoBehaviour:
   m_Processor: {fileID: 0}
   m_ColorsForResource: []
   m_ResourceBoatDestinations: []
+  m_WorkerPoolStagingArea: {fileID: 0}
+  m_WorkerHomeStagingArea: {fileID: 0}
   m_WorkerStagingArea: {fileID: 0}
   m_EquipmentStagingArea: {fileID: 0}
 --- !u!114 &4908276669261739404
@@ -113,5 +119,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17f0fcdb0abe3e643bf359f175ec32fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MafiaPrefab: {fileID: 4204360937284241298, guid: 3176b913fef1ac24ead3af1c61903209,
+  m_MafiaPrefab: {fileID: 5713943017410524565, guid: 64a0898d57bd0cd45a681762c550ba7f,
     type: 3}
+  buffer: []
