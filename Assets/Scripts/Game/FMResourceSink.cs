@@ -8,6 +8,8 @@ public class FMResourceSink : FMTaskBase
 	public static float m_ConsumerTickRate = 5f;
 	public static float m_ConsumerTriggerResourceAmount = 100f;
 
+	public static float m_PerDemandRevenue = 0.25f;
+
 	[Tooltip("High value at 0 scaling down to close to zero at infinity")]
 	public AnimationCurve m_DemandValueCurve;
 
@@ -57,13 +59,19 @@ public class FMResourceSink : FMTaskBase
 		m_CurrentSicknessLevel = 0f;
 	}
 
+	public float GetCurrentResourceSum()
+	{
+		float totalAmount = m_Resources.Sum((FMResource res) => res.m_ProcessedAmount);
+		return totalAmount;
+	}
+
 	protected override void TriggerTask()
 	{
 		base.TriggerTask();
 
 		// determine capital gain
-		float totalAmount = m_Resources.Sum((FMResource res) => res.m_ProcessedAmount);
-		float capitalGain = m_DemandValueCurve.Evaluate(totalAmount);
+		float totalAmount = GetCurrentResourceSum();
+		float capitalGain = m_WorkerStagingArea.transform.childCount * m_PerDemandRevenue;
 		FMPlayer.GetOrCreateInstance().m_Capital += capitalGain;
 
 		// deplete resource
@@ -110,7 +118,7 @@ public class FMResourceSink : FMTaskBase
 	public void AddResourceToSink(FMResource resource)
 	{
 		m_Resources.Enqueue(resource);
-		float totalAmount = m_Resources.Sum((FMResource res) => res.m_ProcessedAmount);
+		float totalAmount = GetCurrentResourceSum();
 		m_SinkLevelDisplay.UpdateLevelDisplay(totalAmount);
 		if (totalAmount > 0)
 			m_TaskProcessing = true;
