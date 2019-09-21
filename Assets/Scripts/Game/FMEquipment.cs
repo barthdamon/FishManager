@@ -7,6 +7,10 @@ public class FMEquipment : MonoBehaviour
 {
 	public int m_ResourceIndex = 0;
 
+	public SpriteRenderer m_SpriteRenderer;
+	public Sprite m_ConstructingSprite;
+	public Sprite m_ConstructedSprite;
+
 	public FMGeneratorTask m_AssignedTask;
 	public bool m_AssignmentCompleted = false;
 
@@ -34,7 +38,7 @@ public class FMEquipment : MonoBehaviour
 				m_AssignedTask.SetEquipment(null);
 			}
 
-			m_AssignmentCompleted = false;
+			SetAssignmentCompleted(false);
 			m_CurrentAssignTime = 0f;
 			m_AssignedTask = (FMGeneratorTask)task;
 			m_AssignedTask.SetEquipment(this);
@@ -51,8 +55,21 @@ public class FMEquipment : MonoBehaviour
 			if (m_CurrentAssignTime >= m_TimeToCompleteAssignment)
 			{
 				m_AssignedTask.SetProgress(0f);
-				m_AssignmentCompleted = true;
+				SetAssignmentCompleted(true);
 			}
+		}
+	}
+
+	private void SetAssignmentCompleted(bool completed)
+	{
+		m_AssignmentCompleted = completed;
+		if (completed)
+		{
+			m_SpriteRenderer.sprite = m_ConstructedSprite;
+		}
+		else
+		{
+			m_SpriteRenderer.sprite = m_ConstructingSprite;
 		}
 	}
 
