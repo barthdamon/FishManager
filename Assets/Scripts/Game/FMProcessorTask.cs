@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FMProcessorTask : FMTaskBase
 {
@@ -36,8 +37,8 @@ public class FMProcessorTask : FMTaskBase
 		m_Resources.Enqueue(resource);
 		Vector2 centerOffset = new Vector2(Random.Range(0f, m_StagingAreaRadus), Random.Range(0f, m_StagingAreaRadus));
 		resource.gameObject.transform.SetParent(m_ProcessingStagingArea);
-		resource.gameObject.transform.localPosition = centerOffset;
-		resource.gameObject.SetActive(true);
+		resource.gameObject.transform.localPosition = new Vector3(centerOffset.x, 0f, centerOffset.y);
+		resource.GetComponent<Image>().enabled = false;
 	}
 
 	protected override void TriggerTask()
