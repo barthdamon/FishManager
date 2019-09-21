@@ -52,7 +52,8 @@ public class FM_FishBrain : MonoBehaviour
                 StartCoroutine(TwitchEye(bones[(int)Bone.EyeR]));
 
             if (UnityEngine.Random.value < 0.02f)
-                DialogManager.Get().Say(DialogManager.Get().randomText[UnityEngine.Random.Range(0,DialogManager.Get().randomText.Count)], this.gameObject);
+                if (DialogManager.Get().randomText.Count > 0)
+                    DialogManager.Get().Say(DialogManager.Get().randomText[UnityEngine.Random.Range(0,DialogManager.Get().randomText.Count)], this.gameObject);
         }
         //StopCoroutine(Bounce);
         yield break;

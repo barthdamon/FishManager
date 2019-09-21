@@ -37,7 +37,8 @@ public class DialogReader : MonoBehaviour, IPointerDownHandler
         if (rect == null)
             rect = GetComponentInChildren<RectTransform>();
 
-        rect.gameObject.SetActive(false);
+        if (rect.gameObject != this.gameObject)
+            rect.gameObject.SetActive(false);
     }
 
     void OnDisable()
@@ -60,7 +61,8 @@ public class DialogReader : MonoBehaviour, IPointerDownHandler
         } else
         {
             readTimer += Time.deltaTime * readCharsPerSec;
-            text.text = lines[currentLine].Substring(0, (int)readTimer);
+            text.text = lines[currentLine].Substring(0, (int)readTimer)
+                        + "<color=#00000000>" + lines[currentLine].Substring((int)readTimer) + "</color>";   //also render this bit invisibly to keep the formatting the same ;)
             clickTimer = 0;
         }
     }
@@ -81,14 +83,18 @@ public class DialogReader : MonoBehaviour, IPointerDownHandler
         if (autoScaleHorizontal || autoScaleVertical)
         {
             //RectTransform rect = GetComponentInChildren<RectTransform>();
-            rect.gameObject.SetActive(true);
+            if (rect.gameObject != this.gameObject)
+                rect.gameObject.SetActive(true);
 
             float charsPerLine = rect.rect.width / text.fontSize;
             float needLines = 1 + (lines[currentLine].Length / (charsPerLine * 0.8f));
+            needLines = Mathf.Max(needLines, 2);
 
             float width = charsPerLine * text.fontSize;
             float height = needLines * text.fontSize * 1.0f * text.lineSpacing;
             rect.sizeDelta = new Vector2(width, height);
+
+            text.text = "";
 
             Debug.Log("CPL: " + charsPerLine);
         }

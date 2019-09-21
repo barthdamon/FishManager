@@ -18,10 +18,9 @@ public class FMGeneratorTask : FMTaskBase
 	[HideInInspector]
 	public FMEquipment m_AssignedEquipment;
 
-	[Tooltip("The Staging area to which workers will be returned.")]
-	public FMStagingArea m_WorkerStagingArea;
 
 	private Vector3 m_DockPosition;
+	private FMStagingArea m_WorkerStagingArea;
 
 
 	// Equipment is on the dock, decides what type of fish the boat can get
@@ -102,7 +101,6 @@ public class FMGeneratorTask : FMTaskBase
 	{
 		for (int i = 0; i < m_AssignedWorkers.Count; ++i)
 		{
-			m_WorkerStagingArea.AddToStaging(m_AssignedWorkers[i].transform);
 			m_AssignedWorkers[i].GoToWorkerPool();
 		}
 
