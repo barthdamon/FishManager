@@ -8,6 +8,8 @@ public class FMResourceSink : FMTaskBase
 	public static float m_ConsumerTickRate = 5f;
 	public static float m_ConsumerTriggerResourceAmount = 100f;
 
+	public static float m_PerDemandRevenue = 0.25f;
+
 	[Tooltip("High value at 0 scaling down to close to zero at infinity")]
 	public AnimationCurve m_DemandValueCurve;
 
@@ -69,7 +71,7 @@ public class FMResourceSink : FMTaskBase
 
 		// determine capital gain
 		float totalAmount = GetCurrentResourceSum();
-		float capitalGain = m_DemandValueCurve.Evaluate(totalAmount);
+		float capitalGain = m_WorkerStagingArea.transform.childCount * m_PerDemandRevenue;
 		FMPlayer.GetOrCreateInstance().m_Capital += capitalGain;
 
 		// deplete resource

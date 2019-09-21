@@ -17,7 +17,7 @@ public class UnityChatManagerScript : MonoBehaviour
     Timer ping_timer;
 
     // test spawn object from chat
-    public GameObject spawn_object;
+    //public GameObject spawn_object;
 
     // Start is called before the first frame update
     void Start()
@@ -27,19 +27,20 @@ public class UnityChatManagerScript : MonoBehaviour
 
     void OnDestroy()
     {
-        ping_timer.Stop();
+        if (ping_timer != null)
+            ping_timer.Stop();
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if(counter > 0)
-        {
-            Instantiate(spawn_object, new Vector3(0,10,0), Quaternion.identity);
-            counter--;
-        }
+    //void Update()
+    //{
+        //if(counter > 0)
+        //{
+        //    Instantiate(spawn_object, new Vector3(0,10,0), Quaternion.identity);
+        //    counter--;
+        //}
         //Debug.Log("update");
-    }
+    //}
 
     struct Message
     {
@@ -75,7 +76,8 @@ public class UnityChatManagerScript : MonoBehaviour
             Debug.Log(e.Data);
 
             DialogManager.Get().Buffer(e.Data);
-            /*
+			FMCodfather.GetOrCreateInstance().Buffer(e.Data);
+			/*
             if (e.Data.Contains("shoot"))
             {
                 counter++;
@@ -83,7 +85,7 @@ public class UnityChatManagerScript : MonoBehaviour
                 // Now we can actually spawn a bob object
                 //Instantiate(box, new Vector3(0,10,0), Quaternion.identity);
             }*/
-        };
+		};
 
         ws.Connect();
 
