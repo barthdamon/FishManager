@@ -229,11 +229,11 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3353990181466718606}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -2.1179988}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 3353990181721151900}
+  - {fileID: 5289455147526215484}
   - {fileID: 3353990181546193335}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -256,9 +256,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fish: {fileID: 3353990181546193335}
-  dialog: {fileID: 3353990181721151901}
+  dialog: {fileID: 5289455147526215485}
   time_in: 1
   time_in_wait: 1
+  time_dialog_min: 1
   time_out_wait: 1
   time_out: 1
   offset: {x: 0, y: -100}
@@ -382,8 +383,6 @@ GameObject:
   - component: {fileID: 3353990181721151900}
   - component: {fileID: 3353990181721151872}
   - component: {fileID: 3353990181721151873}
-  - component: {fileID: 3353990181721151874}
-  - component: {fileID: 3353990181721151875}
   m_Layer: 5
   m_Name: DialogPanel
   m_TagString: Untagged
@@ -403,12 +402,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3353990181821738382}
-  m_Father: {fileID: 3353990181466718605}
+  m_Father: {fileID: 5289455147526215484}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 40.5, y: 24.4}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 150, y: 100}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &3353990181721151872
@@ -437,7 +436,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: aa4d42adbde2bb84a97994ae16364840, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -447,47 +446,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3353990181721151874
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3353990181721151901}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e00ea91251e7b94bb135f597d710d3a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  targetOffset: {x: 0, y: 0, z: 0}
-  scaleWithDistance: 1
-  scaleScale: 50
---- !u!114 &3353990181721151875
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3353990181721151901}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a995cb29fcea44840b17d24e27f8b418, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lines:
-  - Hey guys!
-  - Good news!
-  - I borrowed some money to start our business!
-  readCharsPerSec: 10
-  autoclickTime: 3
-  autoScaleHorizontal: 0
-  autoScaleVertical: 1
-  destroy: 0
-  currentLine: 0
-  readTimer: 0
-  clickTimer: 0
-  text: {fileID: 0}
 --- !u!1 &3353990181821738383
 GameObject:
   m_ObjectHideFlags: 0
@@ -522,8 +480,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -20, y: -20}
+  m_AnchoredPosition: {x: 2.5, y: 0}
+  m_SizeDelta: {x: -25, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3353990181821738380
 CanvasRenderer:
@@ -638,3 +596,66 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &5289455147526215485
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5289455147526215484}
+  - component: {fileID: 5289455147526215459}
+  m_Layer: 5
+  m_Name: DialogReader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &5289455147526215484
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5289455147526215485}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 3353990181721151900}
+  m_Father: {fileID: 3353990181466718605}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 40.5, y: 24.4}
+  m_SizeDelta: {x: 150, y: 100}
+  m_Pivot: {x: 0, y: 0}
+--- !u!114 &5289455147526215459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5289455147526215485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a995cb29fcea44840b17d24e27f8b418, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lines:
+  - Hey guys!
+  - Good news!
+  - I borrowed some money to start our business!
+  readCharsPerSec: 10
+  autoclickTime: 3
+  autoScaleHorizontal: 0
+  autoScaleVertical: 1
+  destroy: 0
+  currentLine: 0
+  readTimer: 0
+  clickTimer: 0
+  text: {fileID: 3353990181821738381}
+  rect: {fileID: 3353990181721151900}

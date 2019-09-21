@@ -10,6 +10,7 @@ public class DialogFish : MonoBehaviour
 
     public float time_in = 1.0f;
     public float time_in_wait = 1.0f;
+    public float time_dialog_min = 1.0f;
     public float time_out_wait = 1.0f;
     public float time_out = 1.0f;
 
@@ -25,17 +26,25 @@ public class DialogFish : MonoBehaviour
         if (dialog != null)
             dialog.SetActive(false);
 
-
-        for (float t = 0.0f; t<1.0f; t += Time.deltaTime / time_in)
+        if (time_in > 0)
         {
-            fish.anchoredPosition = offset * (1.0f-t);
-            yield return new WaitForEndOfFrame();
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / time_in)
+            {
+                fish.anchoredPosition = offset * (1.0f - t);
+                yield return new WaitForEndOfFrame();
+            }
+        }
+        else
+        {
+            fish.anchoredPosition = offset * 0.0f;
         }
 
         yield return new WaitForSeconds(time_in_wait);
 
         if (dialog != null)
             dialog.SetActive(true);
+
+        yield return new WaitForSeconds(time_dialog_min);
 
         while (dialog!=null && dialog.activeInHierarchy)
         {
@@ -44,11 +53,15 @@ public class DialogFish : MonoBehaviour
 
         yield return new WaitForSeconds(time_out_wait);
 
-        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / time_out)
+        if (time_out > 0)
         {
-            fish.anchoredPosition = offset * t;
-            yield return new WaitForEndOfFrame();
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / time_out)
+            {
+                fish.anchoredPosition = offset * t;
+                yield return new WaitForEndOfFrame();
+            }
         }
+        //ToDo: option to disappear or STAY
 
         //destroy or disable?
         //Destroy(this.gameObject);
