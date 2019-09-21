@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class FMResourceRepresentation
@@ -22,6 +23,7 @@ public class FMResource : MonoBehaviour
 
 	// type
 	public int m_ResourceIndex = 0;
+	public float m_StartProcessingAmount = 0f;
 	public float m_Amount = 1f;
 	public float m_ProcessedAmount = 0f;
 
@@ -36,6 +38,7 @@ public class FMResource : MonoBehaviour
 
 	public void SetResourceVisible(bool visible)
 	{
+		GetComponentInChildren<Image>().enabled = visible;
 		if (m_RelevantRepresentation != null)
 		{
 			m_RelevantRepresentation.m_ContainerRepresentation.enabled = visible;

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class FMProcessorTask : FMTaskBase
 {
-	public float m_ProcessScalar = 1f;
+	public float m_ProcessScalar = 50f;
 	public float m_SingleWorkerProcessTime = 1f;
 	public float m_StagingAreaRadus = 3f;
 
@@ -16,19 +16,38 @@ public class FMProcessorTask : FMTaskBase
 	{
 		if (m_AssignedWorkers.Count > 0 && m_Resources.Count > 0)
 		{
-			base.TickTask(time);
 			foreach (var item in m_Resources.Skip(1))
 			{
 				item.TickDecrementQuality(time);
 			}
+
+			FMResource resource = m_Resources.Peek();
+			if (resource != null)
+			{
+				var totalProcessAmount = 0f;
+				for (int i = 0; i < m_AssignedWorkers.Count; ++i)
+				{
+					totalProcessAmount += m_ProcessScalar * m_AssignedWorkers[i].GetProductivity();
+				}
+
+				totalProcessAmount = Mathf.Min(totalProcessAmount, resource.m_Amount);
+				resource.m_ProcessedAmount += totalProcessAmount;
+				resource.m_Amount -= totalProcessAmount;
+			}
+			base.TickTask(time);
 		}
 	}
 
-	public override float GetTimeToTrigger()
+	protected override bool ShouldTriggerTask()
 	{
-		// this is dependent on the number of workers you have as well as the tick rate...
-		return 3f;
-		//return m_AssignedWorkers.Count * m_ProcessWorkerScaleTime;
+		FMResource resource = m_Resources.Peek();
+		return resource.m_Amount <= 0f;
+	}
+
+	protected override float GetDisplayProgress()
+	{
+		FMResource resource = m_Resources.Peek();
+		return resource.m_ProcessedAmount / resource.m_StartProcessingAmount;
 	}
 
 	public void ProcessNewResource(FMResource resource)
@@ -38,31 +57,20 @@ public class FMProcessorTask : FMTaskBase
 		Vector2 centerOffset = new Vector2(Random.Range(0f, m_StagingAreaRadus), Random.Range(0f, m_StagingAreaRadus));
 		resource.gameObject.transform.SetParent(m_ProcessingStagingArea, false);
 		resource.gameObject.transform.localPosition = new Vector3(centerOffset.x, 0f, centerOffset.y);
+		resource.m_StartProcessingAmount = resource.m_Amount;
 		resource.SetResourceVisible(true);
 	}
 
 	protected override void TriggerTask()
 	{
 		base.TriggerTask();
-
 		FMResource resource = m_Resources.Peek();
 		if (resource != null)
 		{
-			var totalProcessAmount = 0f;
-			for (int i = 0; i < m_AssignedWorkers.Count; ++i)
-			{
-				totalProcessAmount += m_ProcessScalar * m_AssignedWorkers[i].GetProductivity();
-			}
-
-			totalProcessAmount = Mathf.Min(totalProcessAmount, resource.m_Amount);
-			resource.m_ProcessedAmount += totalProcessAmount;
-			resource.m_Amount -= totalProcessAmount;
-			if (resource.m_Amount <= 0f)
-			{
-				// done processing
-				FMResource processedResource = m_Resources.Dequeue();
-				FMBoardReferences.GetOrCreateInstance().m_ResourceSinks[resource.m_ResourceIndex].m_Resources.Enqueue(processedResource);
-			}
+			// done processing
+			FMResource processedResource = m_Resources.Dequeue();
+			processedResource.SetResourceVisible(false);
+			FMBoardReferences.GetOrCreateInstance().m_ResourceSinks[resource.m_ResourceIndex].m_Resources.Enqueue(processedResource);
 		}
 	}
 }

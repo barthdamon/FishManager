@@ -99,20 +99,28 @@ public abstract class FMTaskBase : MonoBehaviour
 		m_TimeSinceLastTrigger = 0f;
 	}
 
-	public abstract float GetTimeToTrigger();
+	public virtual float GetTimeToTrigger()
+	{
+		return 0f;
+	}
 
 	public virtual void TickTask(float time)
 	{
 		m_TimeSinceLastTrigger += time;
-		UpdateDisplayProgress();
-		if (GetTimeToTrigger() - m_TimeSinceLastTrigger <= 0)
+		SetProgress(GetDisplayProgress());
+		if (ShouldTriggerTask())
 		{
 			TriggerTask();
 		}
 	}
 
-	protected virtual void UpdateDisplayProgress()
+	protected virtual bool ShouldTriggerTask()
 	{
-		SetProgress(m_TimeSinceLastTrigger / GetTimeToTrigger());
+		return GetTimeToTrigger() - m_TimeSinceLastTrigger <= 0;
+	}
+
+	protected virtual float GetDisplayProgress()
+	{
+		return m_TimeSinceLastTrigger / GetTimeToTrigger();
 	}
 }
