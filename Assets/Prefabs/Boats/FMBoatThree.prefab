@@ -7,6 +7,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8246091628464799535, guid: 10a0ace739a128849bb2d2dfeb13cafd,
+        type: 3}
+      propertyPath: m_NumberOfWorkersRequired
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8246091628464799535, guid: 10a0ace739a128849bb2d2dfeb13cafd,
+        type: 3}
+      propertyPath: m_GenerationTimePerPerson
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1777241585734519091, guid: 10a0ace739a128849bb2d2dfeb13cafd,
         type: 3}
       propertyPath: m_Name

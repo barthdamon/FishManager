@@ -25,8 +25,9 @@ public class FMWorkerSlotHelper : MonoBehaviour
 			if (slot.m_AssignedObject == null)
 			{
 				slot.m_AssignedObject = worker.gameObject;
-				worker.transform.SetParent(slot.m_Transform);
+				worker.transform.SetParent(slot.m_Transform, false);
 				worker.transform.localPosition = Vector3.zero;
+				return;
 			}
 		}
 	}

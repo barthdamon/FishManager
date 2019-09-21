@@ -36,7 +36,7 @@ public class FMProcessorTask : FMTaskBase
 		// todo: animate it to the processing plant?
 		m_Resources.Enqueue(resource);
 		Vector2 centerOffset = new Vector2(Random.Range(0f, m_StagingAreaRadus), Random.Range(0f, m_StagingAreaRadus));
-		resource.gameObject.transform.SetParent(m_ProcessingStagingArea);
+		resource.gameObject.transform.SetParent(m_ProcessingStagingArea, false);
 		resource.gameObject.transform.localPosition = new Vector3(centerOffset.x, 0f, centerOffset.y);
 		resource.SetResourceVisible(true);
 	}
