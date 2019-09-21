@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class FMEquipment : MonoBehaviour
 {
-	public Image m_SpriteRepresentation;
 	public int m_ResourceIndex = 0;
 
 	public FMGeneratorTask m_AssignedTask;
@@ -14,11 +13,6 @@ public class FMEquipment : MonoBehaviour
 	public float m_TimeToCompleteAssignment = 5f;
 
 	private float m_CurrentAssignTime = 0f;
-
-	private void Start()
-	{
-		m_SpriteRepresentation.color = GetColor();
-	}
 
 	private Color GetColor()
 	{
