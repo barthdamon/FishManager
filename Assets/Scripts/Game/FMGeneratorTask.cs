@@ -13,12 +13,21 @@ public class FMGeneratorTask : FMTaskBase
 	// #number of workers
 	// in order to generate requires x workers
 
+	[HideInInspector]
+	public FMWorkerSlotHelper m_BoatSlots;
+	[HideInInspector]
 	public FMEquipment m_AssignedEquipment;
 
 
 	// Equipment is on the dock, decides what type of fish the boat can get
 	// equiement is a worker on the dock and gets assigned to boats to give them a resource destination
 	// cannot start until equipment is assigned
+
+	public void RemoveEquipment()
+	{
+		m_BoatSlots.UnassignEquipment(m_AssignedEquipment);
+		m_AssignedEquipment = null;
+	}
 
 	// completion time * worker productivity
 	// outputs resources when completed onto the processor task
@@ -33,6 +42,9 @@ public class FMGeneratorTask : FMTaskBase
 	public override bool AssignWorker(FMWorker worker)
 	{
 		base.AssignWorker(worker);
+
+		m_BoatSlots.AssignWorker(worker);
+
 		bool nowProcessing = m_AssignedWorkers.Count >= m_NumberOfWorkersRequired;
 		nowProcessing &= m_AssignedEquipment != null && m_AssignedEquipment.m_AssignmentCompleted;
 		if (!m_TaskProcessing && nowProcessing)
@@ -46,7 +58,8 @@ public class FMGeneratorTask : FMTaskBase
 			var resourceComponent = resourceInstance.GetComponent<FMResource>();
 			resourceComponent.m_Size = m_NumberOfWorkersRequired;
 			resourceComponent.SetRepresentation();
-			resourceComponent.SetResourceVisible(false);
+			m_BoatSlots.AssignResource(resourceComponent);
+			//resourceComponent.SetResourceVisible(false);
 			m_Resources.Enqueue(resourceComponent);
 		}
 		m_TaskProcessing = nowProcessing;
@@ -55,6 +68,7 @@ public class FMGeneratorTask : FMTaskBase
 
 	public override bool RemoveWorker(FMWorker worker)
 	{
+		m_BoatSlots.UnassignWorker(worker);
 		base.RemoveWorker(worker);
 		m_TaskProcessing = m_AssignedWorkers.Count >= m_NumberOfWorkersRequired;
 		m_TimeSinceLastTrigger = 0f;
@@ -64,6 +78,7 @@ public class FMGeneratorTask : FMTaskBase
 	private void Awake()
 	{
 		m_TaskProcessing = false;
+		m_BoatSlots = GetComponentInChildren<FMWorkerSlotHelper>();
 	}
 
 	protected override void TriggerTask()
@@ -77,7 +92,9 @@ public class FMGeneratorTask : FMTaskBase
 		m_TimeSinceLastTrigger = 0f;
 
 		var processor = FMBoardReferences.GetOrCreateInstance().m_Processor;
-		processor.ProcessNewResource(m_Resources.Dequeue());
+		var generatedResource = m_Resources.Dequeue();
+		m_BoatSlots.UnassignResource(generatedResource);
+		processor.ProcessNewResource(generatedResource);
 	}
 
 	public override void TickTask(float time)

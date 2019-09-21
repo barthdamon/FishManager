@@ -30,7 +30,9 @@ public class FMEquipment : MonoBehaviour
 		if (task is FMGeneratorTask)
 		{
 			if (m_AssignedTask != null)
-				m_AssignedTask.m_AssignedEquipment = null;
+			{
+				m_AssignedTask.RemoveEquipment();
+			}
 
 			m_AssignmentCompleted = false;
 			m_CurrentAssignTime = 0f;

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1341728345383809275}
   - component: {fileID: 2767187746156421727}
   m_Layer: 0
-  m_Name: GameManagers
+  m_Name: FMGameManagers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -92,6 +92,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   m_ResourcePrefabs:
-  - {fileID: 8611125652946110616, guid: 30c1813740dad2c4081abc6c8b2049bf, type: 3}
-  - {fileID: 7296788345243406967, guid: bbe74c520bf8fae4689074da608dfdd4, type: 3}
-  - {fileID: 3168349421583828682, guid: 5099f302aac496043a7baf27bfb50822, type: 3}
+  - {fileID: 1264524520836727433, guid: 30c1813740dad2c4081abc6c8b2049bf, type: 3}
+  - {fileID: 1264524520836727433, guid: ef00afc1eaae09a42af8baef284ab8b9, type: 3}
+  - {fileID: 1264524520836727433, guid: 8994d1f4fde27bb4c8d54408f44421a2, type: 3}
+  m_Processor: {fileID: 0}
+  m_ColorsForResource: []

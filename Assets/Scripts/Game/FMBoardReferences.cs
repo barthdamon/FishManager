@@ -12,4 +12,7 @@ public class FMBoardReferences : MonoBehaviourSingleton<FMBoardReferences>
 	public FMProcessorTask m_Processor;
 
 	public Color[] m_ColorsForResource;
+
+	[Tooltip("Index corresponds to resource type")]
+	public Transform[] m_ResourceBoatDestinations;
 }
