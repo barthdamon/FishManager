@@ -12,10 +12,20 @@ public class FMGeneratorTask : FMTaskBase
 	// #number of workers
 	// in order to generate requires x workers
 
+	public FMEquipment m_AssignedEquipment;
+
+
+	// Equipment is on the dock, decides what type of fish the boat can get
+	// equiement is a worker on the dock and gets assigned to boats to give them a resource destination
+	// cannot start until equipment is assigned
+
 	// completion time * worker productivity
 	// outputs resources when completed onto the processor task
 	public override bool AcceptsWorkers()
 	{
+		//var acceptsWorkers = m_AssignedEquipment != null && m_AssignedEquipment.m_AssignmentCompleted;
+		//acceptsWorkers &= m_AssignedWorkers.Count < m_NumberOfWorkersRequired;
+		// can accept workers while upgrading?
 		return m_AssignedWorkers.Count < m_NumberOfWorkersRequired;
 	}
 
@@ -23,9 +33,15 @@ public class FMGeneratorTask : FMTaskBase
 	{
 		base.AssignWorker(worker);
 		bool nowProcessing = m_AssignedWorkers.Count >= m_NumberOfWorkersRequired;
+		nowProcessing &= m_AssignedEquipment != null && m_AssignedEquipment.m_AssignmentCompleted;
 		if (!m_TaskProcessing && nowProcessing)
 		{
-			m_Resources.Enqueue(new FMResource());
+			// todo: send to a specific resource type depending on where boat is directed
+			var resourcePrefab = FMBoardReferences.GetOrCreateInstance().m_ResourcePrefabs[m_AssignedEquipment.m_ResourceIndex];
+			Instantiate(resourcePrefab);
+			resourcePrefab.SetActive(false);
+			resourcePrefab.transform.position = transform.position;
+			m_Resources.Enqueue(resourcePrefab.GetComponent<FMResource>());
 		}
 		m_TaskProcessing = nowProcessing;
 		return m_TaskProcessing;
@@ -55,7 +71,7 @@ public class FMGeneratorTask : FMTaskBase
 		m_TimeSinceLastTrigger = 0f;
 
 		var processor = FMBoardReferences.GetOrCreateInstance().m_Processor;
-		processor.m_Resources.Enqueue(m_Resources.Dequeue());
+		processor.ProcessNewResource(m_Resources.Dequeue());
 	}
 
 	public override void TickTask(float time)
@@ -67,7 +83,9 @@ public class FMGeneratorTask : FMTaskBase
 			float workerProductivity = m_AssignedWorkers[i].GetProductivity() * m_ResourceCapacityPerWorkerPerTick;
 			tickResourceAmount += workerProductivity;
 		}
-		m_Resources.Peek().m_Amount += tickResourceAmount;
+
+		if (m_TaskProcessing)
+			m_Resources.Peek().m_Amount += tickResourceAmount;
 	}
 
 	public override float GetTimeToTrigger()

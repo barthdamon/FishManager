@@ -33,6 +33,7 @@ public class FMWorker : MonoBehaviour
 	{
 		var draggable = GetComponent<FMDraggable>();
 		draggable.m_DragReaction += ReactToSelected;
+		draggable.m_OnAssignedTask += Assign;
 	}
 
 	private void Start()

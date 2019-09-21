@@ -17,7 +17,7 @@ public abstract class FMTaskBase : MonoBehaviour
 	public Queue<FMResource> m_Resources = new Queue<FMResource>();
 	public List<FMWorker> m_AssignedWorkers = new List<FMWorker>();
 
-	void SetProgress(float f)
+	public void SetProgress(float f)
 	{
 		f = Mathf.Clamp01(f);
 		if (progress == f) return;

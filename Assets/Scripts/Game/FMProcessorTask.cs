@@ -8,6 +8,8 @@ public class FMProcessorTask : FMTaskBase
 	public float m_ProcessScalar = 1f;
 	public float m_SingleWorkerProcessTime = 1f;
 
+	public RectTransform m_ProcessingStagingArea;
+
 	public override void TickTask(float time)
 	{
 		if (m_AssignedWorkers.Count > 0 && m_Resources.Count > 0)
@@ -25,6 +27,14 @@ public class FMProcessorTask : FMTaskBase
 		// this is dependent on the number of workers you have as well as the tick rate...
 		return 3f;
 		//return m_AssignedWorkers.Count * m_ProcessWorkerScaleTime;
+	}
+
+	public void ProcessNewResource(FMResource resource)
+	{
+		// todo: animate it to the processing plant?
+		m_Resources.Enqueue(resource);
+		resource.gameObject.transform.position = m_ProcessingStagingArea.position;
+		resource.gameObject.SetActive(true);
 	}
 
 	protected override void TriggerTask()

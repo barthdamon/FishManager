@@ -12,20 +12,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: FMChickenResource
       objectReference: {fileID: 0}
+    - target: {fileID: 2628636771744568167, guid: b251ca7ba26849840afc67901bc7752a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2628636771744568188, guid: b251ca7ba26849840afc67901bc7752a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -9.033999
       objectReference: {fileID: 0}
     - target: {fileID: 2628636771744568188, guid: b251ca7ba26849840afc67901bc7752a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.73996824
       objectReference: {fileID: 0}
     - target: {fileID: 2628636771744568188, guid: b251ca7ba26849840afc67901bc7752a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -5.134001
       objectReference: {fileID: 0}
     - target: {fileID: 2628636771744568188, guid: b251ca7ba26849840afc67901bc7752a,
         type: 3}
@@ -71,6 +76,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ResourceIndex
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2628636771744568160, guid: b251ca7ba26849840afc67901bc7752a,
+        type: 3}
+      propertyPath: m_Amount
+      value: 59
+      objectReference: {fileID: 0}
+    - target: {fileID: 2628636771744568160, guid: b251ca7ba26849840afc67901bc7752a,
+        type: 3}
+      propertyPath: m_ProcessedAmount
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b251ca7ba26849840afc67901bc7752a, type: 3}

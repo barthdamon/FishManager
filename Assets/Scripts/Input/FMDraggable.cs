@@ -16,7 +16,11 @@ public class FMDraggable : Selectable, IBeginDragHandler, IDragHandler, IEndDrag
 	public delegate bool GetReactToDrag();
 	public GetReactToDrag m_DragReaction;
 
-    public void OnBeginDrag(PointerEventData eventData)
+
+	public delegate void OnAssignedTask(FMTaskBase task);
+	public OnAssignedTask m_OnAssignedTask;
+
+	public void OnBeginDrag(PointerEventData eventData)
     {
 		if (m_DragReaction != null)
 		{
@@ -111,4 +115,9 @@ public class FMDraggable : Selectable, IBeginDragHandler, IDragHandler, IEndDrag
         }
         return comp;
     }
+
+	public void Assign(FMTaskBase task)
+	{
+		m_OnAssignedTask?.Invoke(task);
+	}
 }

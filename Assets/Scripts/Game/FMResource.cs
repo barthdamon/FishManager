@@ -19,4 +19,9 @@ public class FMResource : MonoBehaviour
 		m_Sickness -= time * m_QualityDecayRate;
 	}
 
+	private void Start()
+	{
+		GetComponent<MeshRenderer>().material.color = FMBoardReferences.GetOrCreateInstance().m_ColorsForResource[m_ResourceIndex];
+	}
+
 }

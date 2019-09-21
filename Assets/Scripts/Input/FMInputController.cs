@@ -13,11 +13,8 @@ public class FMInputController : MonoBehaviourSingleton<FMInputController>
         //if it is, 
         // check if it is currently assigned to a task; if it is, UNASSIGN (tell both it and the task)
         // check if what it's dropped into is a task; if it is, ASSIGN (tell both it and the task)
-        FMWorker worker = draggable.GetComponent<FMWorker>();
-		if (worker == null)
-			return;
-
-		if (worker.m_IsSleepingIn)
+        FMDraggable draggableComponent = draggable.GetComponent<FMDraggable>();
+		if (draggableComponent == null)
 			return;
 
 		FMTaskBase task = toTarget == null ? null : toTarget.GetComponent<FMTaskBase>();
@@ -27,7 +24,7 @@ public class FMInputController : MonoBehaviourSingleton<FMInputController>
 		shouldAssignWorker |= (task != null && task.AcceptsWorkers());
 		if (shouldAssignWorker)
         {
-            worker.Assign(task);
+			draggableComponent.Assign(task);
         }
     }
 }

@@ -5,6 +5,9 @@ using System.Linq;
 
 public class FMWorkerPool : MonoBehaviour
 {
+	[Tooltip("Index corresponds to resource type")]
+	public List<FMEquipment> m_Equipment;
+
 	private List<FMWorker> m_AllWorkers = new List<FMWorker>();
 
 	public IEnumerable<FMWorker> GetAvailableWorkers()
