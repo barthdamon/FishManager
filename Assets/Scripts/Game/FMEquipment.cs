@@ -31,13 +31,13 @@ public class FMEquipment : MonoBehaviour
 		{
 			if (m_AssignedTask != null)
 			{
-				m_AssignedTask.RemoveEquipment();
+				m_AssignedTask.SetEquipment(null);
 			}
 
 			m_AssignmentCompleted = false;
 			m_CurrentAssignTime = 0f;
 			m_AssignedTask = (FMGeneratorTask)task;
-			m_AssignedTask.m_AssignedEquipment = this;
+			m_AssignedTask.SetEquipment(this);
 			m_AssignedTask.fillerImage.color = GetColor();
 		}
 	}

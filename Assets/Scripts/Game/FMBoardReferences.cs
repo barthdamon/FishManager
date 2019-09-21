@@ -17,4 +17,5 @@ public class FMBoardReferences : MonoBehaviourSingleton<FMBoardReferences>
 	public Transform[] m_ResourceBoatDestinations;
 
 	public FMStagingArea m_WorkerStagingArea;
+	public FMStagingArea m_EquipmentStagingArea;
 }

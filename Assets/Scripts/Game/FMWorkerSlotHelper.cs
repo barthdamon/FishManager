@@ -33,13 +33,13 @@ public class FMWorkerSlotHelper : MonoBehaviour
 
 	public void AssignEquipment(FMEquipment equipment)
 	{
-		equipment.transform.SetParent(m_EquipmentSlot.m_Transform);
+		equipment.transform.SetParent(m_EquipmentSlot.m_Transform, false);
 		equipment.transform.localPosition = Vector3.zero;
 	}
 
 	public void AssignResource(FMResource resource)
 	{
-		resource.transform.SetParent(m_ResourceSlot.m_Transform);
+		resource.transform.SetParent(m_ResourceSlot.m_Transform, false);
 		resource.transform.localPosition = Vector3.zero;
 	}
 
@@ -57,6 +57,11 @@ public class FMWorkerSlotHelper : MonoBehaviour
 
 	public void UnassignEquipment(FMEquipment equipment)
 	{
+		if (equipment != null)
+		{
+			var stagingArea = FMBoardReferences.GetOrCreateInstance().m_EquipmentStagingArea;
+			stagingArea.AddToStaging(equipment.transform);
+		}
 		m_EquipmentSlot.m_AssignedObject = null;
 	}
 

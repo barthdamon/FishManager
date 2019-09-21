@@ -772,13 +772,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2878609857620716672, guid: da19785575f3e3942b979e8b4b9f33d0,
+    - target: {fileID: 1579983694000890893, guid: da19785575f3e3942b979e8b4b9f33d0,
         type: 3}
-      propertyPath: m_GenerationTimePerPerson
-      value: 5
+      propertyPath: m_AnchoredPosition.x
+      value: 50.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 3305890849663255230, guid: da19785575f3e3942b979e8b4b9f33d0,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 51.54
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da19785575f3e3942b979e8b4b9f33d0, type: 3}
+--- !u!114 &371008401159665897 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2691967090705742876, guid: da19785575f3e3942b979e8b4b9f33d0,
+    type: 3}
+  m_PrefabInstance: {fileID: 371008401159665896}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f005707d4e5b77c46a0508eb420e8299, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &994491868008179901
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1033,6 +1050,11 @@ PrefabInstance:
       propertyPath: m_WorkerStagingArea
       value: 
       objectReference: {fileID: 375230175}
+    - target: {fileID: 2767187746156421727, guid: 1aff7edf00a3b1b4a97fefc2bcb661ba,
+        type: 3}
+      propertyPath: m_EquipmentStagingArea
+      value: 
+      objectReference: {fileID: 371008401159665897}
     - target: {fileID: 3128699244264169754, guid: 1aff7edf00a3b1b4a97fefc2bcb661ba,
         type: 3}
       propertyPath: m_Name

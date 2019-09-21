@@ -28,10 +28,12 @@ public class FMGeneratorTask : FMTaskBase
 	// equiement is a worker on the dock and gets assigned to boats to give them a resource destination
 	// cannot start until equipment is assigned
 
-	public void RemoveEquipment()
+	public void SetEquipment(FMEquipment equipment)
 	{
 		m_BoatSlots.UnassignEquipment(m_AssignedEquipment);
-		m_AssignedEquipment = null;
+		m_BoatSlots.AssignEquipment(equipment);
+
+		m_AssignedEquipment = equipment;
 	}
 
 	// completion time * worker productivity
@@ -74,7 +76,6 @@ public class FMGeneratorTask : FMTaskBase
 
 	public override bool RemoveWorker(FMWorker worker)
 	{
-		m_BoatSlots.UnassignWorker(worker);
 		base.RemoveWorker(worker);
 		m_TaskProcessing = m_AssignedWorkers.Count >= m_NumberOfWorkersRequired;
 		m_TimeSinceLastTrigger = 0f;
@@ -100,12 +101,19 @@ public class FMGeneratorTask : FMTaskBase
 			m_WorkerStagingArea.AddToStaging(m_AssignedWorkers[i].transform);
 			m_AssignedWorkers[i].GoToWorkerPool();
 		}
+
+		for (int i = 0; i < m_AssignedWorkers.Count; ++i)
+		{
+			m_BoatSlots.UnassignWorker(m_AssignedWorkers[i]);
+		}
+
 		m_AssignedWorkers.Clear();
 		m_TaskProcessing = false;
 		m_TimeSinceLastTrigger = 0f;
 
 		var processor = FMBoardReferences.GetOrCreateInstance().m_Processor;
 		var generatedResource = m_Resources.Dequeue();
+		SetProgress(0f);
 		m_BoatSlots.UnassignResource(generatedResource);
 		processor.ProcessNewResource(generatedResource);
 	}
