@@ -7,4 +7,9 @@ public class FMCodfather : MonoBehaviour
 	public GameObject m_MafiaPrefab;
 
 
+	private void SpawnMafia()
+	{
+
+	}
+
 }
