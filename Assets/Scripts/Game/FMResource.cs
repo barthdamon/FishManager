@@ -16,6 +16,8 @@ public class FMResource : MonoBehaviour
 	//TODO: Balance everything off of this float...
 	public static float m_StartingResourceAmount = 1000f;
 
+	public GameObject m_SmellyFishParticles;
+
 	public Sprite m_ContentRepresentationPrefab;
 
 	public FMResourceRepresentation[] m_ResourceRepresentations;
@@ -32,15 +34,18 @@ public class FMResource : MonoBehaviour
 
 	// quality (determined by processor time)
 	public float m_QualityDecayRate = 0.05f;
-	public float m_Sickness = 1f;
+	public float m_Sickness = 0f;
 
 	public void TickDecrementQuality(float time)
 	{
-		m_Sickness -= time * m_QualityDecayRate;
+		m_Sickness += time * m_QualityDecayRate;
+		float sicknessScale = 1f + 1f * m_Sickness;
+		m_SmellyFishParticles.transform.localScale = new Vector3(sicknessScale, sicknessScale, sicknessScale);
 	}
 
 	public void SetResourceVisible(bool visible)
 	{
+		m_SmellyFishParticles.SetActive(false);
 		GetComponentInChildren<Image>().enabled = visible;
 		if (m_RelevantRepresentation != null)
 		{

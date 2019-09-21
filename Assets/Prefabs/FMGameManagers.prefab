@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -2531975607079834462}
   - component: {fileID: 1341728345383809275}
   - component: {fileID: 2767187746156421727}
+  - component: {fileID: 4908276669261739404}
   m_Layer: 0
   m_Name: FMGameManagers
   m_TagString: Untagged
@@ -97,3 +98,20 @@ MonoBehaviour:
   - {fileID: 1264524520836727433, guid: 8994d1f4fde27bb4c8d54408f44421a2, type: 3}
   m_Processor: {fileID: 0}
   m_ColorsForResource: []
+  m_ResourceBoatDestinations: []
+  m_WorkerStagingArea: {fileID: 0}
+  m_EquipmentStagingArea: {fileID: 0}
+--- !u!114 &4908276669261739404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3128699244264169754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17f0fcdb0abe3e643bf359f175ec32fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MafiaPrefab: {fileID: 4204360937284241298, guid: 3176b913fef1ac24ead3af1c61903209,
+    type: 3}

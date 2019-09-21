@@ -33,7 +33,17 @@ public class FMDay
 
 	public float GetNormalisedTimeOfDay()
 	{
-		return m_HourOfDay / (m_MorningTime + m_DaylightTime + m_EveningTime + m_NightTime);
+		float hours_in_the_day = m_MorningTime + m_DaylightTime;
+		float daylight_hour = Mathf.Min(m_HourOfDay, hours_in_the_day);
+		return daylight_hour / hours_in_the_day;
+	}
+
+	public float GetNormalisedTimeOfNight()
+	{
+		float hours_in_the_day = m_MorningTime + m_DaylightTime;
+		float hours_in_the_night = m_EveningTime + m_NightTime;
+		float night_hour = Mathf.Min(m_HourOfDay - hours_in_the_day, hours_in_the_night);
+		return night_hour / hours_in_the_night;
 	}
 
 	public void IncrementTime(float delta_time)
