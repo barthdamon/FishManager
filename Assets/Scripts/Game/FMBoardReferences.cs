@@ -8,4 +8,6 @@ public class FMBoardReferences : MonoBehaviourSingleton<FMBoardReferences>
 	public FMResourceSink[] m_ResourceSinks;
 
 	public GameObject[] m_ResourcePrefabs;
+
+	public FMProcessorTask m_Processor;
 }
