@@ -2,20 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FMTaskGenerator : FMTaskBase
+public class FMGeneratorTask : FMTaskBase
 {
-	public FMProcessorTask m_Processor;
-
-	public float m_GenerationTimePerPerson;
-	public float m_ResourceCapacityPerWorkerPerTick;
+	public float m_GenerationTimePerPerson = 1f;
+	public float m_ResourceCapacityPerWorkerPerTick = 1f;
 
 	// multiple generator tasks
-	public int m_NumberOfWorkersRequired;
+	public int m_NumberOfWorkersRequired = 1;
 	// #number of workers
 	// in order to generate requires x workers
 
 	// completion time * worker productivity
 	// outputs resources when completed onto the processor task
+	public override bool AcceptsWorkers()
+	{
+		return m_AssignedWorkers.Count < m_NumberOfWorkersRequired;
+	}
+
 	public override bool AssignWorker(FMWorker worker)
 	{
 		base.AssignWorker(worker);
@@ -51,7 +54,8 @@ public class FMTaskGenerator : FMTaskBase
 		m_TaskProcessing = false;
 		m_TimeSinceLastTrigger = 0f;
 
-		m_Processor.m_Resources.Enqueue(m_Resources.Dequeue());
+		var processor = FMBoardReferences.GetOrCreateInstance().m_Processor;
+		processor.m_Resources.Enqueue(m_Resources.Dequeue());
 	}
 
 	public override void TickTask(float time)

@@ -84,8 +84,8 @@ GameObject:
   - component: {fileID: 2743086492913030660}
   - component: {fileID: 2743086492913030712}
   - component: {fileID: 2743086492913030713}
-  - component: {fileID: 2743086492913030662}
   - component: {fileID: 2743086492913030663}
+  - component: {fileID: 972985288015450267}
   m_Layer: 5
   m_Name: DraggableWorker
   m_TagString: Untagged
@@ -149,19 +149,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &2743086492913030662
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2743086492913030661}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60e111ef0d181994d966a7bf0de0a746, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentTask: {fileID: 0}
 --- !u!114 &2743086492913030663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,6 +191,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2743086492913030713}
   dragOnSurfaces: 0
   dragCopy: 0
+--- !u!114 &972985288015450267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2743086492913030661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 528eed5ef0b39e644851010cb0769301, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SicknessSleepInScalar: 1
+  m_IsSleepingIn: 0
 --- !u!1 &3263641129497993061
 GameObject:
   m_ObjectHideFlags: 0

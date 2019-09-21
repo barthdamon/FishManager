@@ -230,7 +230,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentlyDragging: {fileID: 0}
   currentlyOver: {fileID: 0}
-  tasks: []
 --- !u!4 &216956500
 Transform:
   m_ObjectHideFlags: 0
@@ -560,7 +559,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 774384666}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd7e889d7d508c84ea8d4d413ee2c568, type: 3}
+  m_Script: {fileID: 11500000, guid: 123278822c0cf32478444c3de800b8c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   progress: 0

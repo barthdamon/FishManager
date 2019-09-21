@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FMResource
+public class FMResource : MonoBehaviour
 {
 	// type
 	public int m_ResourceIndex = 0;

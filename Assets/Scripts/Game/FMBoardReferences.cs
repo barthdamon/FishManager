@@ -6,4 +6,8 @@ public class FMBoardReferences : MonoBehaviourSingleton<FMBoardReferences>
 {
 	[Tooltip("Index corresponds to resource type")]
 	public FMResourceSink[] m_ResourceSinks;
+
+	public GameObject[] m_ResourcePrefabs;
+
+	public FMProcessorTask m_Processor;
 }

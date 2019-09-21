@@ -12,6 +12,29 @@ public class FMWorker : MonoBehaviour
 	private float m_TimeSleptIn = 0f;
 	public bool m_IsSleepingIn = false;
 
+	public FMTaskBase currentTask;    //a worker can only have one job at a time, or none
+
+	public void Assign(FMTaskBase task)
+	{
+		Debug.Log("Assign Job " + this.name, this);
+
+		if (currentTask != null)
+		{
+			currentTask.RemoveWorker(this);
+			currentTask = null;
+		}
+
+		currentTask = task;
+		if (currentTask != null)
+			currentTask.AssignWorker(this);
+	}
+
+	private void Awake()
+	{
+		var draggable = GetComponent<FMDraggable>();
+		draggable.m_DragReaction += ReactToSelected;
+	}
+
 	private void Start()
 	{
 		FMGameLoopManager.GetOrCreateInstance().m_OnDayEndEvent += OnDayEnd;
@@ -20,6 +43,12 @@ public class FMWorker : MonoBehaviour
 	public void OnDayEnd(FMDay currentDay)
 	{
 		GetSomeGrub();
+	}
+
+	public bool ReactToSelected()
+	{
+		// TODO: Be pissed if sleeping
+		return !m_IsSleepingIn;
 	}
 
 	private void Update()
