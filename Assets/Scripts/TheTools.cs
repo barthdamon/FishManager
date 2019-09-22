@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TheTools : MonoBehaviour
 {
-    [InspectorButton("FindSprites", "SetThemUp")]
+    [InspectorButton("Clear","FindSprites", "SetThemUp")]
     public bool _;
 
     public Material material;
@@ -20,8 +20,15 @@ public class TheTools : MonoBehaviour
         
     }
 
+
+    void Clear()
+    {
+        sprites.Clear();
+    }
+
     void FindSprites()
     {
+        sprites.AddRange(GetComponents<SpriteRenderer>());
         sprites.AddRange(GetComponentsInChildren<SpriteRenderer>());
     }
 
