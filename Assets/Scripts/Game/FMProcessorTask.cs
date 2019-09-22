@@ -65,8 +65,7 @@ public class FMProcessorTask : FMTaskBase
 	protected override void TriggerTask()
 	{
 		base.TriggerTask();
-		FMResource resource = m_Resources.Peek();
-		if (resource != null)
+		if (m_Resources.Count > 0)
 		{
 			// done processing
 			FMResource processedResource = m_Resources.Dequeue();
