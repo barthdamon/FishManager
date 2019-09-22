@@ -42,6 +42,7 @@ public class FMCodfather : MonoBehaviourSingleton<FMCodfather>
 		yield return new WaitForSeconds(5f);
 		m_LastMafiaSpawnTime = Time.time;
 		Destroy(mafiaInstance);
+        m_ShowingMafia = false;
 	}
 
 	private void Update()
