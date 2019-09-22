@@ -34,7 +34,7 @@ public class FMCodfather : MonoBehaviourSingleton<FMCodfather>
 		//var sink = potentialSinks[randomSink];
 		var staging = FMBoardReferences.GetOrCreateInstance().m_WorkerPoolStagingArea;
 		staging.AddToStaging(mafiaInstance.transform);
-		FMPlayer.GetOrCreateInstance().m_Capital -= 25f;
+		FMPlayer.GetOrCreateInstance().IncrementCapital(-25f);
 		//TODO: have the mafia say something
 		yield return new WaitForSeconds(5f);
 		m_LastMafiaSpawnTime = Time.time;
