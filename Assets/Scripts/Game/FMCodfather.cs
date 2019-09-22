@@ -26,7 +26,7 @@ public class FMCodfather : MonoBehaviourSingleton<FMCodfather>
             StartCoroutine(SpawnMafia());
         }
 
-        if (!m_ShowingMafia && message.ToLower().Contains("donate"))
+        if (message.ToLower().Contains("donate"))
         {
             FMPlayer.GetOrCreateInstance().IncrementCapital((int)Random.Range(1.0f, 5.0f));
         }
