@@ -67,9 +67,9 @@ public class FM_FishBrain : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
             //random eye twitch
             if (UnityEngine.Random.value < 0.02f)
-                StartCoroutine(TwitchEye(bones[(int)Bone.EyeL]));
+                StartCoroutine(Twitch(bones[(int)Bone.EyeL]));
             if (UnityEngine.Random.value < 0.02f)
-                StartCoroutine(TwitchEye(bones[(int)Bone.EyeR]));
+                StartCoroutine(Twitch(bones[(int)Bone.EyeR]));
 
             //random talk
             if (UnityEngine.Random.value < 0.001f)
@@ -93,7 +93,7 @@ public class FM_FishBrain : MonoBehaviour
         yield break;
     }
 
-    private IEnumerator TwitchEye(SpriteRenderer bone)
+    private IEnumerator Twitch(SpriteRenderer bone)
     {
         if (bone.tag == "busy") yield break;
 
