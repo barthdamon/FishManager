@@ -6,7 +6,7 @@ public class FMWorker : MonoBehaviour
 {
 	public float m_SicknessSleepInScalar = 1f;
 
-	private float m_SicknessLevel = 0f;
+	public float m_SicknessLevel = 0f;
 	private float m_TimeToReturnToWork = 0f;
 
 	private float m_TimeSleptIn = 0f;
@@ -82,7 +82,7 @@ public class FMWorker : MonoBehaviour
 		int randomSink = Random.Range(0, 3);
 		var sink = FMBoardReferences.GetOrCreateInstance().m_ResourceSinks[randomSink];
 		m_SicknessLevel = sink.m_CurrentSicknessLevel;
-		m_TimeToReturnToWork = m_SicknessSleepInScalar *= m_SicknessLevel;
+		m_TimeToReturnToWork = m_SicknessSleepInScalar * m_SicknessLevel;
 
 		sink.m_WorkerStagingArea.AddToStaging(this.transform);
 		//GoHome();
