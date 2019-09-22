@@ -74,7 +74,7 @@ public class FMResourceSink : FMTaskBase
 		// determine capital gain
 		float totalAmount = GetCurrentResourceSum();
 		float capitalGain = m_WorkerStagingArea.transform.childCount * m_PerDemandRevenue;
-		FMPlayer.GetOrCreateInstance().m_Capital += capitalGain;
+		FMPlayer.GetOrCreateInstance().IncrementCapital(capitalGain);
 
 		// deplete resource
 		var resourcesToDeplete = m_ConsumerTriggerResourceAmount;

@@ -5,8 +5,9 @@ using UnityEngine.UI;
 
 public abstract class FMTaskBase : MonoBehaviour
 {
+	[SerializeField]
 	[Range(0, 1)]
-	public float progress;
+	protected float progress;
 
 	public Image fillerImage;
 	public Image baseImage;
@@ -63,11 +64,11 @@ public abstract class FMTaskBase : MonoBehaviour
 
 	protected virtual void OnStart()
 	{
-		FMGameLoopManager.GetOrCreateInstance().m_CurrentDay.m_OnDayEndEvent += OnDayEnd;
+		FMGameLoopManager.GetOrCreateInstance().m_CurrentDay.m_OnEveningStartEvent += OnEveningStart;
 		fillerImage.fillAmount = 0f;
 	}
 
-	public void OnDayEnd(FMDay day)
+	public void OnEveningStart(FMDay day)
 	{
 		m_AssignedWorkers.Clear();
 		ShutDown();

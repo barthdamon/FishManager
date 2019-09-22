@@ -6,15 +6,25 @@ using System;
 using System.Timers;
 using WebSocketSharp;
 using System.Text;
+using System.Linq;
 
 using Newtonsoft.Json;
 
-public class UnityChatManagerScript : MonoBehaviour
+public class UnityChatManagerScript : MonoBehaviourSingleton<UnityChatManagerScript>
 {
     WebSocket ws;
 
-    int counter = 0;
+    //int counter = 0;
     Timer ping_timer;
+
+    Queue<string> buffer = new Queue<string>();
+
+    public delegate void BufferItemEvent(string username, string message);
+    public event BufferItemEvent OnMessage;
+
+    public delegate void UserEvent(string username);
+    public event UserEvent OnLogInMessage;
+    public event UserEvent OnLogOutMessage;
 
     // test spawn object from chat
     //public GameObject spawn_object;
@@ -32,15 +42,41 @@ public class UnityChatManagerScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    //void Update()
-    //{
+    void Update()
+    {
         //if(counter > 0)
         //{
         //    Instantiate(spawn_object, new Vector3(0,10,0), Quaternion.identity);
         //    counter--;
         //}
         //Debug.Log("update");
-    //}
+
+        while(buffer.Count > 0)
+        {
+            var data = buffer.Dequeue();
+
+            var logged_in_tok = " logged in.";
+            var logged_out_tok = " logged out.";
+            if (data.EndsWith(logged_in_tok) && !data.Contains(":"))
+            {
+                var username = data.Substring(0, data.Length - logged_in_tok.Length);
+                OnLogInMessage?.Invoke(username.Trim());
+            }
+            else if (data.EndsWith(logged_out_tok) && !data.Contains(":"))
+            {
+                var username = data.Substring(0, data.Length - logged_in_tok.Length);
+                OnLogOutMessage?.Invoke(username.Trim());
+            }
+            else
+            {
+                var tok = ": ";
+                var index = data.IndexOf(tok);
+                var username = data.Substring(0, index);
+                var message = data.Substring(index + tok.Length); 
+                OnMessage?.Invoke(username, message);
+            }
+        }
+    }
 
     struct Message
     {
@@ -75,8 +111,9 @@ public class UnityChatManagerScript : MonoBehaviour
         {
             Debug.Log(e.Data);
 
-            DialogManager.Get().Buffer(e.Data);
-			FMCodfather.GetOrCreateInstance().Buffer(e.Data);
+            buffer.Enqueue(e.Data);
+            //DialogManager.Get().Buffer(e.Data);
+			//FMCodfather.GetOrCreateInstance().Buffer(e.Data);
 			/*
             if (e.Data.Contains("shoot"))
             {

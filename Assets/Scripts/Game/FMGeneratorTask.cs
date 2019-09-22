@@ -42,7 +42,9 @@ public class FMGeneratorTask : FMTaskBase
 		//var acceptsWorkers = m_AssignedEquipment != null && m_AssignedEquipment.m_AssignmentCompleted;
 		//acceptsWorkers &= m_AssignedWorkers.Count < m_NumberOfWorkersRequired;
 		// can accept workers while upgrading?
-		return m_AssignedWorkers.Count < m_NumberOfWorkersRequired;
+		return
+			m_AssignedWorkers.Count < m_NumberOfWorkersRequired ||
+			m_AssignedEquipment == null;
 	}
 
 	public override bool AssignWorker(FMWorker worker)
@@ -113,22 +115,7 @@ public class FMGeneratorTask : FMTaskBase
 		{
 			m_AssignedWorkers[i].GoToWorkerPool();
 		}
-
-		for (int i = 0; i < m_AssignedWorkers.Count; ++i)
-		{
-			m_BoatSlots.UnassignWorker(m_AssignedWorkers[i]);
-		}
-
-		m_AssignedWorkers.Clear();
-		m_TaskProcessing = false;
-		m_TimeSinceLastTrigger = 0f;
-
-
-		var processor = FMBoardReferences.GetOrCreateInstance().m_Processor;
-		var generatedResource = m_Resources.Dequeue();
-		SetProgress(0f);
-		m_BoatSlots.UnassignResource(generatedResource);
-		processor.ProcessNewResource(generatedResource);
+		FinishHarvest();
 	}
 
 	public override void TickTask(float time)
@@ -150,18 +137,49 @@ public class FMGeneratorTask : FMTaskBase
 			return;
 
 		Vector3 fishingPosition = FMBoardReferences.GetOrCreateInstance().m_ResourceBoatDestinations[m_AssignedEquipment.m_ResourceIndex].position;
-		// use the position to the fishing hole as 50%, otherwise come back for the second 50%
-		bool gotFish = progress > 0.5f;
+		// use the position to the fishing hole as 40%, stay still for the middle 20%
+		// otherwise come back for the last 40%
+		bool gotFish = progress > 0.6f;
 		Vector3 destination = gotFish ? m_DockPosition : fishingPosition;
 		// on the way there
 		// lerp position will b < 0.5 but we want out of 0.5
-		float lerpPosition = gotFish ? (progress - 0.5f) / 0.5f : progress / 0.5f;
+		float lerpPosition = progress > 0.6f ? (progress - 0.6f) / 0.4f : progress / 0.4f;
 		Vector3 startPosition = gotFish ? fishingPosition : m_DockPosition;
 		transform.position = Vector3.Lerp(startPosition, destination, lerpPosition);
 
 		if (gotFish)
 		{
 			m_Resources.Peek().SetResourceVisible(true);
+		}
+	}
+
+	protected override void ShutDown()
+	{
+		base.ShutDown();
+		FinishHarvest();
+	}
+
+	private void FinishHarvest()
+	{
+		for (int i = 0; i < m_AssignedWorkers.Count; ++i)
+		{
+			m_BoatSlots.UnassignWorker(m_AssignedWorkers[i]);
+		}
+
+		m_AssignedWorkers.Clear();
+		m_TaskProcessing = false;
+		m_TimeSinceLastTrigger = 0f;
+		
+		// Move back to start position.
+		transform.position = m_DockPosition;
+
+		SetProgress(0f);
+		var processor = FMBoardReferences.GetOrCreateInstance().m_Processor;
+		if (processor && m_Resources.Count > 0)
+		{
+			var generatedResource = m_Resources.Dequeue();
+			m_BoatSlots.UnassignResource(generatedResource);
+			processor.ProcessNewResource(generatedResource);
 		}
 	}
 }
