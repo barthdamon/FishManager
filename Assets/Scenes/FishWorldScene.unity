@@ -7185,41 +7185,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 5525371205841908135, guid: 6879d344c17173345a397d6ca722cb7a,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5525371205841908135, guid: 6879d344c17173345a397d6ca722cb7a,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5525371205841908135, guid: 6879d344c17173345a397d6ca722cb7a,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5525371205841908134, guid: 6879d344c17173345a397d6ca722cb7a,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.56003416
-      objectReference: {fileID: 0}
-    - target: {fileID: 5525371205841908134, guid: 6879d344c17173345a397d6ca722cb7a,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.14226544
-      objectReference: {fileID: 0}
-    - target: {fileID: 5525371205841908134, guid: 6879d344c17173345a397d6ca722cb7a,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.039484642
-      objectReference: {fileID: 0}
-    - target: {fileID: 5525371205841908134, guid: 6879d344c17173345a397d6ca722cb7a,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.81520754
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6879d344c17173345a397d6ca722cb7a, type: 3}
 --- !u!212 &961326125 stripped
