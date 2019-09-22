@@ -10,14 +10,15 @@ public class FMSpawner : MonoBehaviour
 
     public Vector3 randomPosRange = new Vector3(5, 0, 5);
 
-    void Start()
+    void Awake()
     {
         for(int i=0; i<numberToSpawn; i++)
         {
             Vector3 offset = Vector3.Scale(Random.insideUnitSphere, randomPosRange);
             GameObject go = Instantiate(prefab, parent.position + offset, parent.rotation, parent);
             go.name = "spawn" + i;
-        }
+			go.GetComponent<FMWorker>().GoToWorkerPool();
+		}
     }
 
     void Update()
