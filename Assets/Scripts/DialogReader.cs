@@ -52,7 +52,7 @@ public class DialogReader : MonoBehaviour, IPointerDownHandler
     {
         if (currentLine<0 || readTimer > lines[currentLine].Length)
         {//all shown, wait for click
-            clickTimer += Time.deltaTime;
+            clickTimer += Time.unscaledDeltaTime;
             if (autoclickTime > 0
                 && clickTimer > autoclickTime)
             {
@@ -60,7 +60,7 @@ public class DialogReader : MonoBehaviour, IPointerDownHandler
             }
         } else
         {
-            readTimer += Time.deltaTime * readCharsPerSec;
+            readTimer += Time.unscaledDeltaTime * readCharsPerSec;
             text.text = lines[currentLine].Substring(0, (int)readTimer)
                         + "<color=#00000000>" + lines[currentLine].Substring((int)readTimer) + "</color>";   //also render this bit invisibly to keep the formatting the same ;)
             clickTimer = 0;

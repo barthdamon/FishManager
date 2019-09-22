@@ -33,38 +33,40 @@ public class DialogFish : MonoBehaviour
 
         if (time_in > 0)
         {
-            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / time_in)
+            for (float t = 0.0f; t < 1.0f; t += Time.unscaledDeltaTime / time_in)
             {
                 fish.anchoredPosition = offset * (1.0f - t);
                 yield return new WaitForEndOfFrame();
             }
+            fish.anchoredPosition = offset * 0.0f;
         }
         else
         {
             fish.anchoredPosition = offset * 0.0f;
         }
 
-        yield return new WaitForSeconds(time_in_wait);
+        yield return new WaitForSecondsRealtime(time_in_wait);
 
         if (dialog != null)
             dialog.SetActive(true);
 
-        yield return new WaitForSeconds(time_dialog_min);
+        yield return new WaitForSecondsRealtime(time_dialog_min);
 
         while (dialog!=null && dialog.activeInHierarchy)
         {
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSecondsRealtime(0.1f);
         }
 
-        yield return new WaitForSeconds(time_out_wait);
+        yield return new WaitForSecondsRealtime(time_out_wait);
 
         if (time_out > 0)
         {
-            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / time_out)
+            for (float t = 0.0f; t < 1.0f; t += Time.unscaledDeltaTime / time_out)
             {
                 fish.anchoredPosition = offset * t;
                 yield return new WaitForEndOfFrame();
             }
+            fish.anchoredPosition = offset * 1.0f;
         }
         //ToDo: option to disappear or STAY
 

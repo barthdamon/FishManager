@@ -34,4 +34,10 @@ public class CameraController : MonoBehaviour
             //zoom towards/from mouse cursor screen pos
         }
     }
+
+    public void UpdateZoom(float f)
+    {
+        distance = Mathf.Lerp(distanceMinMax.x, distanceMinMax.y, f);
+        zoomer.localPosition = zoomer.localRotation * Vector3.forward * -distance;
+    }
 }
