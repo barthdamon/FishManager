@@ -33,9 +33,9 @@ public class FMSillyEffectManager : MonoBehaviour
 
     private void FMSillyEffectManager_OnMessage(string username, string message)
     {
-        if (message.Contains("rain"))
+        if (message.ToLower().Contains("rain"))
         {
-            emission_rate += 5;
+            emission_rate += 20;
         }
     }
 
