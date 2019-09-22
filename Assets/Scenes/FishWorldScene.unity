@@ -5659,7 +5659,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rain_vfx: {fileID: 2100316743}
-  emission_mul: 0
 --- !u!1 &408108743
 GameObject:
   m_ObjectHideFlags: 0
@@ -19643,7 +19642,7 @@ PrefabInstance:
     - target: {fileID: 2035141271574937934, guid: a7b08614067799c4bb71ad7db0ca397d,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7298619970022509577, guid: a7b08614067799c4bb71ad7db0ca397d,
         type: 3}
