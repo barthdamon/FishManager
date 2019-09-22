@@ -50807,6 +50807,16 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2099250859575605627, guid: a7b08614067799c4bb71ad7db0ca397d,
+        type: 3}
+      propertyPath: lines.Array.data[0]
+      value: '[audio:heybob]Hey Bob!'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2099250859575605627, guid: a7b08614067799c4bb71ad7db0ca397d,
+        type: 3}
+      propertyPath: lines.Array.data[1]
+      value: '[audio:goodnews]Good news!'
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7b08614067799c4bb71ad7db0ca397d, type: 3}
 --- !u!4 &7302167273276533882

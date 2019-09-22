@@ -120,7 +120,7 @@ public class FM_FishBrain : MonoBehaviour
     }
     private IEnumerator Hammer(SpriteRenderer bone, float period = 0.2f)
     {
-        Debug.Log("hammer " + bone.name, bone);
+        //Debug.Log("hammer " + bone.name, bone);
         float t = 0.0f;
         float dT = 0.02f;
         Vector3 rot = bone.transform.localRotation.eulerAngles;
