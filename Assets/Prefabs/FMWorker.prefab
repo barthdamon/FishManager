@@ -462,6 +462,7 @@ MonoBehaviour:
   useCameraForward: 0
   verticality: 0.5
   backFace: 1
+  doUpdateWhileEditing: 1
 --- !u!114 &6494898128248410341
 MonoBehaviour:
   m_ObjectHideFlags: 0
