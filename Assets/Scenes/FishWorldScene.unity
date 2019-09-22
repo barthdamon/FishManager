@@ -50807,12 +50807,85 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2035141271574937934, guid: a7b08614067799c4bb71ad7db0ca397d,
+        type: 3}
+      propertyPath: camerazoom_out_speed
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2099250859575605627, guid: a7b08614067799c4bb71ad7db0ca397d,
+        type: 3}
+      propertyPath: lines.Array.data[0]
+      value: '[audio:heybob]Hey Bob!'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2099250859575605627, guid: a7b08614067799c4bb71ad7db0ca397d,
+        type: 3}
+      propertyPath: lines.Array.data[1]
+      value: '[audio:goodnews]Good news!'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2099250859575605627, guid: a7b08614067799c4bb71ad7db0ca397d,
+        type: 3}
+      propertyPath: lines.Array.data[2]
+      value: '[audio:iborrowed]I borrowed some money to start our business!'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3396732506244187707, guid: a7b08614067799c4bb71ad7db0ca397d,
+        type: 3}
+      propertyPath: lines.Array.data[0]
+      value: '[audio:great]Great! '
+      objectReference: {fileID: 0}
+    - target: {fileID: 3396732506244187707, guid: a7b08614067799c4bb71ad7db0ca397d,
+        type: 3}
+      propertyPath: lines.Array.data[1]
+      value: '[audio:fromwho]From who?'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5293953814168836399, guid: a7b08614067799c4bb71ad7db0ca397d,
+        type: 3}
+      propertyPath: lines.Array.data[0]
+      value: '[audio:youbetter]You better get working.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3183485697275187544, guid: a7b08614067799c4bb71ad7db0ca397d,
+        type: 3}
+      propertyPath: lines.Array.data[0]
+      value: '[audio:thoseguys]Those guys over there!  '
+      objectReference: {fileID: 0}
+    - target: {fileID: 5458974616020114271, guid: a7b08614067799c4bb71ad7db0ca397d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5458974616294458189, guid: a7b08614067799c4bb71ad7db0ca397d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -40.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8644181231558125547, guid: a7b08614067799c4bb71ad7db0ca397d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 545.5812
+      objectReference: {fileID: 0}
+    - target: {fileID: 5458974617544318512, guid: a7b08614067799c4bb71ad7db0ca397d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 235
+      objectReference: {fileID: 0}
     - target: {fileID: 5458974616643276663, guid: a7b08614067799c4bb71ad7db0ca397d,
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -15.399994
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 5458974617617967327, guid: a7b08614067799c4bb71ad7db0ca397d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4343519181879947408, guid: a7b08614067799c4bb71ad7db0ca397d, type: 3}
+    - {fileID: 4343519181879947409, guid: a7b08614067799c4bb71ad7db0ca397d, type: 3}
+    - {fileID: 7247018101563222466, guid: a7b08614067799c4bb71ad7db0ca397d, type: 3}
+    - {fileID: 7247018101563222467, guid: a7b08614067799c4bb71ad7db0ca397d, type: 3}
+    - {fileID: 7247018101913798395, guid: a7b08614067799c4bb71ad7db0ca397d, type: 3}
+    - {fileID: 7247018101913798394, guid: a7b08614067799c4bb71ad7db0ca397d, type: 3}
+    - {fileID: 7247018101428475501, guid: a7b08614067799c4bb71ad7db0ca397d, type: 3}
+    - {fileID: 7247018101428475500, guid: a7b08614067799c4bb71ad7db0ca397d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a7b08614067799c4bb71ad7db0ca397d, type: 3}
 --- !u!4 &7302167273276533882
 Transform:

@@ -103,7 +103,7 @@ public class DialogReader : MonoBehaviour, IPointerDownHandler
                 lines[currentLine] = lines[currentLine].Substring(audioClipName.Length + 1);
                 //Debug.Log("audioClipName = " + audioClipName + ", line = " + lines[currentLine]);
 
-                SoundManager.Play(audioClipName);
+                SoundManager.GetOrCreateInstance().play_audio(audioClipName);
             }
 
             float charsPerLine = rect.rect.width / text.fontSize;
