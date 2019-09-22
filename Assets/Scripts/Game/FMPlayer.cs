@@ -19,7 +19,7 @@ public class FMPlayer : MonoBehaviourSingleton<FMPlayer>
 
     public void IncrementCapital(float value)
     {
-		m_Capital = 0f;//+= value;
+		m_Capital += value;
         OnCapitalIncrease?.Invoke(value);
 
 		if (m_Capital <= 0f && !m_game_over)
