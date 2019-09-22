@@ -41,10 +41,14 @@ public class DialogManager : MonoBehaviour
         DialogFish df = dialogFishes.Find(d => d.nameTag != null && d.nameTag.text == speakername);
 
         if (df == null)
-        {
+        {//need a new one
             List<DialogFish> dfs = dialogFishes.FindAll(d => d.gameObject.activeSelf == false);
             if (dfs != null && dfs.Count > 0)
+            {
                 df = dfs[Random.Range(0, 1000) % dfs.Count];
+                if (df != null)
+                    df.Clear();
+            }
         }
 
         if (df != null)

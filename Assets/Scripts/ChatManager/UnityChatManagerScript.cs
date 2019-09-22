@@ -47,10 +47,10 @@ public class UnityChatManagerScript : MonoBehaviourSingleton<UnityChatManagerScr
     // Update is called once per frame
     void Update()
     {
-        if (UnityEngine.Random.value < 0.01f)
-        {
-            DialogManager.Get().Say_2D("...", "speaker " + UnityEngine.Random.Range(1, 100));
-        }
+        //if (UnityEngine.Random.value < 0.01f)
+        //{
+        //    DialogManager.Get().Say_2D("...", "speaker " + UnityEngine.Random.Range(1, 100));
+        //}
 
         //if(counter > 0)
         //{
