@@ -42,7 +42,9 @@ public class FMGeneratorTask : FMTaskBase
 		//var acceptsWorkers = m_AssignedEquipment != null && m_AssignedEquipment.m_AssignmentCompleted;
 		//acceptsWorkers &= m_AssignedWorkers.Count < m_NumberOfWorkersRequired;
 		// can accept workers while upgrading?
-		return m_AssignedWorkers.Count < m_NumberOfWorkersRequired;
+		return
+			m_AssignedWorkers.Count < m_NumberOfWorkersRequired ||
+			m_AssignedEquipment == null;
 	}
 
 	public override bool AssignWorker(FMWorker worker)
@@ -113,22 +115,7 @@ public class FMGeneratorTask : FMTaskBase
 		{
 			m_AssignedWorkers[i].GoToWorkerPool();
 		}
-
-		for (int i = 0; i < m_AssignedWorkers.Count; ++i)
-		{
-			m_BoatSlots.UnassignWorker(m_AssignedWorkers[i]);
-		}
-
-		m_AssignedWorkers.Clear();
-		m_TaskProcessing = false;
-		m_TimeSinceLastTrigger = 0f;
-
-
-		var processor = FMBoardReferences.GetOrCreateInstance().m_Processor;
-		var generatedResource = m_Resources.Dequeue();
-		SetProgress(0f);
-		m_BoatSlots.UnassignResource(generatedResource);
-		processor.ProcessNewResource(generatedResource);
+		FinishHarvest();
 	}
 
 	public override void TickTask(float time)
@@ -163,5 +150,32 @@ public class FMGeneratorTask : FMTaskBase
 		{
 			m_Resources.Peek().SetResourceVisible(true);
 		}
+	}
+
+	protected override void ShutDown()
+	{
+		base.ShutDown();
+		FinishHarvest();
+	}
+
+	private void FinishHarvest()
+	{
+		for (int i = 0; i < m_AssignedWorkers.Count; ++i)
+		{
+			m_BoatSlots.UnassignWorker(m_AssignedWorkers[i]);
+		}
+
+		m_AssignedWorkers.Clear();
+		m_TaskProcessing = false;
+		m_TimeSinceLastTrigger = 0f;
+		
+		// Move back to start position.
+		transform.position = m_DockPosition;
+
+		var processor = FMBoardReferences.GetOrCreateInstance().m_Processor;
+		var generatedResource = m_Resources.Dequeue();
+		SetProgress(0f);
+		m_BoatSlots.UnassignResource(generatedResource);
+		processor.ProcessNewResource(generatedResource);
 	}
 }
