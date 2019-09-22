@@ -73,6 +73,19 @@ public class FMGeneratorTask : FMTaskBase
 			m_BoatSlots.AssignResource(resourceComponent);
 			resourceComponent.SetResourceVisible(false);
 			m_Resources.Enqueue(resourceComponent);
+
+			for (int i = 0; i < m_AssignedWorkers.Count; ++i)
+			{
+				var drag_handler = m_AssignedWorkers[i].gameObject.GetComponent<FMDraggable>();
+				if (drag_handler)
+					drag_handler.enabled = false;
+			}
+
+			{
+				var drag_handler = m_AssignedEquipment.gameObject.GetComponent<FMDraggable>();
+				if (drag_handler)
+					drag_handler.enabled = false;
+			}
 		}
 		m_TaskProcessing = nowProcessing;
 		return m_TaskProcessing;
@@ -114,7 +127,17 @@ public class FMGeneratorTask : FMTaskBase
 
 		for (int i = 0; i < m_AssignedWorkers.Count; ++i)
 		{
+			var drag_handler = m_AssignedWorkers[i].gameObject.GetComponent<FMDraggable>();
+			if (drag_handler)
+				drag_handler.enabled = true;
+
 			m_AssignedWorkers[i].GoToWorkerPool();
+		}
+
+		{
+			var drag_handler = m_AssignedEquipment.gameObject.GetComponent<FMDraggable>();
+			if (drag_handler)
+				drag_handler.enabled = true;
 		}
 		FinishHarvest();
 	}

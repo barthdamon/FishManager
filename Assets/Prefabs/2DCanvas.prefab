@@ -401,6 +401,8 @@ MonoBehaviour:
   - Blub
   - i'm hungry
   - let's go fishing!
+  - i don't know what i'm doing
+  - help me
   dialogFishes:
   - {fileID: 5458974617722999886}
   - {fileID: 8644181232946644838}

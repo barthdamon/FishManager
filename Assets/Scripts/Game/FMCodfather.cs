@@ -25,6 +25,11 @@ public class FMCodfather : MonoBehaviourSingleton<FMCodfather>
         {
             StartCoroutine(SpawnMafia());
         }
+
+        if (message.ToLower().Contains("donate"))
+        {
+            FMPlayer.GetOrCreateInstance().IncrementCapital((int)Random.Range(1.0f, 5.0f));
+        }
     }
 
     private IEnumerator SpawnMafia()
@@ -47,10 +52,10 @@ public class FMCodfather : MonoBehaviourSingleton<FMCodfather>
 
 	private void Update()
 	{
-		if (!m_ShowingMafia && (Time.time - m_LastMafiaSpawnTime > m_TimeToSpawnMafia))
+		if (!m_ShowingMafia && (Time.time - m_LastMafiaSpawnTime > m_TimeToSpawnMafia) &&
+			!FMGameLoopManager.GetOrCreateInstance().m_IsPaused)
 		{
 			StartCoroutine(SpawnMafia());
 		}
 	}
-
 }

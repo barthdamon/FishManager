@@ -94,6 +94,18 @@ public class DialogReader : MonoBehaviour, IPointerDownHandler
             if (rect.gameObject != this.gameObject)
                 rect.gameObject.SetActive(true);
 
+            //new: process audio
+            if (lines[currentLine].StartsWith("[audio:"))
+            {
+                lines[currentLine] = lines[currentLine].Remove(0, "[audio:".Length);
+                int e = lines[currentLine].IndexOf("]");
+                string audioClipName = lines[currentLine].Substring(0, e);
+                lines[currentLine] = lines[currentLine].Substring(audioClipName.Length + 1);
+                //Debug.Log("audioClipName = " + audioClipName + ", line = " + lines[currentLine]);
+
+                SoundManager.Play(audioClipName);
+            }
+
             float charsPerLine = rect.rect.width / text.fontSize;
             float needLines = 1 + (lines[currentLine].Length / (charsPerLine * 0.8f));
             needLines = Mathf.Max(needLines, 2);
@@ -104,7 +116,7 @@ public class DialogReader : MonoBehaviour, IPointerDownHandler
 
             text.text = "";
 
-            Debug.Log("CPL: " + charsPerLine);
+            //Debug.Log("CPL: " + charsPerLine);
         }
     }
 

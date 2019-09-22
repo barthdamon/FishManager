@@ -76,7 +76,7 @@ public class FMDraggable : Selectable, IBeginDragHandler, IDragHandler, IEndDrag
         if (RectTransformUtility.ScreenPointToWorldPointInRectangle(m_DraggingPlane, data.position, data.pressEventCamera, out globalMousePos))
         {
             rt.position = globalMousePos;
-            rt.rotation = m_DraggingPlane.rotation;
+            //rt.rotation = m_DraggingPlane.rotation;
         }
     }
 
@@ -120,4 +120,16 @@ public class FMDraggable : Selectable, IBeginDragHandler, IDragHandler, IEndDrag
 	{
 		m_OnAssignedTask?.Invoke(task);
 	}
+
+    void OnDisable()
+    {
+        //if being dragged, cancel
+        if (FMInputController.GetOrCreateInstance().currentlyDragging == this.gameObject)
+        {
+            //FMInputController.GetOrCreateInstance().OnDropped(this.gameObject, FMInputController.GetOrCreateInstance().currentlyOver);
+            FMInputController.GetOrCreateInstance().currentlyDragging = null;
+        }
+
+        GetComponent<Image>().raycastTarget = true;
+    }
 }
