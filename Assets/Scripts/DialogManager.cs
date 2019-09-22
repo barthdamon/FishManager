@@ -20,18 +20,6 @@ public class DialogManager : MonoBehaviour
         singleton = this;
         UnityChatManagerScript.GetOrCreateInstance().OnMessage += DialogManager_OnMessage;
     }
-
-    private void DialogManager_OnMessage(string username, string message)
-    {
-        DialogFish df = dialogFishes.Find(d => d.nameTag != null && d.nameTag.text == username);
-        if (df == null)
-            df = dialogFishes.Find(d => d.gameObject.activeSelf == false);
-        if (df != null)
-        {
-            df.Say(message, username);
-        }
-    }
-
     public static DialogManager Get()
     {
         if (singleton == null)
@@ -42,7 +30,34 @@ public class DialogManager : MonoBehaviour
         return singleton;
     }
 
-    public void Say(string text, GameObject speaker)
+
+    private void DialogManager_OnMessage(string username, string message)
+    {
+        Say_2D(message, username);
+    }
+
+    public void Say_2D(string text, string speakername)
+    {
+        DialogFish df = dialogFishes.Find(d => d.nameTag != null && d.nameTag.text == speakername);
+
+        if (df == null)
+        {//need a new one
+            List<DialogFish> dfs = dialogFishes.FindAll(d => d.gameObject.activeSelf == false);
+            if (dfs != null && dfs.Count > 0)
+            {
+                df = dfs[Random.Range(0, 1000) % dfs.Count];
+                if (df != null)
+                    df.Clear();
+            }
+        }
+
+        if (df != null)
+        {
+            df.Say(text, speakername);
+        }
+    }
+
+    public void Say_3D(string text, GameObject speaker)
     {
         //gc
         instances.RemoveAll(i => i == null);

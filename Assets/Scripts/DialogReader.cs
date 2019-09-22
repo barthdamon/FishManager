@@ -67,11 +67,17 @@ public class DialogReader : MonoBehaviour, IPointerDownHandler
         }
     }
 
+
+    public void Clear()
+    {
+        lines.Clear();
+    }
+
     void Next()
     {
         if (++currentLine >= lines.Count)
         {
-            lines.Clear();
+            Clear();
 
             if (destroy)
                 Destroy(this.gameObject);

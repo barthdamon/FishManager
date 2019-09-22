@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/FishWorldScene.unity
+    guid: 3aefa0f95ce0a0044a25c4491147c5a6
   m_configObjects: {}

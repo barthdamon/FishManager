@@ -24,13 +24,16 @@ public class FMSunDiskRotator : MonoBehaviour
 			m_day.GetTimeOfDay() == FMDay.TimeOfDay.Day))
 		{//sun
 			this.transform.localRotation = Quaternion.AngleAxis(this.m_total_rotation_angle * m_day.GetNormalisedTimeOfDay(), Vector3.forward);
-            //light.color = gradient
+            if (light != null)
+                light.color = gradient.Evaluate(m_day.GetNormalisedTimeOfDay());
 		}
 		else if (!m_is_daylight_rotator &&
 			(m_day.GetTimeOfDay() == FMDay.TimeOfDay.Evening ||
 			m_day.GetTimeOfDay() == FMDay.TimeOfDay.Night))
 		{//moon
 			this.transform.localRotation = Quaternion.AngleAxis(this.m_total_rotation_angle * m_day.GetNormalisedTimeOfNight(), Vector3.forward);
-		}
+            if (light != null)
+                light.color = gradient.Evaluate(m_day.GetNormalisedTimeOfNight());
+        }
     }
 }

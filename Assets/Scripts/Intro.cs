@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Intro : MonoBehaviour
 {
+    public float camerazoom_out_speed; // Denes value: 1.0/9.0
+
     public GameObject[] dialogs;
 
     public GameObject title;
@@ -38,7 +40,7 @@ public class Intro : MonoBehaviour
 
         camCon.enabled = true;
 
-        for (float f = 0.0f; f<0.5f; f += Time.unscaledDeltaTime / 9.0f)
+        for (float f = 0.0f; f<0.5f; f += Time.unscaledDeltaTime * camerazoom_out_speed)
         {
             camCon.UpdateZoom(f);
             yield return new WaitForSecondsRealtime(0.01f);

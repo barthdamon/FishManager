@@ -17,11 +17,11 @@ public class FMStagingArea : MonoBehaviour
 		child_transform.position = position;
     }
 
-	private void OnDrawGizmosSelected()
-	{
-		var rect_transform = GetComponent<RectTransform>();
-
-		UnityEditor.Handles.color = Color.red;
-		UnityEditor.Handles.DrawWireDisc(rect_transform.position, Vector3.up, m_DropRadius);
-	}
+	//private void OnDrawGizmosSelected()
+	//{
+	//	var rect_transform = GetComponent<RectTransform>();
+    //
+	//	UnityEditor.Handles.color = Color.red;
+	//	UnityEditor.Handles.DrawWireDisc(rect_transform.position, Vector3.up, m_DropRadius);
+	//}
 }

@@ -77,6 +77,13 @@ public class DialogFish : MonoBehaviour
         playing = false;
     }
 
+    public void Clear()
+    {
+        //find it even if disabled
+        DialogReader[] drs = dialog.GetComponentsInChildren<DialogReader>(true);
+        drs[0].Clear();
+    }
+
     public void Say(string text, string byName)
     {
         Debug.Log(byName + ": " + text);
