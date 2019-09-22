@@ -46,8 +46,14 @@ public class FMProcessorTask : FMTaskBase
 
 	protected override float GetDisplayProgress()
 	{
-		FMResource resource = m_Resources.Peek();
-		return resource.m_ProcessedAmount / resource.m_StartProcessingAmount;
+		if (m_Resources.Count > 0)
+		{
+			FMResource resource = m_Resources.Peek();
+			//Debug.Log("Processing... amount left: " + resource.m_Amount + " amount processed: " + resource.m_ProcessedAmount + " (starting at: " + resource.m_StartProcessingAmount);
+			return resource.m_ProcessedAmount / resource.m_StartProcessingAmount;
+		}
+
+		return 0f;
 	}
 
 	public void ProcessNewResource(FMResource resource)

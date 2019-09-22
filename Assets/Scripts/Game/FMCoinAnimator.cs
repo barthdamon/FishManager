@@ -40,7 +40,7 @@ public class FMCoinAnimator : MonoBehaviour
 		if (m_life_time >= 1f)
 		{
 			this.enabled = false;
-			this.transform.parent = null;
+			this.transform.SetParent(null);
 			Destroy(this.gameObject);
 		}
     }
