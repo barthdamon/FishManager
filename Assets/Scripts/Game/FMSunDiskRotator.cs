@@ -8,6 +8,9 @@ public class FMSunDiskRotator : MonoBehaviour
 	public float m_total_rotation_angle = 200f;
 	private FMDay m_day;
 
+    public Gradient gradient;
+    public Light light;
+
     void Awake()
     {
 		m_day = FMGameLoopManager.GetOrCreateInstance().m_CurrentDay;
@@ -19,13 +22,14 @@ public class FMSunDiskRotator : MonoBehaviour
         if (m_is_daylight_rotator &&
 			(m_day.GetTimeOfDay() == FMDay.TimeOfDay.Morning ||
 			m_day.GetTimeOfDay() == FMDay.TimeOfDay.Day))
-		{
+		{//sun
 			this.transform.localRotation = Quaternion.AngleAxis(this.m_total_rotation_angle * m_day.GetNormalisedTimeOfDay(), Vector3.forward);
+            //light.color = gradient
 		}
 		else if (!m_is_daylight_rotator &&
 			(m_day.GetTimeOfDay() == FMDay.TimeOfDay.Evening ||
 			m_day.GetTimeOfDay() == FMDay.TimeOfDay.Night))
-		{
+		{//moon
 			this.transform.localRotation = Quaternion.AngleAxis(this.m_total_rotation_angle * m_day.GetNormalisedTimeOfNight(), Vector3.forward);
 		}
     }

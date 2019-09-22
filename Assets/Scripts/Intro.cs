@@ -38,7 +38,7 @@ public class Intro : MonoBehaviour
 
         camCon.enabled = true;
 
-        for (float f = 0.0f; f<0.4f; f += Time.unscaledDeltaTime / 8.0f)
+        for (float f = 0.0f; f<0.5f; f += Time.unscaledDeltaTime / 9.0f)
         {
             camCon.UpdateZoom(f);
             yield return new WaitForSecondsRealtime(0.01f);
