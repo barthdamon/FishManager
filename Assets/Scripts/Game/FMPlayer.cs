@@ -40,7 +40,7 @@ public class FMPlayer : MonoBehaviourSingleton<FMPlayer>
 
 	private IEnumerator DoCoroutine()
 	{
-		yield return new WaitForSecondsRealtime(30f);
+		yield return new WaitForSecondsRealtime(37f);
 
 		m_GameOverUi?.SetActive(true);
 	}
