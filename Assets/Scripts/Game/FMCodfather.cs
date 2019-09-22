@@ -5,26 +5,29 @@ using UnityEngine;
 public class FMCodfather : MonoBehaviourSingleton<FMCodfather>
 {
 	public GameObject m_MafiaPrefab;
-	public List<string> buffer = new List<string>();
-
 	public bool m_ShowingMafia = false;
 
 	private Canvas m_SpawnCanvas;
 	private float m_TimeToSpawnMafia = 20f;
 	private float m_LastMafiaSpawnTime = 0f;
 
-	public void Buffer(string text)
-	{
-		buffer.Add(text);
-	}
-
 	public void Start()
 	{
 		m_LastMafiaSpawnTime = Time.time;
 		m_SpawnCanvas = FindObjectOfType<Canvas>();
+
+        UnityChatManagerScript.GetOrCreateInstance().OnMessage += FMCodfather_OnMessage;
 	}
 
-	private IEnumerator SpawnMafia()
+    private void FMCodfather_OnMessage(string username, string message)
+    {
+        if (!m_ShowingMafia && message.ToLower().Contains("mafia"))
+        {
+            StartCoroutine(SpawnMafia());
+        }
+    }
+
+    private IEnumerator SpawnMafia()
 	{
 		m_ShowingMafia = true;
 		var mafiaInstance = Instantiate(m_MafiaPrefab, m_SpawnCanvas.transform);
@@ -46,24 +49,6 @@ public class FMCodfather : MonoBehaviourSingleton<FMCodfather>
 		if (!m_ShowingMafia && (Time.time - m_LastMafiaSpawnTime > m_TimeToSpawnMafia))
 		{
 			StartCoroutine(SpawnMafia());
-		}
-
-		if (buffer.Count > 0)
-		{
-			string message = buffer[0];
-			string from = "";
-			//ToDo: process message
-			int n = message.IndexOf(": ");
-			if (n > 0)
-			{
-				from = message.Substring(0, n);
-				message = message.Substring(n + 1);
-			}
-
-			if (!m_ShowingMafia && message.Contains("mafia") || message.Contains("Mafia"))
-			{
-				StartCoroutine(SpawnMafia());
-			}
 		}
 	}
 

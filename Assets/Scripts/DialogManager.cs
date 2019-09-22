@@ -13,13 +13,23 @@ public class DialogManager : MonoBehaviour
 
     public List<string> randomText = new List<string>();
 
-    public List<string> buffer = new List<string>();
-
     public List<DialogFish> dialogFishes;
 
     private void Awake()
     {
         singleton = this;
+        UnityChatManagerScript.GetOrCreateInstance().OnMessage += DialogManager_OnMessage;
+    }
+
+    private void DialogManager_OnMessage(string username, string message)
+    {
+        DialogFish df = dialogFishes.Find(d => d.nameTag != null && d.nameTag.text == username);
+        if (df == null)
+            df = dialogFishes.Find(d => d.gameObject.activeSelf == false);
+        if (df != null)
+        {
+            df.Say(message, username);
+        }
     }
 
     public static DialogManager Get()
@@ -50,32 +60,8 @@ public class DialogManager : MonoBehaviour
         go.GetComponentInChildren<DialogReader>().lines.AddRange(text.Split(new char[] { '\n' }));
     }
 
-    public void Buffer(string text)
-    {
-        buffer.Add(text);
-    }
-
     private void Update()
     {
-        if (buffer.Count > 0)
-        {
-            string message = buffer[0];
-            string from = "";
-            //ToDo: process message
-            int n = message.IndexOf(": ");
-            if (n>0)
-            {
-                from = message.Substring(0, n);
-                message = message.Substring(n + 1);
-            }
-            DialogFish df = dialogFishes.Find(d => d.nameTag!=null && d.nameTag.text == from);
-            if (df == null)
-                df = dialogFishes.Find(d => d.gameObject.activeSelf == false);
-            if (df != null)
-            {
-                df.Say(message, from);
-                buffer.RemoveAt(0);
-            }
-        }
+
     }
 }
