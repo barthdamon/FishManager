@@ -5,7 +5,7 @@ using UnityEngine;
 public class FMSunDiskRotator : MonoBehaviour
 {
 	public bool m_is_daylight_rotator = true;
-	public float m_total_rotation_angle = 270f;
+	public float m_total_rotation_angle = 200f;
 	private FMDay m_day;
 
     void Awake()
