@@ -64,5 +64,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 2743086492913030661, guid: 6879d344c17173345a397d6ca722cb7a, type: 3}
   parent: {fileID: 7622490545965959734}
-  numberToSpawn: 10
+  numberToSpawn: 2
+  spawnPerDay: 2
+  maxFish: 10
   randomPosRange: {x: 5, y: 0, z: 5}
