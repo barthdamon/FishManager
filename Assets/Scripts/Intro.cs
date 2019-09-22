@@ -4,15 +4,25 @@ using UnityEngine;
 
 public class Intro : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public GameObject[] dialogs;
+
     void Start()
     {
-        
+        StartCoroutine(Play());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public IEnumerator Play()
+    { 
+        for(int i=0; i<dialogs.Length; i++)
+        {
+            dialogs[i].SetActive(true);
+
+            while(dialogs[i].activeSelf)
+            {
+                yield return new WaitForSeconds(0.1f);
+            }
+        }
+
     }
+
 }
