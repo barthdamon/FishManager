@@ -50812,11 +50812,6 @@ PrefabInstance:
       propertyPath: camerazoom_out_speed
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 5458974616643276663, guid: a7b08614067799c4bb71ad7db0ca397d,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -15.399994
-      objectReference: {fileID: 0}
     - target: {fileID: 2099250859575605627, guid: a7b08614067799c4bb71ad7db0ca397d,
         type: 3}
       propertyPath: lines.Array.data[0]
@@ -50831,11 +50826,6 @@ PrefabInstance:
         type: 3}
       propertyPath: lines.Array.data[2]
       value: '[audio:iborrowed]I borrowed some money to start our business!'
-      objectReference: {fileID: 0}
-    - target: {fileID: 3183485697275187544, guid: a7b08614067799c4bb71ad7db0ca397d,
-        type: 3}
-      propertyPath: lines.Array.data[0]
-      value: '[audio:thoseguys]Those guys over there!  '
       objectReference: {fileID: 0}
     - target: {fileID: 3396732506244187707, guid: a7b08614067799c4bb71ad7db0ca397d,
         type: 3}
@@ -50852,7 +50842,19 @@ PrefabInstance:
       propertyPath: lines.Array.data[0]
       value: '[audio:youbetter]You better get working.'
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 3183485697275187544, guid: a7b08614067799c4bb71ad7db0ca397d,
+        type: 3}
+      propertyPath: lines.Array.data[0]
+      value: '[audio:thoseguys]Those guys over there!  '
+      objectReference: {fileID: 0}
+    - target: {fileID: 5458974616643276663, guid: a7b08614067799c4bb71ad7db0ca397d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -15.399994
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4343519181879947408, guid: a7b08614067799c4bb71ad7db0ca397d, type: 3}
+    - {fileID: 4343519181879947409, guid: a7b08614067799c4bb71ad7db0ca397d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a7b08614067799c4bb71ad7db0ca397d, type: 3}
 --- !u!4 &7302167273276533882
 Transform:
