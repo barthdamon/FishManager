@@ -1756,7 +1756,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98d0f123ccb5eb448ac7e186c42c1033, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 4204360937284241298, guid: c00f6a903e5ba98469f2a1eae8dfb919, type: 3}
+  prefab: {fileID: 4204360937284241298, guid: 35c1c299bb0c0544cb3460641a1ed96c, type: 3}
   staging: {fileID: 1459613316}
 --- !u!224 &1999968848 stripped
 RectTransform:
