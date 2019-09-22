@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 using System;
 using System.Timers;
@@ -16,6 +17,8 @@ public class UnityChatManagerScript : MonoBehaviourSingleton<UnityChatManagerScr
 
     //int counter = 0;
     Timer ping_timer;
+
+    public Text chatroom_promotion_text;
 
     Queue<string> buffer = new Queue<string>();
 
@@ -66,11 +69,21 @@ public class UnityChatManagerScript : MonoBehaviourSingleton<UnityChatManagerScr
             {
                 var username = data.Substring(0, data.Length - logged_in_tok.Length);
                 OnLogInMessage?.Invoke(username.Trim());
+
+                if (username.ToLower() == "@unity")
+                {
+                    chatroom_promotion_text.enabled = true;
+                }
             }
             else if (data.EndsWith(logged_out_tok) && !data.Contains(":"))
             {
                 var username = data.Substring(0, data.Length - logged_in_tok.Length);
                 OnLogOutMessage?.Invoke(username.Trim());
+
+                if (username.ToLower() == "@unity")
+                {
+                    chatroom_promotion_text.enabled = false;
+                }
             }
             else
             {
