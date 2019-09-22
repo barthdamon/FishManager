@@ -21,7 +21,9 @@ public abstract class FMTaskBase : MonoBehaviour
 	public virtual void SetProgress(float f)
 	{
 		f = Mathf.Clamp01(f);
-		if (progress == f) return;
+		if (progress == f)
+			return;
+
 		progress = f;
 
 		if (fillerImage != null)

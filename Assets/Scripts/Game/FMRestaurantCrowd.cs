@@ -35,12 +35,14 @@ public class FMRestaurantCrowd : MonoBehaviour
 
 	private IEnumerator UpdateCrowd()
 	{
+		var potentialSinks = FMBoardReferences.GetOrCreateInstance().m_ResourceSinks;
+		var sinks = new List<FMResourceSink>();
 		while (true)
 		{
 			yield return new WaitForSeconds(1f);
-			var potentialSinks = FMBoardReferences.GetOrCreateInstance().m_ResourceSinks;
-			var sinks = new List<FMResourceSink>();
+
 			// if there is at least 1 amount there then it is valid...
+			sinks.Clear();
 			for (int i = 0; i < potentialSinks.Length; ++i)
 			{
 				if (potentialSinks[i].GetCurrentResourceSum() > 0)
@@ -95,7 +97,10 @@ public class FMRestaurantCrowd : MonoBehaviour
 					}
 				}
 
-				sinks[sinkIndexToGoTo].m_WorkerStagingArea.AddToStaging(m_Citizens[i].transform);
+				if (sinks.Count > 0)
+				{
+					sinks[sinkIndexToGoTo].m_WorkerStagingArea.AddToStaging(m_Citizens[i].transform);
+				}
 			}
 
 			// TODO: adjust to the popular one slowly, not all at once in a sudden reaction

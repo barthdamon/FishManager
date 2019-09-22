@@ -83,6 +83,7 @@ public class FMGeneratorTask : FMTaskBase
 		base.RemoveWorker(worker);
 		m_TaskProcessing = m_AssignedWorkers.Count >= m_NumberOfWorkersRequired;
 		m_TimeSinceLastTrigger = 0f;
+		m_BoatSlots.UnassignWorker(worker);
 		return m_TaskProcessing;
 	}
 
@@ -108,7 +109,7 @@ public class FMGeneratorTask : FMTaskBase
 			tickResourceAmount += workerProductivity;
 		}
 
-		if (m_TaskProcessing)
+		if (m_TaskProcessing && m_Resources.Count > 0)
 			m_Resources.Peek().m_Amount += tickResourceAmount;
 
 		for (int i = 0; i < m_AssignedWorkers.Count; ++i)
@@ -147,7 +148,7 @@ public class FMGeneratorTask : FMTaskBase
 		Vector3 startPosition = gotFish ? fishingPosition : m_DockPosition;
 		transform.position = Vector3.Lerp(startPosition, destination, lerpPosition);
 
-		if (gotFish)
+		if (gotFish && m_Resources.Count > 0)
 		{
 			m_Resources.Peek().SetResourceVisible(true);
 		}
