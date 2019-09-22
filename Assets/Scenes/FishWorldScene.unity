@@ -50812,6 +50812,41 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -15.399994
       objectReference: {fileID: 0}
+    - target: {fileID: 2099250859575605627, guid: a7b08614067799c4bb71ad7db0ca397d,
+        type: 3}
+      propertyPath: lines.Array.data[0]
+      value: '[audio:heybob]Hey Bob!'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2099250859575605627, guid: a7b08614067799c4bb71ad7db0ca397d,
+        type: 3}
+      propertyPath: lines.Array.data[1]
+      value: '[audio:goodnews]Good news!'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2099250859575605627, guid: a7b08614067799c4bb71ad7db0ca397d,
+        type: 3}
+      propertyPath: lines.Array.data[2]
+      value: '[audio:iborrowed]I borrowed some money to start our business!'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3183485697275187544, guid: a7b08614067799c4bb71ad7db0ca397d,
+        type: 3}
+      propertyPath: lines.Array.data[0]
+      value: '[audio:thoseguys]Those guys over there!  '
+      objectReference: {fileID: 0}
+    - target: {fileID: 3396732506244187707, guid: a7b08614067799c4bb71ad7db0ca397d,
+        type: 3}
+      propertyPath: lines.Array.data[0]
+      value: '[audio:great]Great! '
+      objectReference: {fileID: 0}
+    - target: {fileID: 3396732506244187707, guid: a7b08614067799c4bb71ad7db0ca397d,
+        type: 3}
+      propertyPath: lines.Array.data[1]
+      value: '[audio:fromwho]From who?'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5293953814168836399, guid: a7b08614067799c4bb71ad7db0ca397d,
+        type: 3}
+      propertyPath: lines.Array.data[0]
+      value: '[audio:youbetter]You better get working.'
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7b08614067799c4bb71ad7db0ca397d, type: 3}
 --- !u!4 &7302167273276533882
