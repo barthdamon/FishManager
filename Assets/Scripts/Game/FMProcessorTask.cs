@@ -75,4 +75,10 @@ public class FMProcessorTask : FMTaskBase
 			SetProgress(0f);
 		}
 	}
+
+	protected override void ShutDown()
+	{
+		base.ShutDown();
+		m_AssignedWorkers.Clear();
+	}
 }

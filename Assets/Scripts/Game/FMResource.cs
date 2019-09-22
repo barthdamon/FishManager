@@ -39,7 +39,7 @@ public class FMResource : MonoBehaviour
 	public void TickDecrementQuality(float time)
 	{
 		m_Sickness += time * m_QualityDecayRate;
-		float sicknessScale = 1f + 1f * m_Sickness;
+		float sicknessScale = 1f + 0.75f * m_Sickness;
 		m_SmellyFishParticles.transform.localScale = new Vector3(sicknessScale, sicknessScale, sicknessScale);
 	}
 

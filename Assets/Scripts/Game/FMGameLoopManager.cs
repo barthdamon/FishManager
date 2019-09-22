@@ -105,6 +105,16 @@ public class FMGameLoopManager : MonoBehaviourSingleton<FMGameLoopManager>
 	[HideInInspector]
 	public List<FMTaskBase> m_TickableTasks = new List<FMTaskBase>();
 
+	private bool m_IsPaused = false;
+
+	public event System.Action<bool> OnGamePause;
+
+	public void PauseGame(bool value)
+	{
+		this.m_IsPaused = value;
+		this.OnGamePause?.Invoke(m_IsPaused);
+	}
+
 	private void Start()
 	{
 	}
@@ -112,6 +122,11 @@ public class FMGameLoopManager : MonoBehaviourSingleton<FMGameLoopManager>
 	// Update is called once per frame
 	void Update()
     {
+		if (this.m_IsPaused)
+		{
+			return;
+		}
+
 		m_CurrentDay.IncrementTime(Time.deltaTime);
 		if (m_CurrentDay.GetTimeOfDay() != FMDay.TimeOfDay.Day &&
 			m_CurrentDay.GetTimeOfDay() != FMDay.TimeOfDay.Evening)

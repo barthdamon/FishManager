@@ -5,8 +5,9 @@ using UnityEngine.UI;
 
 public abstract class FMTaskBase : MonoBehaviour
 {
+	[SerializeField]
 	[Range(0, 1)]
-	public float progress;
+	protected float progress;
 
 	public Image fillerImage;
 	public Image baseImage;

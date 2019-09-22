@@ -137,12 +137,13 @@ public class FMGeneratorTask : FMTaskBase
 			return;
 
 		Vector3 fishingPosition = FMBoardReferences.GetOrCreateInstance().m_ResourceBoatDestinations[m_AssignedEquipment.m_ResourceIndex].position;
-		// use the position to the fishing hole as 50%, otherwise come back for the second 50%
-		bool gotFish = progress > 0.5f;
+		// use the position to the fishing hole as 40%, stay still for the middle 20%
+		// otherwise come back for the last 40%
+		bool gotFish = progress > 0.6f;
 		Vector3 destination = gotFish ? m_DockPosition : fishingPosition;
 		// on the way there
 		// lerp position will b < 0.5 but we want out of 0.5
-		float lerpPosition = gotFish ? (progress - 0.5f) / 0.5f : progress / 0.5f;
+		float lerpPosition = progress > 0.6f ? (progress - 0.6f) / 0.4f : progress / 0.4f;
 		Vector3 startPosition = gotFish ? fishingPosition : m_DockPosition;
 		transform.position = Vector3.Lerp(startPosition, destination, lerpPosition);
 
@@ -172,10 +173,13 @@ public class FMGeneratorTask : FMTaskBase
 		// Move back to start position.
 		transform.position = m_DockPosition;
 
-		var processor = FMBoardReferences.GetOrCreateInstance().m_Processor;
-		var generatedResource = m_Resources.Dequeue();
 		SetProgress(0f);
-		m_BoatSlots.UnassignResource(generatedResource);
-		processor.ProcessNewResource(generatedResource);
+		var processor = FMBoardReferences.GetOrCreateInstance().m_Processor;
+		if (processor && m_Resources.Count > 0)
+		{
+			var generatedResource = m_Resources.Dequeue();
+			m_BoatSlots.UnassignResource(generatedResource);
+			processor.ProcessNewResource(generatedResource);
+		}
 	}
 }
