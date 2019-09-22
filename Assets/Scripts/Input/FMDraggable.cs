@@ -76,7 +76,7 @@ public class FMDraggable : Selectable, IBeginDragHandler, IDragHandler, IEndDrag
         if (RectTransformUtility.ScreenPointToWorldPointInRectangle(m_DraggingPlane, data.position, data.pressEventCamera, out globalMousePos))
         {
             rt.position = globalMousePos;
-            rt.rotation = m_DraggingPlane.rotation;
+            //rt.rotation = m_DraggingPlane.rotation;
         }
     }
 
