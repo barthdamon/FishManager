@@ -73,6 +73,12 @@ public class FMWorker : MonoBehaviour
 		m_TimeSleptIn = 0f;
 		m_IsSleepingIn = true;
 
+		var drag_handler = gameObject.GetComponent<FMDraggable>();
+		if (drag_handler)
+			drag_handler.enabled = false;
+		
+		currentTask = null;
+
 		FMBoardReferences.GetOrCreateInstance().m_WorkerHomeStagingArea.AddToStaging(this.transform);
 	}
 
@@ -84,12 +90,24 @@ public class FMWorker : MonoBehaviour
 		m_SicknessLevel = sink.m_CurrentSicknessLevel;
 		m_TimeToReturnToWork = m_SicknessSleepInScalar * m_SicknessLevel;
 
+		var drag_handler = gameObject.GetComponent<FMDraggable>();
+		if (drag_handler)
+			drag_handler.enabled = false;
+
+		currentTask = null;
+
 		sink.m_WorkerStagingArea.AddToStaging(this.transform);
 		//GoHome();
 	}
 
 	public void GoToWorkerPool()
 	{
+		var drag_handler = gameObject.GetComponent<FMDraggable>();
+		if (drag_handler)
+			drag_handler.enabled = true;
+
+		currentTask = null;
+
 		m_IsSleepingIn = false;
 		// move the sprite to pool for selection...
 		FMBoardReferences.GetOrCreateInstance().m_WorkerPoolStagingArea.AddToStaging(this.transform);
