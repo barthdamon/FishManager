@@ -2,20 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoundManager : MonoBehaviour
+public class SoundManager : MonoBehaviourSingleton<SoundManager>
 {
-    void Start()
-    {
-        
-    }
+    public AudioSource audio_source;
+    public AudioClip[] audio_clips;
+    public List<string> audio_sourcenames = new List<string>();
 
-    void Update()
+    public void play_audio(string name)
     {
-        
-    }
+        var i = audio_sourcenames.IndexOf(name);
 
-    public static void Play(string clipName)
-    {
-        Debug.Log("AUDIO_PLAY " + clipName);
+        if(i >= 0 && i<audio_clips.Length)
+        {
+            audio_source.PlayOneShot(audio_clips[i]);
+        }
     }
 }
