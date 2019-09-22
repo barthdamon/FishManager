@@ -50807,6 +50807,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2035141271574937934, guid: a7b08614067799c4bb71ad7db0ca397d,
+        type: 3}
+      propertyPath: camerazoom_out_speed
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5458974616643276663, guid: a7b08614067799c4bb71ad7db0ca397d,
         type: 3}
       propertyPath: m_AnchoredPosition.y
