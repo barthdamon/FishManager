@@ -13,7 +13,9 @@ public class DialogManager : MonoBehaviour
 
     public List<string> randomText = new List<string>();
 
-    public List<DialogFish> dialogFishes;
+    public List<DialogFish> dialogFishes;       //audience
+
+    public List<DialogFish> dialogFishesCast;   //Jim, Bob, Mafia, etc
 
     private void Awake()
     {
@@ -36,13 +38,15 @@ public class DialogManager : MonoBehaviour
         Say_2D(message, username);
     }
 
-    public void Say_2D(string text, string speakername)
+    public void Say_2D(string text, string speakername, bool cast = false)
     {
-        DialogFish df = dialogFishes.Find(d => d.nameTag != null && d.nameTag.text == speakername);
+        List<DialogFish> pool = cast ? dialogFishesCast : dialogFishes;
+
+        DialogFish df = pool.Find(d => (d.nameTag != null && d.nameTag.text == speakername) || d.name == speakername);
 
         if (df == null)
         {//need a new one
-            List<DialogFish> dfs = dialogFishes.FindAll(d => d.gameObject.activeSelf == false);
+            List<DialogFish> dfs = pool.FindAll(d => d.gameObject.activeSelf == false);
             if (dfs != null && dfs.Count > 0)
             {
                 df = dfs[Random.Range(0, 1000) % dfs.Count];
@@ -53,7 +57,7 @@ public class DialogManager : MonoBehaviour
 
         if (df != null)
         {
-            df.Say(text, speakername);
+            df.Say(text, speakername, !cast);
         }
     }
 

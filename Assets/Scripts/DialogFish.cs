@@ -84,12 +84,13 @@ public class DialogFish : MonoBehaviour
         drs[0].Clear();
     }
 
-    public void Say(string text, string byName)
+    public void Say(string text, string byName, bool setName = true)
     {
         Debug.Log(byName + ": " + text);
 
-        if (nameTag != null)
+        if (nameTag != null && setName)
             nameTag.text = byName;
+
         //find it even if disabled
         DialogReader[] drs = dialog.GetComponentsInChildren<DialogReader>(true);
         drs[0].lines.AddRange(text.Split(new char[] { '\n' }));
