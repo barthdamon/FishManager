@@ -245,6 +245,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SicknessSleepInScalar: 1
+  m_SicknessLevel: 0
   m_IsSleepingIn: 0
   currentTask: {fileID: 0}
 --- !u!114 &798949874
@@ -260,6 +261,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 0}
+  worker: {fileID: 0}
+  healthyColor: {r: 1, g: 1, b: 1, a: 1}
+  sickColor: {r: 0, g: 1, b: 0, a: 1}
   bones:
   - {fileID: 5525371205841908135}
   - {fileID: 5525371205760907926}
