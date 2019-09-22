@@ -47,7 +47,8 @@ public class FMCodfather : MonoBehaviourSingleton<FMCodfather>
 
 	private void Update()
 	{
-		if (!m_ShowingMafia && (Time.time - m_LastMafiaSpawnTime > m_TimeToSpawnMafia))
+		if (!m_ShowingMafia && (Time.time - m_LastMafiaSpawnTime > m_TimeToSpawnMafia) &&
+			!FMGameLoopManager.GetOrCreateInstance().m_IsPaused)
 		{
 			StartCoroutine(SpawnMafia());
 		}

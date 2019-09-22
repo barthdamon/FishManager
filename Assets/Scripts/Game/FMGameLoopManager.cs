@@ -105,7 +105,7 @@ public class FMGameLoopManager : MonoBehaviourSingleton<FMGameLoopManager>
 	[HideInInspector]
 	public List<FMTaskBase> m_TickableTasks = new List<FMTaskBase>();
 
-	private bool m_IsPaused = false;
+	public bool m_IsPaused { get; private set; }
 
 	public event System.Action<bool> OnGamePause;
 
@@ -117,6 +117,7 @@ public class FMGameLoopManager : MonoBehaviourSingleton<FMGameLoopManager>
 
 	private void Start()
 	{
+		this.m_IsPaused = false;
 	}
 
 	// Update is called once per frame
