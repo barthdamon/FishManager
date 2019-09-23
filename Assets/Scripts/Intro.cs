@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using UnityEngine.UI;
+
 public class Intro : MonoBehaviour
 {
     public float camerazoom_out_speed; // Denes value: 1.0/9.0
@@ -14,29 +16,45 @@ public class Intro : MonoBehaviour
 
     public CameraController camCon;
 
+    public GameObject skip_intro_button;
+    bool skip_intro = false;
     void Start()
     {
+        skip_intro_button.SetActive(false);
+        skip_intro_button.GetComponent<Button>().onClick.AddListener(() => { skip_intro = true; });
         StartCoroutine(Play());
     }
 
     public IEnumerator Play()
     {
         camCon.enabled = false;
-
         //pause game
         Time.timeScale = 0.0f;
 
         for(int i=0; i<dialogs.Length; i++)
         {
-            dialogs[i].SetActive(true);
-
-            while(dialogs[i].activeSelf)
+            if (skip_intro)
             {
+                skip_intro = false;
+                skip_intro_button.SetActive(false);
+                break;
+            }
+            dialogs[i].SetActive(true);
+            skip_intro_button.SetActive(true);
+
+            while (dialogs[i].activeSelf)
+            {
+                if (skip_intro)
+                {
+                    dialogs[i].SetActive(false);
+                    break;
+                }
                 yield return new WaitForSecondsRealtime(0.1f);
             }
         }
 
         title.SetActive(true);
+        skip_intro_button.SetActive(false);
 
         camCon.enabled = true;
 
@@ -49,5 +67,4 @@ public class Intro : MonoBehaviour
         //unpause
         Time.timeScale = 1.0f;
     }
-
 }
