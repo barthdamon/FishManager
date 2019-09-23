@@ -29,6 +29,10 @@ public class UnityChatManagerScript : MonoBehaviourSingleton<UnityChatManagerScr
     public event UserEvent OnLogInMessage;
     public event UserEvent OnLogOutMessage;
 
+    string myname = "Unity";
+    string logged_in_tok = " logged in.";
+    string logged_out_tok = " logged out.";
+
     // test spawn object from chat
     //public GameObject spawn_object;
 
@@ -40,8 +44,7 @@ public class UnityChatManagerScript : MonoBehaviourSingleton<UnityChatManagerScr
 
     void OnDestroy()
     {
-        if (ping_timer != null)
-            ping_timer.Stop();
+        DisconnectFromChat();
     }
 
     // Update is called once per frame
@@ -63,14 +66,12 @@ public class UnityChatManagerScript : MonoBehaviourSingleton<UnityChatManagerScr
         {
             var data = buffer.Dequeue();
 
-            var logged_in_tok = " logged in.";
-            var logged_out_tok = " logged out.";
             if (data.EndsWith(logged_in_tok) && !data.Contains(":"))
             {
                 var username = data.Substring(0, data.Length - logged_in_tok.Length);
                 OnLogInMessage?.Invoke(username.Trim());
 
-                if (username.ToLower() == "@unity")
+                if (username.ToLower() == ("@" + myname.ToLower()))
                 {
                     chatroom_promotion_text.enabled = true;
                 }
@@ -80,7 +81,7 @@ public class UnityChatManagerScript : MonoBehaviourSingleton<UnityChatManagerScr
                 var username = data.Substring(0, data.Length - logged_in_tok.Length);
                 OnLogOutMessage?.Invoke(username.Trim());
 
-                if (username.ToLower() == "@unity")
+                if (username.ToLower() == ("@" + myname.ToLower()))
                 {
                     chatroom_promotion_text.enabled = false;
                 }
@@ -122,7 +123,7 @@ public class UnityChatManagerScript : MonoBehaviourSingleton<UnityChatManagerScr
 
         ws.OnClose += (sender, e) =>
         {
-            Debug.Log("close!");
+            Debug.Log("ws close!");
         };
 
         ws.OnMessage += (sender, e) =>
@@ -156,9 +157,30 @@ public class UnityChatManagerScript : MonoBehaviourSingleton<UnityChatManagerScr
 
         Message m;
         m.type = "login";
-        m.data = "Unity";
+        m.data = myname;
         string json = JsonConvert.SerializeObject(m);
         ws.Send(json);
+    }
+
+    public void DisconnectFromChat()
+    {
+        if(ws != null)
+        {
+            // stop ping timer
+            if (ping_timer != null)
+            {
+                ping_timer.Stop();
+            }
+
+            // remove Avatar
+            string logout_str = "@" + myname + logged_out_tok;
+            buffer.Enqueue(logout_str);
+            chatroom_promotion_text.enabled = false;
+
+            // close and delete ws
+            ws.Close();
+            ws = null;
+        }
     }
     public void SendChatMessage(string s)
     {

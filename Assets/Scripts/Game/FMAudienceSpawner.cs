@@ -27,6 +27,9 @@ public class FMAudienceSpawner : MonoBehaviour
     {
         GameObject go = Instantiate(prefab);
         go.name = "user+" + username;
+        // set audience nametag
+        var nametag_go = go.transform.Find("Body/Nametag/NametagText");
+        nametag_go.GetComponent<TMPro.TextMeshPro>().text = username;
         staging.AddToStaging(go.transform);
     }
 
