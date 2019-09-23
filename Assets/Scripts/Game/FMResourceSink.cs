@@ -44,8 +44,12 @@ public class FMResourceSink : FMTaskBase
 		base.OnStart();
 
 		var startingResource = FMBoardReferences.GetOrCreateInstance().m_ResourcePrefabs[m_ResourceIndex];
-		var initialResource = Instantiate(startingResource);
-		var resourceComponent = initialResource.GetComponent<FMResource>();
+        var canvas = GetComponentInParent<Canvas>();
+        var initialResource = Instantiate(startingResource, canvas.transform);
+        initialResource.transform.localScale = Vector3.one;
+        initialResource.transform.position = transform.position;
+
+        var resourceComponent = initialResource.GetComponent<FMResource>();
 		resourceComponent.SetResourceVisible(false);
 		resourceComponent.m_ProcessedAmount = FMResource.m_StartingResourceAmount;
 		m_Resources.Enqueue(resourceComponent);
