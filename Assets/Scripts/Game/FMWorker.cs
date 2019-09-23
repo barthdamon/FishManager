@@ -16,18 +16,28 @@ public class FMWorker : MonoBehaviour
 	
 	public void Assign(FMTaskBase task)
 	{
-		Debug.Log("Assign Job " + this.name, this);
+        //SoundManager.GetOrCreateInstance().play_audio("fish_drop");
+
+        Debug.Log("Assign Job " + this.name, this);
 
 		if (currentTask != null)
 		{
-			currentTask.RemoveWorker(this);
+            SoundManager.GetOrCreateInstance().play_audio("fish_remove");
+            currentTask.RemoveWorker(this);
 			currentTask = null;
 		}
 
 		currentTask = task;
-		if (currentTask != null)
-			currentTask.AssignWorker(this);
-	}
+        if (currentTask != null)
+        {
+            SoundManager.GetOrCreateInstance().play_audio("fish_assign");
+            currentTask.AssignWorker(this);
+        }
+        else
+        {
+            SoundManager.GetOrCreateInstance().play_audio("fish_drop");
+        }
+    }
 
 	private void Awake()
 	{
@@ -54,6 +64,7 @@ public class FMWorker : MonoBehaviour
 
 	public bool ReactToSelected()
 	{
+        SoundManager.GetOrCreateInstance().play_audio("fish_grab");
 		// TODO: Be pissed if sleeping
 		return !m_IsSleepingIn;
 	}

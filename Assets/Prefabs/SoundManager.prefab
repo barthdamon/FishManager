@@ -154,6 +154,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ea3b3383e9d16d04182e254da9507a84, type: 3}
   - {fileID: 8300000, guid: 0fc5b61646c75c246aa997be6f9bb510, type: 3}
   - {fileID: 8300000, guid: 39604348cc2b45e4f866133c8e2a61f0, type: 3}
+  - {fileID: 8300000, guid: 688a0fc6850691e4a8a02d40fa8c6210, type: 3}
+  - {fileID: 8300000, guid: 2cb7c9ef5e69670459957e758c84a435, type: 3}
+  - {fileID: 8300000, guid: fdf811d6424688543865583bdd6b0a44, type: 3}
+  - {fileID: 8300000, guid: 83e2c33beaa8b88438c614fe2c74e7f2, type: 3}
   audio_sourcenames:
   - heybob
   - goodnews
@@ -167,3 +171,7 @@ MonoBehaviour:
   - butyou
   - itstime
   - boysfeed
+  - fish_grab
+  - fish_drop
+  - fish_assign
+  - fish_remove
