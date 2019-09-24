@@ -94,12 +94,11 @@ public class UnityChatManagerScript : MonoBehaviourSingleton<UnityChatManagerScr
                 var message = data.Substring(index + tok.Length); 
                 OnMessage?.Invoke(username, message);
 
-                //var go = GameObject.Find("TestEmojiText");
-                //if(go)
-                //{
-                //   var m = new String(message.Reverse().ToArray());
-                //    go.GetComponent<TMPro.TMP_EmojiTextUGUI>().SetText(m);
-                //}
+                var go = GameObject.Find("TestEmojiText");
+                if(go)
+                {
+                    go.GetComponent<TMPro.TMP_EmojiTextUGUI>().SetText(message);
+                }
             }
         }
     }
