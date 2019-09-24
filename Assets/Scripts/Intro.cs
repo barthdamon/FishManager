@@ -17,12 +17,13 @@ public class Intro : MonoBehaviour
     public CameraController camCon;
 
     public GameObject skip_intro_button;
-    bool skip_intro = false;
+    private bool skip_intro = false;
+
     void Start()
     {
         skip_intro_button.SetActive(false);
         skip_intro_button.GetComponent<Button>().onClick.AddListener(() => { skip_intro = true; });
-        StartCoroutine(Play());
+		StartCoroutine(Play());
     }
 
     public IEnumerator Play()
@@ -53,7 +54,15 @@ public class Intro : MonoBehaviour
             }
         }
 
-        title.SetActive(true);
+		// Clear out any lingering dialog
+		for (int i = 0; i < dialogs.Length; i++)
+		{
+			var reader = dialogs[i].GetComponentInChildren<DialogReader>();
+			if (reader)
+				reader.lines.Clear();
+		}
+
+		title.SetActive(true);
         skip_intro_button.SetActive(false);
 
         camCon.enabled = true;
@@ -66,5 +75,7 @@ public class Intro : MonoBehaviour
 
         //unpause
         Time.timeScale = 1.0f;
-    }
+
+		Tutorial.GetOrCreateInstance().ShowStartingTutorial();
+	}
 }

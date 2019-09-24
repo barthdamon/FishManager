@@ -78,6 +78,8 @@ public class FMProcessorTask : FMTaskBase
 			processedResource.SetResourceVisible(false);
 			FMBoardReferences.GetOrCreateInstance().m_ResourceSinks[processedResource.m_ResourceIndex].AddResourceToSink(processedResource);
 			SetProgress(0f);
+
+			Tutorial.GetOrCreateInstance().HasProcessedFish = true;
 		}
 	}
 

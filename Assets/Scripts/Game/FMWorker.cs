@@ -19,6 +19,8 @@ public class FMWorker : MonoBehaviour
         //SoundManager.GetOrCreateInstance().play_audio("fish_drop");
 
         Debug.Log("Assign Job " + this.name, this);
+		Tutorial.GetOrCreateInstance().HasDraggedWorker = true;
+		Tutorial.GetOrCreateInstance().HasAssignedWorkerToBoat = true;
 
 		if (currentTask != null)
 		{
@@ -65,6 +67,7 @@ public class FMWorker : MonoBehaviour
 	public bool ReactToSelected()
 	{
         SoundManager.GetOrCreateInstance().play_audio("fish_grab");
+		Tutorial.GetOrCreateInstance().HasDraggedWorker = true;
 		// TODO: Be pissed if sleeping
 		return !m_IsSleepingIn;
 	}

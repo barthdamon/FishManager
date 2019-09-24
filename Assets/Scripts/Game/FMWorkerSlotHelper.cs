@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 [System.Serializable]
 public class FMObjectSlot
@@ -16,6 +17,8 @@ public class FMWorkerSlotHelper : MonoBehaviour
 
 	public FMObjectSlot m_EquipmentSlot;
 	public FMObjectSlot m_ResourceSlot;
+
+	public int NumSlotsOccupied => m_WorkerSlots.Count((FMObjectSlot slot) => slot.m_AssignedObject != null);
 
 	public void AssignWorker(FMWorker worker)
 	{

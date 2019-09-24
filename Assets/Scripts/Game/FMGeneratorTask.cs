@@ -33,6 +33,7 @@ public class FMGeneratorTask : FMTaskBase
 		m_BoatSlots.AssignEquipment(equipment);
 
 		m_AssignedEquipment = equipment;
+		Tutorial.GetOrCreateInstance().HasAssignedEquipmentToBoat = true;
 	}
 
 	// completion time * worker productivity
@@ -51,6 +52,14 @@ public class FMGeneratorTask : FMTaskBase
 	{
 		base.AssignWorker(worker);
 		m_BoatSlots.AssignWorker(worker);
+
+		Tutorial.GetOrCreateInstance().HasAssignedWorkerToBoat = true;
+		Tutorial.GetOrCreateInstance().ShowBoatSizeTutorial(m_NumberOfWorkersRequired - m_BoatSlots.NumSlotsOccupied, worker);
+
+		if (!Tutorial.GetOrCreateInstance().HasAssignedEquipmentToBoat)
+		{
+			Tutorial.GetOrCreateInstance().ShowBoatEquipmentTutorial(worker);
+		}
 		return CheckProcessing();
 	}
 
@@ -185,6 +194,11 @@ public class FMGeneratorTask : FMTaskBase
 
 	private void FinishHarvest()
 	{
+		if (!Tutorial.GetOrCreateInstance().HasProcessedFish && m_AssignedWorkers.Count > 0)
+		{
+			Tutorial.GetOrCreateInstance().ShowProcessFishTutorial(m_AssignedWorkers[0]);
+		}
+
 		for (int i = 0; i < m_AssignedWorkers.Count; ++i)
 		{
 			m_BoatSlots.UnassignWorker(m_AssignedWorkers[i]);
