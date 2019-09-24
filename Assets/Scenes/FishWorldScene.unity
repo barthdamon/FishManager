@@ -15357,10 +15357,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5a4668e01dc7f3408a60474d88254ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HasDraggedWorker: 0
-  HasAssignedWorkerToBoat: 0
-  HasAssignedEquipmentToBoat: 0
-  HasProcessedFish: 0
+  has_dragged_worker: 0
+  has_assigned_worker_to_boat: 0
+  has_assigned_equipment_to_boat: 0
+  has_processed_fish: 0
   WorkerBob: {fileID: 502967916}
   WorkerJoe: {fileID: 552375717}
 --- !u!114 &2132332452 stripped
@@ -47301,6 +47301,10 @@ PrefabInstance:
       propertyPath: distanceMinMax.y
       value: 60
       objectReference: {fileID: 0}
+    - target: {fileID: 1499278747, guid: f1460f299c5cf504db29740d6b1af52c, type: 3}
+      propertyPath: distanceMinMax.x
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4141542083079724641, guid: f1460f299c5cf504db29740d6b1af52c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -50963,6 +50967,11 @@ PrefabInstance:
         type: 3}
       propertyPath: time_out_wait
       value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2634203758330508318, guid: a7b08614067799c4bb71ad7db0ca397d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.05000305
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4343519181879947408, guid: a7b08614067799c4bb71ad7db0ca397d, type: 3}
