@@ -121,6 +121,11 @@ public class FMDraggable : Selectable, IBeginDragHandler, IDragHandler, IEndDrag
 		m_OnAssignedTask?.Invoke(task);
 	}
 
+	public void Unassign()
+	{
+		m_OnAssignedTask?.Invoke(null);
+	}
+
     void OnDisable()
     {
         //if being dragged, cancel

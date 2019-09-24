@@ -20,11 +20,14 @@ public class FMInputController : MonoBehaviourSingleton<FMInputController>
 		FMTaskBase task = toTarget == null ? null : toTarget.GetComponent<FMTaskBase>();
 
 		// assign to either a null task or a task that can accept a worker
-		bool shouldAssignWorker = task == null;
-		shouldAssignWorker |= (task != null && task.AcceptsWorkers());
-		if (shouldAssignWorker)
+		bool shouldAssign = (task == null);
+		shouldAssign |= (task != null && task.AcceptsWorkers());
+		if (shouldAssign)
         {
 			draggableComponent.Assign(task);
-        }
+        } else
+		{
+			draggableComponent.Unassign();
+		}
     }
 }

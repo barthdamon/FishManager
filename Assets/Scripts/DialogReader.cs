@@ -50,7 +50,9 @@ public class DialogReader : MonoBehaviour, IPointerDownHandler
     // Update is called once per frame
     void Update()
     {
-        if (currentLine<0 || readTimer > lines[currentLine].Length)
+		readTimer += Time.unscaledDeltaTime * readCharsPerSec;
+
+		if (currentLine<0 || readTimer > lines[currentLine].Length)
         {//all shown, wait for click
             clickTimer += Time.unscaledDeltaTime;
             if (autoclickTime > 0
@@ -60,7 +62,6 @@ public class DialogReader : MonoBehaviour, IPointerDownHandler
             }
         } else
         {
-            readTimer += Time.unscaledDeltaTime * readCharsPerSec;
             string line_str = lines[currentLine].Substring(0, (int)readTimer)
                         + "<color=#00000000>" + lines[currentLine].Substring((int)readTimer) + "</color>";   //also render this bit invisibly to keep the formatting the same ;)
             text.SetText(line_str);

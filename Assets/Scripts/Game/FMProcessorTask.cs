@@ -38,7 +38,7 @@ public class FMProcessorTask : FMTaskBase
 		}
 	}
 
-	protected override bool ShouldTriggerTask()
+	public override bool ShouldTriggerTask()
 	{
 		FMResource resource = m_Resources.Peek();
 		return resource.m_Amount <= 0f;

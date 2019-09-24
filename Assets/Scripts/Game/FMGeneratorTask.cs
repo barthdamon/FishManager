@@ -13,9 +13,9 @@ public class FMGeneratorTask : FMTaskBase
 	// #number of workers
 	// in order to generate requires x workers
 
-	[HideInInspector]
+	//[HideInInspector]
 	public FMWorkerSlotHelper m_BoatSlots;
-	[HideInInspector]
+	//[HideInInspector]
 	public FMEquipment m_AssignedEquipment;
 
 
@@ -157,6 +157,14 @@ public class FMGeneratorTask : FMTaskBase
 
 	}
 
+	public override bool ShouldTriggerTask()
+	{
+		if (m_AssignedEquipment == null || m_NumberOfWorkersRequired == 0)
+			return false;
+
+		return base.ShouldTriggerTask();
+	}
+
 	public override float GetTimeToTrigger()
 	{
 		return m_GenerationTimePerPerson * m_NumberOfWorkersRequired;
@@ -164,10 +172,13 @@ public class FMGeneratorTask : FMTaskBase
 
 	public override void SetProgress(float f)
 	{
-		base.SetProgress(f);
-
 		if (!m_TaskProcessing || m_AssignedEquipment == null)
+		{
+			m_TimeSinceLastTrigger = 0;
 			return;
+		}
+
+		base.SetProgress(f);
 
 		Vector3 fishingPosition = FMBoardReferences.GetOrCreateInstance().m_ResourceBoatDestinations[m_AssignedEquipment.m_ResourceIndex].position;
 		// use the position to the fishing hole as 40%, stay still for the middle 20%

@@ -32,13 +32,14 @@ public class FMEquipment : MonoBehaviour
 
 	public void AssignToTask(FMTaskBase task)
 	{
+		if (m_AssignedTask != null)
+		{
+			m_AssignedTask.SetEquipment(null);
+			m_AssignedTask = null;
+		}
+
 		if (task is FMGeneratorTask)
 		{
-			if (m_AssignedTask != null)
-			{
-				m_AssignedTask.SetEquipment(null);
-			}
-
 			SetAssignmentCompleted(false);
 			m_CurrentAssignTime = 0f;
 			m_AssignedTask = (FMGeneratorTask)task;

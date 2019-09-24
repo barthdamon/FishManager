@@ -18,7 +18,9 @@ public class FMWorker : MonoBehaviour
 	{
         //SoundManager.GetOrCreateInstance().play_audio("fish_drop");
 
-        Debug.Log("Assign Job " + this.name, this);
+        Debug.Log("Assign Job " + this.name 
+			+ " to " + (task!=null ? task.name : "<none>")
+			, this);
 		Tutorial.GetOrCreateInstance().HasDraggedWorker = true;
 		Tutorial.GetOrCreateInstance().HasAssignedWorkerToBoat = true;
 

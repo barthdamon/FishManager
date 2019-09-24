@@ -123,7 +123,7 @@ public abstract class FMTaskBase : MonoBehaviour
 		}
 	}
 
-	protected virtual bool ShouldTriggerTask()
+	public virtual bool ShouldTriggerTask()
 	{
 		return GetTimeToTrigger() - m_TimeSinceLastTrigger <= 0;
 	}

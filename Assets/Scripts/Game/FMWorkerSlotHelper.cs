@@ -58,6 +58,8 @@ public class FMWorkerSlotHelper : MonoBehaviour
 			if (slot.m_AssignedObject == worker.gameObject)
 			{
 				slot.m_AssignedObject = null;
+				var canvas = GetComponentInParent<Canvas>();
+				worker.transform.SetParent(canvas.transform, true);
 			}
 		}
 	}
