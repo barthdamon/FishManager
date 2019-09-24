@@ -29,7 +29,7 @@ public class ChatManagerUIScript : MonoBehaviour
     }
     void TaskOnClickConnect()
     {
-        var chat_mgr = GameObject.Find("ChatManager").GetComponent<UnityChatManagerScript>();
+        var chat_mgr = UnityChatManagerScript.GetOrCreateInstance();
         if (chat_mgr)
         {
             chat_mgr.ConnectToChat();
@@ -38,10 +38,10 @@ public class ChatManagerUIScript : MonoBehaviour
 
     void TaskOnClickDisconnect()
     {
-        var chat_mgr = GameObject.Find("ChatManager").GetComponent<UnityChatManagerScript>();
+        var chat_mgr = UnityChatManagerScript.GetOrCreateInstance();
         if (chat_mgr)
         {
-            chat_mgr.ConnectToChat();
+            chat_mgr.DisconnectFromChat();
         }
     }
 

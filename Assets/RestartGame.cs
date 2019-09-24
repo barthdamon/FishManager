@@ -7,6 +7,7 @@ public class RestartGame : MonoBehaviour
 {
     public void Restart()
 	{
+        UnityChatManagerScript.GetOrCreateInstance().DisconnectFromChat();
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 	}
 }
