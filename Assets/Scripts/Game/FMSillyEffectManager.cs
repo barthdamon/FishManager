@@ -73,6 +73,11 @@ public class FMSillyEffectManager : MonoBehaviour
         {
             emission_rate += 20;
         }
+
+        if (message.ToLower().Contains("shake"))
+        {
+            GetComponent<CameraShake>().ShakeCamera(0.25f, 0.025f);
+        }
     }
 
     // Update is called once per frame
