@@ -40,6 +40,8 @@ public class Tutorial : MonoBehaviourSingleton<Tutorial>
 		set { this.has_processed_fish = value; }
 	}
 
+	private bool has_shown_equipment_tutorial = false;
+
 	public GameObject WorkerBob;
 	public GameObject WorkerJoe;
 
@@ -88,7 +90,8 @@ public class Tutorial : MonoBehaviourSingleton<Tutorial>
 
 	public void ShowBoatEquipmentTutorial(FMWorker worker)
 	{
-		if (!has_assigned_equipment_to_boat)
+		if (!has_shown_equipment_tutorial &&
+			!has_assigned_equipment_to_boat)
 		{
 			GameObject worker_go = worker?.gameObject;
 			if (!worker_go)
@@ -100,6 +103,7 @@ public class Tutorial : MonoBehaviourSingleton<Tutorial>
 			DialogManager.singleton.Say_3D("... But first I'm going to need some bait.", worker_go);
 			DialogManager.singleton.Say_3D("Drag over one of those fishing lures.", worker_go);
 			DialogManager.singleton.Say_3D("Each one is for a different catch.", worker_go);
+			has_shown_equipment_tutorial = true;
 		}
 	}
 
