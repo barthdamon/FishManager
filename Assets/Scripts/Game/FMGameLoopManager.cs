@@ -29,7 +29,8 @@ public class FMDay
 	public OnTimeOfDayChangedEvent m_OnDayEndEvent;
 
 	private TimeOfDay m_last_time_of_day = TimeOfDay.Night;
-	private float m_HourOfDay = 0f;
+    public int m_CurrentDay = 1;
+    public float m_HourOfDay = 5f;
 
 	public float GetNormalisedTimeOfDay()
 	{
@@ -53,7 +54,9 @@ public class FMDay
 		if (m_HourOfDay >= length_of_day)
 		{
 			m_HourOfDay -= length_of_day;
-		}
+            m_CurrentDay++;
+
+        }
 
 		TimeOfDay current_time_of_day = GetTimeOfDay();
 		if (m_last_time_of_day != current_time_of_day)
