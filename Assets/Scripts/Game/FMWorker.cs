@@ -141,6 +141,6 @@ public class FMWorker : MonoBehaviour
 
 	public float GetProductivity()
 	{
-		return 1 - m_SicknessLevel;
+		return Mathf.Max(1 - m_SicknessLevel, 0.2f);
 	}
 }
