@@ -32,6 +32,7 @@ public class UnityChatManagerScript : MonoBehaviourSingleton<UnityChatManagerScr
     string myname = "Unity";
     string logged_in_tok = " logged in.";
     string logged_out_tok = " logged out.";
+    public string get_myname() { return myname; }
 
     // test spawn object from chat
     //public GameObject spawn_object;
@@ -94,11 +95,11 @@ public class UnityChatManagerScript : MonoBehaviourSingleton<UnityChatManagerScr
                 var message = data.Substring(index + tok.Length); 
                 OnMessage?.Invoke(username, message);
 
-                var go = GameObject.Find("TestEmojiText");
-                if(go)
-                {
-                    go.GetComponent<TMPro.TMP_EmojiTextUGUI>().SetText(message);
-                }
+                //var go = GameObject.Find("TestEmojiText");
+                //if(go)
+                //{
+                //    go.GetComponent<TMPro.TMP_EmojiTextUGUI>().SetText(message);
+                //}
             }
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class FMSillyEffectManager : MonoBehaviour
@@ -11,7 +12,13 @@ public class FMSillyEffectManager : MonoBehaviour
     {
         "Where do sick fish go?", 
         "Why did the little boy not eat his sushi?",
-        "If a fish got the main role in a movie, what would it be called?", "Starfish.",
+        "What are fish that act in movies called?",
+        "How do you tuna fish?",
+        "How do you communicate with a fish you haven’t seen in ages?",
+        "Who was the standout musician in the fish band?",
+        "Who was the best employee at the balloon factory?",
+        "If you can think of a better fish pun…",
+        "Did you hear about the newlywed shark couple?",
     };
 
     string[] unity_answer =
@@ -19,18 +26,47 @@ public class FMSillyEffectManager : MonoBehaviour
         "To see a sturgeon",
         "Because it looked too fishy.",
         "Starfish.",
+        "Adjust their scales.",
+        "Drop them a line.",
+        "The bass player.",
+        "The blow fish.",
+        "Let minnow.",
+        "They are swimming along nicely.",
     };
+
+    Coroutine unity_ask_silly_questions;
 
     // Start is called before the first frame update
     void Start()
     {
         emission_rate = 0;
+        UnityChatManagerScript.GetOrCreateInstance().OnLogInMessage += FMSillyEffectManager_OnLogInMessage;
+        UnityChatManagerScript.GetOrCreateInstance().OnLogOutMessage += FMSillyEffectManager_OnLogOutMessage;
         UnityChatManagerScript.GetOrCreateInstance().OnMessage += FMSillyEffectManager_OnMessage;
         StartCoroutine(RainVFXTickDisplay());
-
-        //StartCoroutine(UnityAsk());
     }
-
+    private void FMSillyEffectManager_OnLogInMessage(string username)
+    {
+        // Unity logged in
+        if (username.ToLower() == ("@" + UnityChatManagerScript.GetOrCreateInstance().get_myname().ToLower()))
+        {
+            if (unity_ask_silly_questions == null)
+            {
+                unity_ask_silly_questions = StartCoroutine(UnityAskSillyQuestions());
+            }
+        }
+    }
+    private void FMSillyEffectManager_OnLogOutMessage(string username)
+    {
+        // Unity logged in
+        if (username.ToLower() == ("@" + UnityChatManagerScript.GetOrCreateInstance().get_myname().ToLower()))
+        {
+            if (unity_ask_silly_questions != null)
+            {
+                StopCoroutine(unity_ask_silly_questions);
+            }
+        }
+    }
     private void FMSillyEffectManager_OnMessage(string username, string message)
     {
         if (message.ToLower().Contains("rain"))
@@ -60,17 +96,30 @@ public class FMSillyEffectManager : MonoBehaviour
         // Create
     }
 
-    private IEnumerator UnityAsk()
+    private IEnumerator UnityAskSillyQuestions()
     {
-        var i = 0;
+        var q_or_a = 0;
+        int i = Random.Range(0, unity_ask.Length);
         while (true)
         {
-            yield return new WaitForSeconds(Random.Range(3f, 5f));
+            yield return new WaitForSeconds(Random.Range(30f, 45f));
 
-            string str = i % 2 == 0 ? unity_ask[i] : unity_answer[i];
+            string str;
+            if(q_or_a == 0)
+            {
+                str = unity_ask[i];
+            }
+            else
+            {
+                str = unity_answer[i];
+            }
+
             UnityChatManagerScript.GetOrCreateInstance().SendChatMessage(str);
-            i++;
-            i = i % unity_ask.Length;
+            q_or_a = ++q_or_a % 2;
+            if(q_or_a == 0)
+            {
+                i = ++i % unity_ask.Length;
+            }
         };
         // Create
     }
