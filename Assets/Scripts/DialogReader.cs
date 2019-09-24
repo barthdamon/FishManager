@@ -18,14 +18,14 @@ public class DialogReader : MonoBehaviour, IPointerDownHandler
     public float readTimer;
     public float clickTimer;
 
-    public Text text;
+    public TMPro.TMP_EmojiTextUGUI text;
 
     public RectTransform rect;
 
     void OnEnable()
     {
         if (text == null)
-            text = GetComponentInChildren<Text>();
+            text = GetComponentInChildren<TMPro.TMP_EmojiTextUGUI>();
 
         currentLine = -1;
         readTimer = 999;
@@ -61,8 +61,10 @@ public class DialogReader : MonoBehaviour, IPointerDownHandler
         } else
         {
             readTimer += Time.unscaledDeltaTime * readCharsPerSec;
-            text.text = lines[currentLine].Substring(0, (int)readTimer)
+            string line_str = lines[currentLine].Substring(0, (int)readTimer)
                         + "<color=#00000000>" + lines[currentLine].Substring((int)readTimer) + "</color>";   //also render this bit invisibly to keep the formatting the same ;)
+            text.SetText(line_str);
+
             clickTimer = 0;
         }
     }
