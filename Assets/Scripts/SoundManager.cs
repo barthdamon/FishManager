@@ -16,5 +16,9 @@ public class SoundManager : MonoBehaviourSingleton<SoundManager>
         {
             audio_source.PlayOneShot(audio_clips[i]);
         }
+        else
+        {
+            Debug.Log("clip missing: " + name);
+        }
     }
 }

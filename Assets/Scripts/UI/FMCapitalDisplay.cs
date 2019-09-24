@@ -19,6 +19,8 @@ public class FMCapitalDisplay : MonoBehaviour
 
     public Text m_CapitalDisplayText;
 
+    public float multiplier = 1000;
+
     private void Awake()
     {
         FMPlayer.GetOrCreateInstance().OnCapitalIncrease += OnCapitalIncrease;
@@ -32,11 +34,17 @@ public class FMCapitalDisplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        m_CapitalDisplayText.text = FMPlayer.GetOrCreateInstance().m_Capital.ToString();
+        float value = FMPlayer.GetOrCreateInstance().m_Capital;
+
+        value *= multiplier;  //because humans' psychology ;)
+
+        m_CapitalDisplayText.text = value.ToString();
     }
 
     private IEnumerator CreateCapitalTickDisplay(float value)
     {
+        value *= multiplier;  //because humans' psychology ;)
+
         // Create
         yield return new WaitForSeconds(Random.Range(0f, 0.75f));
 
@@ -45,7 +53,7 @@ public class FMCapitalDisplay : MonoBehaviour
         text.text = value > 0f ? "+" + value : value.ToString();
         var transform = game_object.transform;
         var start_position = transform.position;
-        start_position.x += Random.Range(-50f, 50f);
+        start_position.x += Random.Range(-150f, 150f);
         var start_colour = value > 0 ? m_GoodColour : m_BadColour;
         Vector3 end_pos = start_position + Vector3.up * Random.Range(10f, 25f);
 
