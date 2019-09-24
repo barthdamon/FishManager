@@ -27,7 +27,8 @@ public class FMProcessorTask : FMTaskBase
 				var totalProcessAmount = 0f;
 				for (int i = 0; i < m_AssignedWorkers.Count; ++i)
 				{
-					totalProcessAmount += m_ProcessScalar * m_AssignedWorkers[i].GetProductivity();
+                    var productivity = m_AssignedWorkers[i].GetProductivity();
+                    totalProcessAmount += m_ProcessScalar * productivity;
 				}
 
 				totalProcessAmount = Mathf.Min(totalProcessAmount, resource.m_Amount);

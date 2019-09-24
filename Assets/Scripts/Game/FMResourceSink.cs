@@ -117,7 +117,7 @@ public class FMResourceSink : FMTaskBase
 		}
 
 		// get people sick
-		m_CurrentSicknessLevel += triggeredSickness;
+		m_CurrentSicknessLevel = triggeredSickness;
 	}
 
 	public override float GetTimeToTrigger()
