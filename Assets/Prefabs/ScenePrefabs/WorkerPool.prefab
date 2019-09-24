@@ -58,11 +58,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5848940578922451009}
     m_Modifications:
-    - target: {fileID: 2743086492913030661, guid: 6879d344c17173345a397d6ca722cb7a,
-        type: 3}
-      propertyPath: m_Name
-      value: WorkerJoe
-      objectReference: {fileID: 0}
     - target: {fileID: 2743086492913030660, guid: 6879d344c17173345a397d6ca722cb7a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -168,6 +163,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 2743086492913030661, guid: 6879d344c17173345a397d6ca722cb7a,
+        type: 3}
+      propertyPath: m_Name
+      value: WorkerJoe
+      objectReference: {fileID: 0}
     - target: {fileID: 5525371205841908134, guid: 6879d344c17173345a397d6ca722cb7a,
         type: 3}
       propertyPath: m_LocalRotation.x
@@ -219,11 +219,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5848940578922451009}
     m_Modifications:
-    - target: {fileID: 2743086492913030661, guid: 6879d344c17173345a397d6ca722cb7a,
-        type: 3}
-      propertyPath: m_Name
-      value: WorkerBob
-      objectReference: {fileID: 0}
     - target: {fileID: 2743086492913030660, guid: 6879d344c17173345a397d6ca722cb7a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -328,6 +323,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2743086492913030661, guid: 6879d344c17173345a397d6ca722cb7a,
+        type: 3}
+      propertyPath: m_Name
+      value: WorkerBob
       objectReference: {fileID: 0}
     - target: {fileID: 5525371205841908134, guid: 6879d344c17173345a397d6ca722cb7a,
         type: 3}

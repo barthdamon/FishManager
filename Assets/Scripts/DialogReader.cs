@@ -62,8 +62,8 @@ public class DialogReader : MonoBehaviour, IPointerDownHandler
             }
         } else
         {
-            string line_str = lines[currentLine].Substring(0, (int)readTimer)
-                        + "<color=#00000000>" + lines[currentLine].Substring((int)readTimer) + "</color>";   //also render this bit invisibly to keep the formatting the same ;)
+            string line_str = lines[currentLine].Substring(0, (int)readTimer + 1)
+                        + "<color=#00000000>" + lines[currentLine].Substring((int)readTimer + 1) + "</color>";   //also render this bit invisibly to keep the formatting the same ;)
             text.SetText(line_str);
 
             clickTimer = 0;
