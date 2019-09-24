@@ -5894,6 +5894,12 @@ SpriteRenderer:
     type: 3}
   m_PrefabInstance: {fileID: 994491868008179901}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &502967916 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 591641412541254898, guid: c72e8eb09579e664990106c0ec417002,
+    type: 3}
+  m_PrefabInstance: {fileID: 3324932075407900999}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &507082977
 GameObject:
   m_ObjectHideFlags: 0
@@ -5979,6 +5985,12 @@ SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 7377944924453805621, guid: 18fcd74509e5a4c4aa9c861ef3077b02,
     type: 3}
   m_PrefabInstance: {fileID: 994491868008179901}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &552375717 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 591641412621961170, guid: c72e8eb09579e664990106c0ec417002,
+    type: 3}
+  m_PrefabInstance: {fileID: 3324932075407900999}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &616114308
 GameObject:
@@ -15327,6 +15339,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 478b875897ba393418ef00441c8a7bb4, type: 3}
+--- !u!1 &2131056255 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 619456245894011114, guid: a7b08614067799c4bb71ad7db0ca397d,
+    type: 3}
+  m_PrefabInstance: {fileID: 7298619969065109665}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2131056256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2131056255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5a4668e01dc7f3408a60474d88254ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HasDraggedWorker: 0
+  HasAssignedWorkerToBoat: 0
+  HasAssignedEquipmentToBoat: 0
+  HasProcessedFish: 0
+  WorkerBob: {fileID: 502967916}
+  WorkerJoe: {fileID: 552375717}
 --- !u!114 &2132332452 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2132332452, guid: a7b08614067799c4bb71ad7db0ca397d,
@@ -50698,6 +50734,16 @@ PrefabInstance:
       propertyPath: skip_intro_button
       value: 
       objectReference: {fileID: 1738845990}
+    - target: {fileID: 2035141271574937934, guid: a7b08614067799c4bb71ad7db0ca397d,
+        type: 3}
+      propertyPath: WorkerBob
+      value: 
+      objectReference: {fileID: 502967916}
+    - target: {fileID: 2035141271574937934, guid: a7b08614067799c4bb71ad7db0ca397d,
+        type: 3}
+      propertyPath: WorkerJoe
+      value: 
+      objectReference: {fileID: 552375717}
     - target: {fileID: 5458974616643276663, guid: a7b08614067799c4bb71ad7db0ca397d,
         type: 3}
       propertyPath: m_AnchoredPosition.y
