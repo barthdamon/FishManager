@@ -57,7 +57,10 @@ public class DialogManager : MonoBehaviour
 
         if (df != null)
         {
-            df.Say(text, speakername, !cast);
+            // because emoji has glitch with typing effect, so we show the whole message if it comes from the chat
+            // only turn on the effect on cutscene fishes
+            var enable_typing_effect = cast;
+            df.Say(text, speakername, !cast, enable_typing_effect);
         }
     }
 
@@ -76,7 +79,14 @@ public class DialogManager : MonoBehaviour
         }
 
         go.GetComponent<UI_Over_3D>().target = speaker.transform;
-        go.GetComponentInChildren<DialogReader>().lines.AddRange(text.Split(new char[] { '\n' }));
+        //go.GetComponentInChildren<DialogReader>().lines.AddRange(text.Split(new char[] { '\n' }));
+        var lines = text.Split(new char[] { '\n' });
+        foreach (string line in lines)
+        {
+            // turn on typing effect always for 3d text bubbles
+            var enable_typing_effect = true;
+            go.GetComponentInChildren<DialogReader>().add_dialog_line(line, enable_typing_effect);
+        }
     }
 
     private void Update()

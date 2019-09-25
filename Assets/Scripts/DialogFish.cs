@@ -84,7 +84,7 @@ public class DialogFish : MonoBehaviour
         drs[0].Clear();
     }
 
-    public void Say(string text, string byName, bool setName = true)
+    public void Say(string text, string byName, bool setName = true, bool enable_typing_effect = true)
     {
         Debug.Log(byName + ": " + text);
 
@@ -93,7 +93,13 @@ public class DialogFish : MonoBehaviour
 
         //find it even if disabled
         DialogReader[] drs = dialog.GetComponentsInChildren<DialogReader>(true);
-        drs[0].lines.AddRange(text.Split(new char[] { '\n' }));
+        //drs[0].lines.AddRange(text.Split(new char[] { '\n' }));
+        var lines = text.Split(new char[] { '\n' });
+        foreach(string line in lines)
+        {
+            drs[0].add_dialog_line(line, enable_typing_effect);
+        }
+
         this.gameObject.SetActive(true);
     }
 

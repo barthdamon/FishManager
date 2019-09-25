@@ -59,7 +59,7 @@ public class Intro : MonoBehaviour
 		{
 			var reader = dialogs[i].GetComponentInChildren<DialogReader>();
 			if (reader)
-				reader.lines.Clear();
+				reader.Clear();
 		}
 
 		title.SetActive(true);
